@@ -25,3 +25,6 @@
 #mdp{
     padding-bottom: 7%;
 }
+
+.material-icons.white { color: #ffffff; }
+.material-icons.md-64 { font-size: 64px; }
