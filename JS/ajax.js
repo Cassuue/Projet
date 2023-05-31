@@ -4,6 +4,7 @@
 // \param url L'URL avec les données
 // \param callback La fonction appelée quand la requête est un succès
 // \param data Les données associées à la requête
+
 function ajaxRequest(type, url, callback, data = null) {
     let xhr;
 
@@ -32,10 +33,12 @@ function ajaxRequest(type, url, callback, data = null) {
     xhr.send(data);
 }
 
+
 // Fonction httpErrors 
 
 // Affichage du message d'erreur en lien avec l'erreur
 // \param errorCode Le code de l'erreur
+
 function httpErrors(errorCode) {
     let messages = {
         400: 'Requête incorrecte',
