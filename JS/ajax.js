@@ -51,7 +51,7 @@ function httpErrors(errorCode) {
         $('#errors').html('<strong>' + messages[errorCode] + '</strong>');
         $('#errors').show();
         setTimeout(() => {
-        $('#errors').hide();
+            $('#errors').hide();
         }, 5000);
     }
 }
