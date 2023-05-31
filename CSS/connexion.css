@@ -1,0 +1,27 @@
+.container-fluid{
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.rectangle-container{
+    position: fixed;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 450px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid black;
+}
+
+.custom-container{
+    padding: 15%;
+}
+
+.text-center{
+    padding-bottom: 7%;
+}
+
+#mdp{
+    padding-bottom: 7%;
+}
