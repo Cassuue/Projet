@@ -2,9 +2,9 @@
 
 include_once('config.php');
 
-class Db
-{
+class Db {
     static $db = null;
+    
     static function connexionBD() {
         if (self::$db != null) {
             return self::$db;
