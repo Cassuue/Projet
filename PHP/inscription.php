@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center" id="inscription">
-                            <button type="submit" class="btn btn-primary">S'inscrire</button>
+                            <button type="submit" class="btn btn-primary" id="inscription">S'inscrire</button>
                         </div>
                     </form>
                 </div>
