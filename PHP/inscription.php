@@ -3,14 +3,15 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="../CSS/inscription.css">
         <title> index </title>
     </head>
 
     <body>
         <div class="container-fluid">
-            <nav class="navbar sticky-top navbar-light justify-content-center" style="background-color: #B8B9B1;">
-                <a class="navbar-brand">Sticky top</a>
+            <nav class="navbar sticky-top navbar-light justify-content-center" style="background-color: #6379AE;">
+                <span class="material-icons white md-64">music_note</span>           
             </nav>
 
             <div class="rectangle-container">
@@ -48,7 +49,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center" id="inscription">
-                            <button type="submit" class="btn btn-primary" id="inscription">S'inscrire</button>
+                            <button type="submit" class="btn" id="inscription" style="background-color: #BFD2FF">S'inscrire</button>
                         </div>
                     </form>
                 </div>

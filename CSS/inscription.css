@@ -21,3 +21,6 @@
 #inscription{
     margin-top: 2%;
 }
+
+.material-icons.white { color: #ffffff; }
+.material-icons.md-64 { font-size: 64px; }
