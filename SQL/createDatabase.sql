@@ -15,10 +15,6 @@ DROP TABLE IF EXISTS avoir CASCADE;
 DROP TABLE IF EXISTS preferer CASCADE;
 
 
-
-
-
-
 ------------------------------------------------------------
 -- Table: Utilisateur
 ------------------------------------------------------------
