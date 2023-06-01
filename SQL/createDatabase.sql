@@ -12,13 +12,12 @@ DROP TABLE IF EXISTS ecouter CASCADE;
 DROP TABLE IF EXISTS composer CASCADE;
 DROP TABLE IF EXISTS appartenir CASCADE;
 DROP TABLE IF EXISTS avoir CASCADE;
-DROP TABLE IF EXISTS preferer CASCADE;
 
 
 ------------------------------------------------------------
 -- Table: Utilisateur
 ------------------------------------------------------------
-CREATE TABLE Utilisateur(
+CREATE TABLE public.Utilisateur(
 	mail             VARCHAR (50) NOT NULL ,
 	nom              VARCHAR (50) NOT NULL ,
 	prenom           VARCHAR (50) NOT NULL ,
@@ -31,10 +30,11 @@ CREATE TABLE Utilisateur(
 ------------------------------------------------------------
 -- Table: Titre
 ------------------------------------------------------------
-CREATE TABLE Titre(
+CREATE TABLE public.Titre(
 	idTitre   SERIAL NOT NULL ,
 	nom       VARCHAR (50) NOT NULL ,
-	duree     DATE  NOT NULL  ,
+	duree     FLOAT  NOT NULL ,
+	lien      VARCHAR (50) NOT NULL  ,
 	CONSTRAINT Titre_PK PRIMARY KEY (idTitre)
 )WITHOUT OIDS;
 
@@ -42,7 +42,7 @@ CREATE TABLE Titre(
 ------------------------------------------------------------
 -- Table: Album
 ------------------------------------------------------------
-CREATE TABLE Album(
+CREATE TABLE public.Album(
 	idAlbum      SERIAL NOT NULL ,
 	nom          VARCHAR (50) NOT NULL ,
 	date_ajout   DATE  NOT NULL ,
@@ -55,7 +55,7 @@ CREATE TABLE Album(
 ------------------------------------------------------------
 -- Table: Artiste
 ------------------------------------------------------------
-CREATE TABLE Artiste(
+CREATE TABLE public.Artiste(
 	idArtiste   SERIAL NOT NULL ,
 	nom         VARCHAR (50) NOT NULL  ,
 	CONSTRAINT Artiste_PK PRIMARY KEY (idArtiste)
@@ -65,7 +65,7 @@ CREATE TABLE Artiste(
 ------------------------------------------------------------
 -- Table: Playlist
 ------------------------------------------------------------
-CREATE TABLE Playlist(
+CREATE TABLE public.Playlist(
 	nom             VARCHAR (50) NOT NULL ,
 	date_creation   DATE  NOT NULL ,
 	mail            VARCHAR (50) NOT NULL  ,
@@ -78,7 +78,7 @@ CREATE TABLE Playlist(
 ------------------------------------------------------------
 -- Table: ecrire
 ------------------------------------------------------------
-CREATE TABLE ecrire(
+CREATE TABLE public.ecrire(
 	idTitre     INT  NOT NULL ,
 	idArtiste   INT  NOT NULL  ,
 	CONSTRAINT ecrire_PK PRIMARY KEY (idTitre,idArtiste)
@@ -91,7 +91,7 @@ CREATE TABLE ecrire(
 ------------------------------------------------------------
 -- Table: composer
 ------------------------------------------------------------
-CREATE TABLE composer(
+CREATE TABLE public.composer(
 	idAlbum     INT  NOT NULL ,
 	idArtiste   INT  NOT NULL  ,
 	CONSTRAINT composer_PK PRIMARY KEY (idAlbum,idArtiste)
@@ -102,23 +102,9 @@ CREATE TABLE composer(
 
 
 ------------------------------------------------------------
--- Table: preferer
-------------------------------------------------------------
-CREATE TABLE preferer(
-	mail      VARCHAR (50) NOT NULL ,
-	idTitre   INT  NOT NULL ,
-	favoris   BOOL  NOT NULL  ,
-	CONSTRAINT preferer_PK PRIMARY KEY (mail,idTitre)
-
-	,CONSTRAINT preferer_Utilisateur_FK FOREIGN KEY (mail) REFERENCES public.Utilisateur(mail) ON DELETE CASCADE
-	,CONSTRAINT preferer_Titre0_FK FOREIGN KEY (idTitre) REFERENCES public.Titre(idTitre) ON DELETE CASCADE
-)WITHOUT OIDS;
-
-
-------------------------------------------------------------
 -- Table: appartenir
 ------------------------------------------------------------
-CREATE TABLE appartenir(
+CREATE TABLE public.appartenir(
 	idTitre      INT  NOT NULL ,
 	nom          VARCHAR (50) NOT NULL ,
 	date_ajout   DATE  NOT NULL  ,
@@ -132,7 +118,7 @@ CREATE TABLE appartenir(
 ------------------------------------------------------------
 -- Table: avoir
 ------------------------------------------------------------
-CREATE TABLE avoir(
+CREATE TABLE public.avoir(
 	idAlbum   INT  NOT NULL ,
 	idTitre   INT  NOT NULL  ,
 	CONSTRAINT avoir_PK PRIMARY KEY (idAlbum,idTitre)
@@ -145,10 +131,11 @@ CREATE TABLE avoir(
 ------------------------------------------------------------
 -- Table: ecouter
 ------------------------------------------------------------
-CREATE TABLE ecouter(
+CREATE TABLE public.ecouter(
 	idTitre   INT  NOT NULL ,
 	mail      VARCHAR (50) NOT NULL ,
-	numero    INT  NOT NULL  ,
+	numero    INT  NOT NULL ,
+	favori    BOOL  NOT NULL  ,
 	CONSTRAINT ecouter_PK PRIMARY KEY (idTitre,mail)
 
 	,CONSTRAINT ecouter_Titre_FK FOREIGN KEY (idTitre) REFERENCES public.Titre(idTitre) ON DELETE CASCADE
