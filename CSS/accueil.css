@@ -42,3 +42,11 @@ span.navbar-toggler-icon{
 
 .material-icons.white { color: #ffffff; }
 .material-icons.md-36 { font-size: 36px; }
+
+.card-body{
+    padding: 1px;
+}
+
+.card-title{
+    margin-bottom: 0%;
+}
