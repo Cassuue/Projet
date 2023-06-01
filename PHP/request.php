@@ -74,7 +74,63 @@ class request{
         } else {
             return false;
         }
-    }   
+    }
+
+    function getUserPlaylists($conn, $email) {
+        $sql = "SELECT nom FROM Playlist WHERE mail = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $playlists = array();
+            while($row = $result->fetch_assoc()) {
+                $playlists[] = $row['nom'];
+            }
+            return $playlists;
+        } else {
+            return false;
+        }
+    }
+
+    function getArtistAlbums($conn, $idArtiste) {
+        $sql = "SELECT a.idAlbum, a.nom, a.date_ajout, a.image, a.style FROM Album a
+                JOIN composer c ON a.idAlbum = c.idAlbum
+                WHERE c.idArtiste = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $idArtiste);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $albums = array();
+            while($row = $result->fetch_assoc()) {
+                $albums[] = $row;
+            }
+            return $albums;
+        } else {
+            return false;
+        }
+    }
+    
+    function getAllArtists($conn) {
+        $sql = "SELECT idArtiste, nom FROM Artiste";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $artists = array();
+            while($row = $result->fetch_assoc()) {
+                $artists[] = $row;
+            }
+            return $artists;
+        } else {
+            return false;
+        }
+    }
+
     
 }
 ?>
