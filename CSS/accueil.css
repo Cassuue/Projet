@@ -3,23 +3,28 @@
     padding-right: 0%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 60px 1fr 80px;
 }
 
 .navbar{
     grid-row-start: 1;
     grid-row-end: 2;
+    position: sticky;
+    top: 0;
 }
 
-nav.navbar.navbar-expand-lg.navbar-light.bg-dark{
-    height: 10%;
-}
 
-.fixed-footer{
-    position: fixed;
-    left: 0;
-    right: 0;
+footer.bg-dark.text-center.text-lg-start{
+    position: sticky;
     bottom: 0;
+    width: 100%;
+    padding: 20px;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.main-content{
+    margin-bottom: 80px;
 }
 
 .material-symbols-outlined {
@@ -60,4 +65,22 @@ span.navbar-toggler-icon{
 
 .card-title{
     margin-bottom: 0%;
+}
+
+.playlist{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    text-decoration: underline;
+}
+
+.recemment_ecoutes{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    text-decoration: underline;
+}
+
+div.card{
+    margin-left: 5%;
 }
