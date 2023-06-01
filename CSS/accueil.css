@@ -1,6 +1,43 @@
 .container-fluid{
     padding-left: 0%;
     padding-right: 0%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.navbar{
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.align-icon-text{
+    display: flex;
+    align-items: center;
+}
+
+#accueil.btn{
+    margin-bottom: 4%;
+}
+
+#recherche.btn{
+    margin-bottom: 4%;
+}
+
+.margin-right{
+    margin-right: 10px;
+}
+
+span.navbar-toggler-icon{
+    color: #ffffff;
 }
 
 .material-icons.white { color: #ffffff; }
