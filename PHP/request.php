@@ -67,6 +67,25 @@ class request{
         }
     }
     
+    function getFavoriteSongs($conn, $email) {
+        $sql = "SELECT idTitre FROM preferer WHERE mail = ? AND favoris = 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $tracks = array();
+            while($row = $result->fetch_assoc()) {
+                $tracks[] = $row['idTitre'];
+            }
+            return $tracks;
+        } else {
+            return false;
+        }
+    }
+
+    
     
     
 }
