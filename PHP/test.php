@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="fr">
     <head>
         <link href="file.css" rel="stylesheet">
@@ -9,14 +9,32 @@
     </head>
     <body>
         <?php
-            include 'musique.php';
+            /*include 'musique.php';
 
             $card = new CardMusique("Titre Musique", 1, "../Images/th.jpeg");
             $card->ajouterBoutton(0, "Chanteur");
-            $card->ajouterBoutton(1, " Album ");
+            $card->ajouterBoutton(1, " Album ");*/
 
         ?>
+
+</div></div>
     </body>
-</html>
+</html>-->
+
+<?php
+    include 'request.php';
+    include 'database.php';
+
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+
+    $conn = new DB;
+    $conn = $conn->connexionBD();
+
+    $test = new request;
+    $test = $test->getLatestListened($conn, 'cassie.peridy@mail.com');
+    print_r($test);
+
+?>
 
 

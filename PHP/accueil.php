@@ -39,7 +39,7 @@
                             </div>
                         </div> 
                         <span class="material-symbols-outlined" style="color: #FFFFFF;" >person</span>
-                        <button class="btn btn-link" style='color: white; margin-right: 6px; margin-bottom: 15px;'>Profil</button>
+                        <button class="btn btn-link text-align-center" style='color: white; margin-right: 6px; margin-bottom: 10px;'>Profil</button>
                     </span>
 
                     <span class="material-icons white md-36">music_note</span>           
@@ -50,6 +50,10 @@
                 </div>
             </nav>
 
+            <div id='body'>
+
+            </div>
+
         </div>
 
     </body>  
@@ -57,34 +61,5 @@
 </html>
 
 <?php
-
-include ('database.php');
-
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
-
-
-    $conn = new DB;
-
-    $type_request = $_SERVER['REQUEST_METHOD'];
-
-    if ($type_request == 'GET'){
-
-        if (isset($_GET['type']) && $_GET['type'] == "lastTitle"){
-            echo json_encode(dbRequestLastTitle($conn));
-        }
-        else{
-
-        }
-
-    } elseif ($type_request == 'POST') {
-
-
-    } elseif ($type_request == 'PUT') {
-
-
-    } elseif($type_request == 'DELETE'){
-
-    }
 
 ?>

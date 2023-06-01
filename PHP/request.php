@@ -50,21 +50,12 @@ class request{
     
     
     function getLatestListened($conn, $email) {
-        $sql = "SELECT idTitre FROM ecouter WHERE mail = ? ORDER BY numero DESC LIMIT 10";
+        $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email ORDER BY numero DESC LIMIT 5';
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $email);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $tracks = array();
-            while ($row = $result->fetch_assoc()) {
-                $tracks[] = $row['idTitre'];
-            }
-            return $tracks;
-        } else {
-            return false;
-        }
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
     
     function getFavoriteSongs($conn, $email) {
@@ -83,10 +74,7 @@ class request{
         } else {
             return false;
         }
-    }
-
-    
-    
+    }   
     
 }
 ?>
