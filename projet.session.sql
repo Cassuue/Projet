@@ -1,0 +1,1 @@
+SELECT * FROM ecouter WHERE mail = 'cassie.peridy@mail.com' ORDER BY numero DESC LIMIT 10
