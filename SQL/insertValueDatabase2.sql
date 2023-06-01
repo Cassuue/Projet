@@ -30,7 +30,11 @@ INSERT INTO Titre (nom, duree, lien, idArtiste, idAlbum) VALUES
 ('Titre 3', '00:03:20', 'audio.mp3', 1, 1),
 ('Titre 4', '00:03:20', 'audio.mp3', 1, NULL),
 ('Titre 5', '00:03:20', 'audio.mp3', 2, NULL),
-('Titre 6', '00:03:20', 'audio.mp3', 2, NULL);
+('Titre 6', '00:03:20', 'audio.mp3', 2, NULL),
+('Titre 7', '00:03:20', 'audio.mp3', 2, NULL),
+('Titre 8', '00:03:20', 'audio.mp3', 2, NULL),
+('Titre 9', '00:03:20', 'audio.mp3', 2, NULL),
+('Titre 10', '00:03:20', 'audio.mp3', 2, NULL);
 
 INSERT INTO playlist VALUES
 ('playlist1', '2023-08-05', 'cassie.peridy@mail.com'),
@@ -42,7 +46,11 @@ INSERT INTO ecouter VALUES
 (3, 'cassie.peridy@mail.com', 3, true),
 (4, 'cassie.peridy@mail.com', 4, false),
 (5, 'cassie.peridy@mail.com', 5, false),
-(6, 'cassie.peridy@mail.com', 6, true);
+(6, 'cassie.peridy@mail.com', 6, true),
+(7, 'cassie.peridy@mail.com', 7, true),
+(8, 'cassie.peridy@mail.com', 8, true),
+(9, 'cassie.peridy@mail.com', 9, true),
+(10, 'cassie.peridy@mail.com', 10, true);
 
 INSERT INTO appartenir VALUES
 (1, 'playlist1', '2023-06-21'),

@@ -58,7 +58,7 @@ class request{
         return $result;
     }
 
-    function getLatestListened($conn, $id){
+    function getInfoTitreID($conn, $id){
         try{
             $stmt = $conn->prepare("SELECT t.idtitre as id, ar.nom as artiste, al.nom as album, t.nom as titre, al.image FROM titre t 
                 LEFT JOIN album al ON al.idalbum = t.idalbum 
@@ -74,40 +74,33 @@ class request{
         return $titles;
     }
     
-    function getFavoriteSongs($conn, $email) {
-        $sql = "SELECT idTitre FROM preferer WHERE mail = ? AND favoris = 1";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $tracks = array();
-            while($row = $result->fetch_assoc()) {
-                $tracks[] = $row['idTitre'];
-            }
-            return $tracks;
-        } else {
+    function getIDFavoris($conn, $email){
+        try {
+            $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email and favori=true LIMIT 10';
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $exception) {
+            echo 'Connexion échouée : ' . $exception->getMessage();
             return false;
         }
+        return $result;
     }
 
     function getUserPlaylists($conn, $email) {
-        $sql = "SELECT nom FROM Playlist WHERE mail = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try{
+            $sql = "SELECT * FROM Playlist WHERE mail = :email LIMIT 10";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(":email", $email);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($result->num_rows > 0) {
-            $playlists = array();
-            while($row = $result->fetch_assoc()) {
-                $playlists[] = $row['nom'];
-            }
-            return $playlists;
-        } else {
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
             return false;
         }
+        return $result;
     }
 
     function getArtistAlbums($conn, $idArtiste) {

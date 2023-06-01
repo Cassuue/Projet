@@ -27,7 +27,7 @@
                             <div class="offcanvas-body">
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     <li class="nav-item">
-                                        <button class="btn align-icon-text" aria-current="page" id="accueil"> <span class="material-symbols-outlined align-icon-text margin-right">home</span>Accueil</button>
+                                        <button type="button" class="btn align-icon-text" aria-current="page" id="accueil"> <span class="material-symbols-outlined align-icon-text margin-right">home</span>Accueil</button>
                                     </li>
                                     <li class="nav-item">
                                         <button class="btn align-icon-text" id="recherche"><span class="material-symbols-outlined align-icon-text margin-right">search</span>Recherche</button>
@@ -52,31 +52,7 @@
         </div>
 
         <div class="container" id='body'>
-            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container">
-                            <div class="row offset-md-2" id="lastTitles">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container">
-                            <div class="row offset-md-2" id="lastTitles2">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+            
 
         </div>
     </body>  
