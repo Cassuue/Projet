@@ -20,8 +20,8 @@ INSERT INTO artiste (nom) VALUES
 
 ALTER SEQUENCE Album_idAlbum_seq RESTART;
 INSERT INTO Album (nom, date_ajout, image, style, idArtiste)VALUES
-('album1', '2023-05-05', '/Image/th.jpeg', 'rock', 1),
-('album2', '2023-02-05', '/Image/th.jpeg', 'pop', 2);
+('album1', '2023-05-05', 'th.jpeg', 'rock', 1),
+('album2', '2023-02-05', 'th.jpeg', 'pop', 2);
 
 ALTER SEQUENCE Titre_idTitre_seq RESTART;
 INSERT INTO Titre (nom, duree, lien, idArtiste, idAlbum) VALUES

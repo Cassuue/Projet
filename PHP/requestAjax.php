@@ -14,9 +14,17 @@ $type_request = $_SERVER['REQUEST_METHOD'];
 
 if ($type_request == 'GET'){
     if (isset($_GET['type']) && $_GET['type'] == "lastTitle"){
-        $test = new request;
-        $test = $test->getLatestListened($conn, 'cassie.peridy@mail.com');
-        echo json_encode($test);
+        $idLastTitle = new request;
+        $idLastTitle = $idLastTitle->getIDLatestListened($conn, 'cassie.peridy@mail.com');
+
+        $tab = array();
+        foreach ($idLastTitle as $value) {
+            $titles = new request;
+            $titles = $titles->getLatestListened($conn, intVal($value['idtitre']));
+            array_push($tab, $titles);
+        }
+
+        echo json_encode($tab);
     }
     else{
 

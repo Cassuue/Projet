@@ -49,13 +49,29 @@ class request{
     }
     
     
-    function getLatestListened($conn, $email) {
-        $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email ORDER BY numero DESC LIMIT 5';
+    function getIDLatestListened($conn, $email) {
+        $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email ORDER BY numero DESC LIMIT 10';
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    function getLatestListened($conn, $id){
+        try{
+            $stmt = $conn->prepare("SELECT t.idtitre as id, ar.nom as artiste, al.nom as album, t.nom as titre, al.image FROM titre t 
+                LEFT JOIN album al ON al.idalbum = t.idalbum 
+                JOIN artiste ar ON ar.idartiste = t.idartiste 
+                WHERE t.idtitre = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $titles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $titles;
     }
     
     function getFavoriteSongs($conn, $email) {

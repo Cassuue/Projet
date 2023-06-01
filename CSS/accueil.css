@@ -2,8 +2,16 @@
     padding-left: 0%;
     padding-right: 0%;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    /*grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;*/
+}
+
+#body.container{
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
 }
 
 .navbar{
@@ -55,4 +63,9 @@ span.navbar-toggler-icon{
 .btn{
     --bs-btn-padding-x: 0%;
     --bs-btn-padding-y: 0%;
+}
+
+.img{
+    width: 470px;
+    height: 470px;
 }
