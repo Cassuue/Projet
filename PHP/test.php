@@ -13,7 +13,7 @@
 
             $card = new CardMusique("Titre Musique", 1, "../Images/th.jpeg");
             $card->ajouterBoutton(0, "Chanteur");
-            $card->ajouterBoutton(1, "Album");
+            $card->ajouterBoutton(1, " Album ");
 
         ?>
     </body>

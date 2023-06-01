@@ -14,7 +14,7 @@
         // Fonction 
 
         function ajouterBoutton($id, $text){
-            echo "<button type='submit' id=".$id." class='btn btn-link' style='color: black;'>".$text."</button>";
+            echo "<button type='submit' id=".$id." class='btn btn-link' style='color: black; margin-right: 6px;'>".$text."</button>";
         }
 
         // Destructeur
