@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS preferer CASCADE;
 ------------------------------------------------------------
 -- Table: Utilisateur
 ------------------------------------------------------------
-CREATE TABLE public.Utilisateur(
+CREATE TABLE Utilisateur(
 	mail             VARCHAR (50) NOT NULL ,
 	nom              VARCHAR (50) NOT NULL ,
 	prenom           VARCHAR (50) NOT NULL ,
@@ -31,7 +31,7 @@ CREATE TABLE public.Utilisateur(
 ------------------------------------------------------------
 -- Table: Titre
 ------------------------------------------------------------
-CREATE TABLE public.Titre(
+CREATE TABLE Titre(
 	idTitre   SERIAL NOT NULL ,
 	nom       VARCHAR (50) NOT NULL ,
 	duree     DATE  NOT NULL  ,
@@ -42,7 +42,7 @@ CREATE TABLE public.Titre(
 ------------------------------------------------------------
 -- Table: Album
 ------------------------------------------------------------
-CREATE TABLE public.Album(
+CREATE TABLE Album(
 	idAlbum      SERIAL NOT NULL ,
 	nom          VARCHAR (50) NOT NULL ,
 	date_ajout   DATE  NOT NULL ,
@@ -55,7 +55,7 @@ CREATE TABLE public.Album(
 ------------------------------------------------------------
 -- Table: Artiste
 ------------------------------------------------------------
-CREATE TABLE public.Artiste(
+CREATE TABLE Artiste(
 	idArtiste   SERIAL NOT NULL ,
 	nom         VARCHAR (50) NOT NULL  ,
 	CONSTRAINT Artiste_PK PRIMARY KEY (idArtiste)
@@ -65,7 +65,7 @@ CREATE TABLE public.Artiste(
 ------------------------------------------------------------
 -- Table: Playlist
 ------------------------------------------------------------
-CREATE TABLE public.Playlist(
+CREATE TABLE Playlist(
 	nom             VARCHAR (50) NOT NULL ,
 	date_creation   DATE  NOT NULL ,
 	mail            VARCHAR (50) NOT NULL  ,
@@ -78,7 +78,7 @@ CREATE TABLE public.Playlist(
 ------------------------------------------------------------
 -- Table: ecrire
 ------------------------------------------------------------
-CREATE TABLE public.ecrire(
+CREATE TABLE ecrire(
 	idTitre     INT  NOT NULL ,
 	idArtiste   INT  NOT NULL  ,
 	CONSTRAINT ecrire_PK PRIMARY KEY (idTitre,idArtiste)
@@ -91,7 +91,7 @@ CREATE TABLE public.ecrire(
 ------------------------------------------------------------
 -- Table: composer
 ------------------------------------------------------------
-CREATE TABLE public.composer(
+CREATE TABLE composer(
 	idAlbum     INT  NOT NULL ,
 	idArtiste   INT  NOT NULL  ,
 	CONSTRAINT composer_PK PRIMARY KEY (idAlbum,idArtiste)
@@ -104,7 +104,7 @@ CREATE TABLE public.composer(
 ------------------------------------------------------------
 -- Table: preferer
 ------------------------------------------------------------
-CREATE TABLE public.preferer(
+CREATE TABLE preferer(
 	mail      VARCHAR (50) NOT NULL ,
 	idTitre   INT  NOT NULL ,
 	favoris   BOOL  NOT NULL  ,
@@ -118,7 +118,7 @@ CREATE TABLE public.preferer(
 ------------------------------------------------------------
 -- Table: appartenir
 ------------------------------------------------------------
-CREATE TABLE public.appartenir(
+CREATE TABLE appartenir(
 	idTitre      INT  NOT NULL ,
 	nom          VARCHAR (50) NOT NULL ,
 	date_ajout   DATE  NOT NULL  ,
@@ -132,7 +132,7 @@ CREATE TABLE public.appartenir(
 ------------------------------------------------------------
 -- Table: avoir
 ------------------------------------------------------------
-CREATE TABLE public.avoir(
+CREATE TABLE avoir(
 	idAlbum   INT  NOT NULL ,
 	idTitre   INT  NOT NULL  ,
 	CONSTRAINT avoir_PK PRIMARY KEY (idAlbum,idTitre)
@@ -145,7 +145,7 @@ CREATE TABLE public.avoir(
 ------------------------------------------------------------
 -- Table: ecouter
 ------------------------------------------------------------
-CREATE TABLE public.ecouter(
+CREATE TABLE ecouter(
 	idTitre   INT  NOT NULL ,
 	mail      VARCHAR (50) NOT NULL ,
 	numero    INT  NOT NULL  ,
