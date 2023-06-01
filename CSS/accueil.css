@@ -3,12 +3,23 @@
     padding-right: 0%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 60px 1fr;
 }
 
 .navbar{
     grid-row-start: 1;
     grid-row-end: 2;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-dark{
+    height: 10%;
+}
+
+.fixed-footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .material-symbols-outlined {

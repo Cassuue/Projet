@@ -45,11 +45,37 @@
                 </div>
             </nav>
 
+            <div class="2eligne">
+                <h1 class="recemment_ecoutes">Titres récemment écoutés</h1>
+                <?php
+                    require_once 'musique.php';
+
+                    $card = new CardMusique("Titre Musique", 1, "../Images/th.jpeg");
+                    $card->ajouterBoutton(0, "Chanteur");
+                    $card->ajouterBoutton(1, "Album");
+                ?>
+            </div>
         </div>
+                <h1 class="playlist">Vos playlists</h1>
+                <?php
+                    require_once 'musique.php';
 
-        
+                    $card = new CardMusique("Titre Musique", 1, "../Images/th.jpeg");
+                    $card->ajouterBoutton(0, "Chanteur");
+                    $card->ajouterBoutton(1, "Album");
+                ?>
+                <?php
+                    require_once 'musique.php';
+
+                    $card = new CardMusique("Titre Musique", 1, "../Images/th.jpeg");
+                    $card->ajouterBoutton(0, "Chanteur");
+                    $card->ajouterBoutton(1, "Album");
+                ?>
+</div>
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-footer">
+            </nav>
+
+        </div> 
     </body>
-
-    
-
 </html>
