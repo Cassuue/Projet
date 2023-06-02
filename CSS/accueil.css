@@ -34,6 +34,10 @@ footer.bg-dark.text-center.text-lg-start{
     margin-bottom: 80px;
 }
 
+.offcanvas-body{
+    z-index: 999;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
