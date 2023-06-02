@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../CSS/accueil.css">
         <script src="../JS/ajax.js" defer></script>
         <script src="../JS/accueil.js" defer></script>
+        <script src="../JS/recherche.js" defer></script>
         <title> Accueil </title>
     </head>
 
