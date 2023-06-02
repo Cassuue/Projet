@@ -11,12 +11,27 @@
     padding-right: 2%;
     padding-top: 1%;
     padding-bottom: 1%;
-
 }
 
 .navbar{
     grid-row-start: 1;
     grid-row-end: 2;
+    position: sticky;
+    top: 0;
+}
+
+
+footer.bg-dark.text-center.text-lg-start{
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.main-content{
+    margin-bottom: 80px;
 }
 
 .material-symbols-outlined {
