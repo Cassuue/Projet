@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="../CSS/accueil.css">
         <script src="../JS/ajax.js" defer></script>
+        <!--<script src="../JS/test.js" defer></script>-->
         <script src="../JS/accueil.js" defer></script>
+        <script src="../JS/recherche.js" defer></script>
         <script src="../JS/titre.js" defer></script>
 
         <title> Accueil </title>

@@ -15,7 +15,7 @@
 .navbar{
     grid-row-start: 1;
     grid-row-end: 2;
-    position: sticky;
+    position: relative;
     top: 0;
 }
 
@@ -31,6 +31,10 @@ footer.bg-dark.text-center.text-lg-start{
 
 .main-content{
     margin-bottom: 80px;
+}
+
+.offcanvas-body{
+    z-index: 999;
 }
 
 .material-symbols-outlined {
