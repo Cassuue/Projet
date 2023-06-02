@@ -1,0 +1,1 @@
+SELECT idTitre FROM ecouter WHERE mail='cassie.peridy@mail.com' and favori=true

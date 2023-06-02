@@ -6,12 +6,13 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="../CSS/accueil.css">
-        <title> index </title>
+        <script src="../JS/ajax.js" defer></script>
+        <script src="../JS/accueil.js" defer></script>
+        <title> Accueil </title>
     </head>
 
     <body>
-        <div class="container-fluid main-content">
-
+        <div class="container-fluid">
             <nav class="navbar" style="background-color: #6379AE;">
                 <div class="container-fluid">
                     <span class="navbar-item">
@@ -19,14 +20,14 @@
                             <span class="material-symbols-outlined">menu</span>
                         </button>
                         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                            <div class="offcanvas-header" style="background-color: #6379AE;">
+                                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: white;">Menu</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     <li class="nav-item">
-                                        <button class="btn align-icon-text" aria-current="page" id="accueil"> <span class="material-symbols-outlined align-icon-text margin-right">home</span>Accueil</button>
+                                        <button type="button" class="btn align-icon-text" aria-current="page" id="accueil"> <span class="material-symbols-outlined align-icon-text margin-right">home</span>Accueil</button>
                                     </li>
                                     <li class="nav-item">
                                         <button class="btn align-icon-text" id="recherche"><span class="material-symbols-outlined align-icon-text margin-right">search</span>Recherche</button>
@@ -36,19 +37,27 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                        
+                        </div> 
+                        <span class="material-symbols-outlined" style="color: #FFFFFF;" >person</span>
+                        <button class="btn btn-link text-align-center" style='color: white; margin-right: 6px; margin-bottom: 10px;'>Profil</button>
                     </span>
+
+                    <span class="material-icons white md-36">music_note</span>           
+
                     <span class="navbar-item">
-                        <button href="connexion.php" class="btn" style="color: #FFFFFF">Déconnexion</button>
+                        <button href="connexion.php" class="btn" style="color: #FFFFFF; margin-right: 20px;">Déconnexion</button>
                     </span>  
                 </div>
             </nav>
-            
-            <footer class="bg-dark text-center text-lg-start">
-                <p>Test</p>
-            </footer>
+        </div>
 
-        </div> 
-    </body> 
+        <div class="container" id='body'>
+            
+
+        </div>
+    </body>  
 </html>
+
+<?php
+
+?>

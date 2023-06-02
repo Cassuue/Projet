@@ -1,6 +1,6 @@
 <?php
 
-include_once('config.php');
+include_once('constants.php');
 
 class Db {
     static $db = null;
