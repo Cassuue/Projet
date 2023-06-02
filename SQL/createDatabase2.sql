@@ -40,7 +40,7 @@ CREATE TABLE Album(
 	idAlbum      SERIAL NOT NULL ,
 	nom          VARCHAR (50) NOT NULL ,
 	date_ajout   DATE  NOT NULL ,
-	image        VARCHAR (50) NOT NULL ,
+	image        VARCHAR (150) ,
 	style        VARCHAR (50) NOT NULL ,
 	idArtiste    INT  NOT NULL  ,
 	CONSTRAINT Album_PK PRIMARY KEY (idAlbum)
@@ -56,7 +56,7 @@ CREATE TABLE Titre(
 	idTitre     SERIAL NOT NULL ,
 	nom         VARCHAR (50) NOT NULL ,
 	duree       TIME  NOT NULL ,
-	lien        VARCHAR (50) NOT NULL ,
+	lien        VARCHAR (150) NOT NULL ,
 	idArtiste   INT  NOT NULL ,
 	idAlbum     INT    ,
 	CONSTRAINT Titre_PK PRIMARY KEY (idTitre)

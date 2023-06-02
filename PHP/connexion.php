@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $_SESSION['type'] = "deco";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -41,34 +46,49 @@
 
 
 <?php
-    require_once('../database.php');
+     include '../database.php';
+     include '../request.php';
 
-    // Enable all warnings and errors.
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    // // Enable all warnings and errors.
+    // ini_set('display_errors', 1);
+    // error_reporting(E_ALL);
     
-    // Database connection.
-    $conn = connexionBD();
+    // // Database connection.
+    // $conn = new Db;
+    // $conn = connexionBD();
 
-    if(!empty($_POST['email']) && !empty($_POST['password'])){
-        $mail = $_POST['email'];
-        $mdp = $_POST['password'];
+    // if(!empty($_POST['email']) && !empty($_POST['password'])){
+    //     $mail = $_POST['email'];
+    //     $mdp = $_POST['password'];
 
-        //$mdp_bdd = dbGetPassword($conn, $mail);   => A CODER
+    //     echo $mail;
 
-        $test = FALSE;
+    //     $testConn = connexionUser($conn, $mail, $mdp);
 
-        foreach($mdp_bdd as $pers){
-            if(password_verify($mdp, $pers['mdp']) && $pers['mail'] == $mail){
-                $test = TRUE;
-                header("Location: accueil.html");
-            }
-        }
+    //     if($testConn){
+    //         $_SESSION['type']= "conn";
+    //         $_SESSION['mail']= $mail;
+    //         header("Location: accueil.php");
+    //     } else{
+    //         echo "<br> <div class='row col-md-5 offset-md-3 text-bg-danger p-1 text-center rounded-3'> <p> Erreur, le mot de passe ou l'adresse mail entrée est fausse !</p> </div>";
+    //     }
 
-        if (!$test){
-        echo "<br> <div class='row col-md-5 offset-md-3 text-bg-danger p-1 text-center rounded-3'> <p> Erreur, le mot de passe ou l'adresse mail entrée est fausse !</p> </div>";
-        }
+    //     /*$mdp_bdd = dbGetPassword($conn, $mail); 
 
-    }
+    //     $test = FALSE;
+
+    //     foreach($mdp_bdd as $pers){
+    //         if(password_verify($mdp, $pers['mdp']) && $pers['mail'] == $mail){
+    //             $_SESSION['type']= "conn";
+    //             $_SESSION['mail']= $mail;
+    //             header("Location: accueil.php");
+    //         }
+    //     }
+
+    //     if (!$test){
+    //     echo "<br> <div class='row col-md-5 offset-md-3 text-bg-danger p-1 text-center rounded-3'> <p> Erreur, le mot de passe ou l'adresse mail entrée est fausse !</p> </div>";
+    //     }*/
+
+    // }
 
 ?>
