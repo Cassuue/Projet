@@ -259,4 +259,77 @@ pageAccueil();
 const accueil = document.querySelector('#accueil');
 accueil.addEventListener("click",pageAccueil);
 
+/*function updatePage() {
+    let body = document.getElementById("body");
+    body.innerHTML = "";
 
+    // Carousel 1
+    let carousel1 = document.createElement("div");
+    carousel1.id = "carouselExampleControls1";
+    carousel1.className = "carousel carousel-dark slide";
+    carousel1.setAttribute("data-ride", "carousel");
+    body.appendChild(carousel1);
+
+    let carouselInner1 = document.createElement("div");
+    carouselInner1.className = "carousel-inner";
+    carousel1.appendChild(carouselInner1);
+
+    let carouselItem1 = document.createElement("div");
+    carouselItem1.className = "carousel-item active";
+    carouselInner1.appendChild(carouselItem1);
+
+    let container1 = document.createElement("div");
+    container1.className = "container";
+    carouselItem1.appendChild(container1);
+
+    let row1 = document.createElement("div");
+    row1.className = "row justify-content-center";
+    row1.id = "lastTitles";
+    container1.appendChild(row1);
+
+    let carouselItem2 = document.createElement("div");
+    carouselItem2.className = "carousel-item";
+    carouselInner1.appendChild(carouselItem2);
+
+    let container2 = document.createElement("div");
+    container2.className = "container";
+    carouselItem2.appendChild(container2);
+
+    let row2 = document.createElement("div");
+    row2.className = "row justify-content-center";
+    row2.id = "lastTitles2";
+    container2.appendChild(row2);
+
+    let carouselControlPrev1 = document.createElement("button");
+    carouselControlPrev1.className = "carousel-control-prev";
+    carouselControlPrev1.type = "button";
+    carouselControlPrev1.setAttribute("data-bs-target", "#carouselExampleControls1");
+    carouselControlPrev1.setAttribute("data-bs-slide", "prev");
+    carousel1.appendChild(carouselControlPrev1);
+
+    let carouselControlPrevIcon1 = document.createElement("span");
+    carouselControlPrevIcon1.className = "carousel-control-prev-icon";
+    carouselControlPrevIcon1.setAttribute("aria-hidden", "true");
+    carouselControlPrev1.appendChild(carouselControlPrevIcon1);
+
+    let carouselControlPrevSpan1 = document.createElement("span");
+    carouselControlPrevSpan1.className = "visually-hidden";
+    carouselControlPrevSpan1.textContent = "Previous";
+    carouselControlPrev1.appendChild(carouselControlPrevSpan1);
+
+    let carouselControlNext1 = document.createElement("button");
+    carouselControlNext1.className = "carousel-control-next";
+    carouselControlNext1.type = "button";
+    carouselControlNext1.setAttribute("data-bs-target", "#carouselExampleControls1");
+    carouselControlNext1.setAttribute("data-bs-slide", "next");
+    carousel1.appendChild(carouselControlNext1);
+
+    let carouselControlNextIcon1 = document.createElement("span");
+    carouselControlNextIcon1.className = "carousel-control-next-icon";
+    carouselControlNextIcon1.setAttribute("aria-hidden", "true");
+    carouselControlNext1.appendChild(carouselControlNextIcon1);
+
+    let carouselControlNextSpan1 = document.createElement("span");
+    carouselControlNextSpan1.className = "visually-hidden";
+    carouselControlNextSpan1.textContent = "Next";
+    carouselControlNext1.appendChild(carouselControlNextSpan1);*/
