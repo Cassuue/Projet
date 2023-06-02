@@ -1,1 +1,1 @@
-SELECT idTitre FROM ecouter WHERE mail='cassie.peridy@mail.com' and favori=true
+SELECT mdp FROM utilisateur WHERE mail = 'cassie.peridy@mail.com'

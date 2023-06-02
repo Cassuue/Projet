@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $_SESSION['type'] = "deco";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -18,13 +23,13 @@
                 <div class="custom-container">
                     <h2 class="text-center"> Connexion </h2>
                     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                        <div class="form-group" id="mail">
+                        <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email">
+                            <input type="email" class="form-control" name="mail" placeholder="Email">
                         </div>
                         <div class="form-group" id="mdp">
                             <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" placeholder="Mot de passe">
+                            <input type="password" class="form-control" name="password" placeholder="Mot de passe">
                         </div>
                         <div class="d-flex justify-content-between align-items-start" id="btn">
                             <button type="submit" class="btn" id="BtnConnexion" style="background-color: #BFD2FF">Se connecter</button>
@@ -41,34 +46,31 @@
 
 
 <?php
-    require_once('../database.php');
+     include '../PHP/database.php';
+     include '../PHP/request.php';
 
-    // Enable all warnings and errors.
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+     // Enable all warnings and errors.
+     ini_set('display_errors', 1);
+     error_reporting(E_ALL);
     
     // Database connection.
-    $conn = connexionBD();
+    $conn = new Db;
+    $conn = $conn->connexionBD();
 
-    if(!empty($_POST['email']) && !empty($_POST['password'])){
-        $mail = $_POST['email'];
+    if(!empty($_POST['mail']) && !empty($_POST['password'])){
+        $mail = $_POST['mail'];
         $mdp = $_POST['password'];
 
-        //$mdp_bdd = dbGetPassword($conn, $mail);   => A CODER
+        $testConn = new request;
+        $testConn = $testConn->connexionUser($conn, $mail, $mdp);
 
-        $test = FALSE;
-
-        foreach($mdp_bdd as $pers){
-            if(password_verify($mdp, $pers['mdp']) && $pers['mail'] == $mail){
-                $test = TRUE;
-                header("Location: accueil.html");
-            }
+        if($testConn){
+            $_SESSION['type']= "conn";
+            $_SESSION['mail']= $mail;
+            header("Location: accueil.php");
+        } else{
+            echo "<br> <div class='row col-md-5 offset-md-3 text-bg-danger p-1 text-center rounded-3'> <p> Erreur, le mot de passe ou l'adresse mail entrée est fausse !</p> </div>";
         }
-
-        if (!$test){
-        echo "<br> <div class='row col-md-5 offset-md-3 text-bg-danger p-1 text-center rounded-3'> <p> Erreur, le mot de passe ou l'adresse mail entrée est fausse !</p> </div>";
-        }
-
     }
 
 ?>

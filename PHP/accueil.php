@@ -47,7 +47,7 @@
                     <span class="material-icons white md-36">music_note</span>           
 
                     <span class="navbar-item">
-                        <button href="connexion.php" class="btn" style="color: #FFFFFF; margin-right: 20px;">Déconnexion</button>
+                        <a href="connexion.php" class="btn" style="color: #FFFFFF; margin-right: 20px;">Déconnexion</a>
                     </span>  
                 </div>
             </nav>

@@ -1,4 +1,3 @@
-
 function updatePage(){
     let body = document.getElementById("body");
     body.innerHTML = "<div id='carouselExampleControls1' class='carousel carousel-dark slide' data-ride='carousel'>"+
@@ -7,7 +6,7 @@ function updatePage(){
                     "<div class='container'>"+
                         "<div class='row justify-content-center' id='lastTitles'>"+
                         "</div>"+
-                    "</div>"+
+                    "</div>"+   
                 "</div>"+
                 "<div class='carousel-item'>"+
                     "<div class='container'>"+
@@ -121,8 +120,8 @@ function displayLastTitle(json){
             let html = "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
-            "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
-            "<button type='submit' id=lastArtist"+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
+            "<button type='submit' id=lastTitre class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
+            "<button type='submit' id=lastArtist class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
 
             lastTitle.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
@@ -244,6 +243,7 @@ function displayFavoris(json){
     }
 }
 
+// Affichage de toutes la page d'accueil
 function pageAccueil(){
     updatePage();
     getLastTitle();
@@ -251,6 +251,12 @@ function pageAccueil(){
     getFavoris();
 }
 
+
+// Affichage de la page d'accueil sans l'appui sur le bouton
+pageAccueil();
+
+// Affichage de la page d'accueil après avoir cliqué dans le menu
 const accueil = document.querySelector('#accueil');
-accueil.addEventListener("click",pageAccueil)
+accueil.addEventListener("click",pageAccueil);
+
 

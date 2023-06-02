@@ -17,35 +17,35 @@
             <div class="rectangle-container">
                 <div class="custom-container">
                     <h2 class="text-center"> Formulaire d'inscription</h2>
-                    <form>
+                    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                         <div class="row" id="ligne1">
                             <div class="col-md-6">
                                 <label for="nom">Nom</label>
-                                <input type="nom" class="form-control" placeholder="Nom" required>
+                                <input name="nom" type="nom" class="form-control" placeholder="Nom" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="prenom">Prenom</label>
-                                <input type="prenom" class="form-control" placeholder="Prénom" required>
+                                <input name="prenom" type="prenom" class="form-control" placeholder="Prénom" required>
                             </div>
                         </div>
                         <div class="row" id="ligne2">
                             <div class="col-md-6">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" placeholder="Email" required>
+                                <input name="mail" type="email" class="form-control" placeholder="Email" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="Naissance">Date de naissance</label>
-                                <input type="naissance" class="form-control" placeholder="Date de naissance" required>
+                                <input  type="naissance" class="form-control" name="naissance" placeholder="AAAA/MM/JJ" required>
                             </div>
                         </div>
                         <div class="row" id="ligne3">
                             <div class="col-md-6">
                                 <label for="password">Mot de passe</label>
-                                <input type="password" class="form-control" placeholder="Mot de passe" required>
+                                <input name="password" type="password" class="form-control" placeholder="Mot de passe" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="password">Confirmer le mot de passe</label>
-                                <input type="password" class="form-control" placeholder="Confirmer le mot de passe" required>
+                                <input name="passwordConf" type="password" class="form-control" placeholder="Confirmer le mot de passe" required>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center" id="inscription">
@@ -58,3 +58,26 @@
     </body>
 
 </html>
+
+
+<?php
+
+    include '../PHP/database.php';
+    include '../PHP/request.php'; 
+
+    // Enable all warnings and errors.
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    
+    // Database connection.
+    $conn = new Db;
+    $conn = $conn->connexionBD();
+
+    if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['naissance']) && isset($_POST['password']) && isset($_POST['passwordConf'])){
+        $input = new request;
+        $input = $input->registerUser($conn, $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['naissance'], $_POST['password']);
+
+        header("Location: connexion.php");
+   }
+
+?>
