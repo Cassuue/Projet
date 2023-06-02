@@ -16,7 +16,7 @@
 .navbar{
     grid-row-start: 1;
     grid-row-end: 2;
-    position: sticky;
+    position: relative;
     top: 0;
 }
 
