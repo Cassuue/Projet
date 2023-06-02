@@ -11,6 +11,8 @@
         <!--<script src="../JS/test.js" defer></script>-->
         <script src="../JS/accueil.js" defer></script>
         <script src="../JS/recherche.js" defer></script>
+        <script src="../JS/titre.js" defer></script>
+
         <title> Accueil </title>
     </head>
 
@@ -60,7 +62,3 @@
         </div>
     </body>  
 </html>
-
-<?php
-
-?>

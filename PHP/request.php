@@ -112,7 +112,7 @@ class request{
                 JOIN composer c ON a.idAlbum = c.idAlbum
                 WHERE c.idArtiste = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idArtiste);
+        $stmt->bindParam("i", $idArtiste);
         $stmt->execute();
         $result = $stmt->get_result();
 

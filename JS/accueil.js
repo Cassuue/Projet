@@ -117,21 +117,19 @@ function displayLastTitle(json){
         }
 
         if(i < 5){
-            let html = "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
-            "<img class='card-img-top' src=../Images/"+image+">"+
-            "<div class='card-body'>"+
-            "<button type='submit' id=lastTitre class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
-            "<button type='submit' id=lastArtist class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
 
             lastTitle.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
-            "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
-            "<button type='submit' id=lastArtist"+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
+            "<button type='submit' id=lastTitre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
+            "<button type='submit' id=lastArtist"+id+" value="+artiste+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
             if(album){
                 let idDoc = document.getElementById("lastArtist"+id);
                 idDoc.insertAdjacentHTML("afterend", "<button type='submit' id="+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+album+"</button>")
-            } 
+            }
+
+            const btnTitre = document.getElementById("lastTitre"+id);
+            btnTitre.addEventListener("click", afficherTitre);
         } else{
             lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
