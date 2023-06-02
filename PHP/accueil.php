@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="../CSS/accueil.css">
         <script src="../JS/ajax.js" defer></script>
         <script src="../JS/accueil.js" defer></script>
+        <script src="../JS/titre.js" defer></script>
+
         <title> Accueil </title>
     </head>
 
@@ -58,7 +60,3 @@
         </div>
     </body>  
 </html>
-
-<?php
-
-?>
