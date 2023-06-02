@@ -99,7 +99,7 @@ function displayLastTitle(json){
     let size = json.length;
 
     if (size < 5){
-        lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+        lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
         "<img class='card-img-top' src=../Images/white.jpeg >"+
         "<div class='card-body'>"+
         "<button type='submit' id=titre class='btn card-title'></button><br>"+
@@ -118,13 +118,13 @@ function displayLastTitle(json){
         }
 
         if(i < 5){
-            let html = "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+            let html = "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
             "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
             "<button type='submit' id=lastArtist"+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
 
-            lastTitle.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+            lastTitle.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
             "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
@@ -134,7 +134,7 @@ function displayLastTitle(json){
                 idDoc.insertAdjacentHTML("afterend", "<button type='submit' id="+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+album+"</button>")
             } 
         } else{
-            lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+            lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
             "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
@@ -162,7 +162,7 @@ function displayPlaylists(json){
     let size = json.length;
 
     if (size < 5){
-        playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+        playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
         "<img class='card-img-top' src=../Images/white.jpeg >"+
         "<div class='card-body'>"+
         "<button type='submit' id=titre class='btn card-title'></button><br>";
@@ -173,13 +173,13 @@ function displayPlaylists(json){
         let date_creation = json[i]['date_creation'];
 
         if(i < 5){
-            playlist.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+            playlist.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/playlist.jpeg >"+
             "<div class='card-body'>"+
             "<button type='submit' id="+nom+" class='btn card-title' ><h5>"+nom+"</h5></button><br>"+
              "</div></div>";
         } else{
-            playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+            playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/playlist.jpeg >"+
             "<div class='card-body'>"+
             "<button type='submit' id="+nom+" class='btn card-title' ><h5>"+nom+"</h5></button><br>"+
@@ -203,7 +203,7 @@ function displayFavoris(json){
     let size = json.length;
 
     if (size < 5){
-        playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+        playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
         "<img class='card-img-top' src=../Images/white.jpeg >"+
         "<div class='card-body'>"+
         "<button type='submit' id=titre class='btn card-title'></button><br>";
@@ -221,7 +221,7 @@ function displayFavoris(json){
         }
 
         if(i < 5){
-            favoris.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+            favoris.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
             "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
@@ -231,7 +231,7 @@ function displayFavoris(json){
                 idDoc.insertAdjacentHTML("afterend", "<button type='submit' id="+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+album+"</button>")
             } 
         } else{
-            favoris2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;'>"+
+            favoris2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
             "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
