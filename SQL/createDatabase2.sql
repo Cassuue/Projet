@@ -40,7 +40,7 @@ CREATE TABLE Album(
 	idAlbum      SERIAL NOT NULL ,
 	nom          VARCHAR (50) NOT NULL ,
 	date_ajout   DATE  NOT NULL ,
-	image        VARCHAR (150) ,
+	image        VARCHAR (150) NOT NULL,
 	style        VARCHAR (50) NOT NULL ,
 	idArtiste    INT  NOT NULL  ,
 	CONSTRAINT Album_PK PRIMARY KEY (idAlbum)
