@@ -144,7 +144,6 @@ function displayLastTitle(json){
     for(let i = 0; i<10; i++){
         const btn = document.querySelector("#lastTitre"+i);
         let id = document.getElementById("lastTitre"+i).value;
-        console.log(id);
         btn.addEventListener("click", function(){
             getTitle(id);
         });
@@ -200,7 +199,6 @@ function displayFavoris(json){
 
     let size = json.length;
 
-
     for(let i = 0; i < size; i++){
 
         let id = json[i][0]['id'];
@@ -241,6 +239,15 @@ function displayFavoris(json){
                 idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +"</p>");
             }
         }
+
+    }
+
+    for(let i = 0; i<json.length; i++){
+        const btn = document.querySelector("#favTitre"+i);
+        let id = document.getElementById("favTitre"+i).value;
+        btn.addEventListener("click", function(){
+            getTitle(id);
+        });
     }
 }
 

@@ -1,1 +1,1 @@
-SELECT mdp FROM utilisateur WHERE mail = 'cassie.peridy@mail.com'
+UPDATE ecouter SET favori=false where idtitre=2 and mail='cassie.peridy@mail.com'

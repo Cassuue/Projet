@@ -9,36 +9,11 @@
         <title> index </title>
     </head>
     <body>
-        <div class="container">
-            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container">
-                            <div class="row offset-md-2">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-10" src="../Images/null.jpeg" alt="Second slide">
-                    </div>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true" style="color: black;"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true" style="color: black;"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
     </body>
 </html>
 
 <?php
-    /*include 'request.php';
+    include 'request.php';
     include 'database.php';
 
     ini_set('display_errors', 1);
@@ -48,17 +23,9 @@
     $conn = $conn->connexionBD();
 
     $test = new request;
-    $test = $test->getIDLatestListened($conn, 'cassie.peridy@mail.com');
+    $test = $test->modifFavori($conn,2 , 'cassie.peridy@mail.com', false);
 
-    $tab = array();
-    foreach ($test as $value) {
-        $titles = new request;
-        $titles = $titles->getLatestListened($conn, intVal($value['idtitre']));
-        array_push($tab, $titles);
-    }
-    print_r($tab);*/
-
-    
+    echo json_encode($test);
 
 ?>
 

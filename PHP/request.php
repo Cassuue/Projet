@@ -2,6 +2,8 @@
 
 class request{
 
+    // Fonctions SELECT
+
     // Permet de vérifier les informations de connexion
     function connexionUser($conn, $email, $password) {
         $stmt = $conn->prepare("SELECT mdp FROM utilisateur WHERE mail = :email");
@@ -35,23 +37,7 @@ class request{
             return [];
         }
     }
-    
-    // Permet d'insérer dans la base de données les informations d'un nouvel utilisateur
-    function registerUser($conn, $email, $nom, $prenom, $date_naissance, $password) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO Utilisateur (mail, nom, prenom, date_naissance, mdp) VALUES (:mail, :nom, :prenom, :date, :mdp)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(":mail", $email);
-        $stmt->bindParam(":nom", $nom);
-        $stmt->bindParam(":prenom", $prenom);
-        $stmt->bindParam(":date", $date_naissance);
-        $stmt->bindParam(":mdp", $hashed_password);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
     
     // Permet de récupérer les id des 10 derniers titres écoutés en fonction de l'utilisateur
     function getIDLatestListened($conn, $email) {
@@ -66,7 +52,7 @@ class request{
     // Permet de récupérer les informations sur un titre en fonction de son id
     function getInfoTitreID($conn, $id){
         try{
-            $stmt = $conn->prepare("SELECT t.idtitre as id, t.duree as duree, t.lien as lien, ar.nom as artiste, al.nom as album, t.nom as titre, al.image FROM titre t 
+            $stmt = $conn->prepare("SELECT t.idtitre as id, t.duree as duree, t.lien as lien, ar.nom as artiste, ar.idartiste as idartiste, al.nom as album, al.idalbum as idalbum, t.nom as titre, al.image FROM titre t 
                 LEFT JOIN album al ON al.idalbum = t.idalbum 
                 JOIN artiste ar ON ar.idartiste = t.idartiste 
                 WHERE t.idtitre = :id");
@@ -83,7 +69,7 @@ class request{
     // Permet de récupérer l'id des titres appartenant aux favoris
     function getIDFavoris($conn, $email){
         try {
-            $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email and favori=true LIMIT 10';
+            $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email and favori=true';
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
@@ -147,6 +133,42 @@ class request{
         } else {
             return false;
         }
+    }
+
+    // Fonctions INSERT
+
+    // Permet d'insérer dans la base de données les informations d'un nouvel utilisateur
+    function registerUser($conn, $email, $nom, $prenom, $date_naissance, $password) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO Utilisateur (mail, nom, prenom, date_naissance, mdp) VALUES (:mail, :nom, :prenom, :date, :mdp)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":mail", $email);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->bindParam(":prenom", $prenom);
+        $stmt->bindParam(":date", $date_naissance);
+        $stmt->bindParam(":mdp", $hashed_password);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Fonctions UPDATE
+
+    // Permet d'ajouter un titre aux favoris
+    function modifFavori($conn, $id, $mail, $fav){
+        try {
+            $stmt = $conn->prepare('UPDATE ecouter SET favori=:fav where idtitre=:id and mail=:mail');
+            $stmt->bindParam(":mail", $mail);
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":fav", $fav);
+            $stmt->execute();
+        } catch (PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return true;
     }
 
     
