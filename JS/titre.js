@@ -48,7 +48,7 @@ function displayTitle(json) {
                     "<tr>"+
                         "<th scope='col' class='w-75'><h5>"+titre+"</h5></th>"+
                         "<th scope='col' class='w-10'>"+duree+"</th>"+
-                        "<th scope='col' class='w-10'>"+
+                        "<th scope='col' class='w-15'>"+
                             "<button class='btn' type='submit' id='favorite' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
                                 "<h5 style='margin-bottom: 2px;'><i class='bi bi-star'></i></h5>"+                            
                             "</button>"+
