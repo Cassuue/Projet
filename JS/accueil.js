@@ -102,7 +102,7 @@ function displayLastTitle(json){
         "<img class='card-img-top' src=../Images/white.jpeg >"+
         "<div class='card-body'>"+
         "<button type='submit' id=titre class='btn card-title'></button><br>"+
-        "<button type='submit' id=lastArtist class='btn btn-link' style='color: black; margin-right: 6px;'></button> </div> </div>";
+        "<p class=card-text'></p> </div> </div>";
     }
 
     for(let i = 0; i < size; i++){
@@ -121,27 +121,41 @@ function displayLastTitle(json){
             lastTitle.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
-            "<button type='submit' id=lastTitre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
-            "<button type='submit' id=lastArtist"+id+" value="+artiste+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
+            "<button type='submit' id=lastTitre"+i+" class='btn card-title' value="+id+" ><h5>"+titre+"</h5></button>"+
+            "</div> </div>";
+
             if(album){
-                let idDoc = document.getElementById("lastArtist"+id);
-                idDoc.insertAdjacentHTML("afterend", "<button type='submit' id="+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+album+"</button>")
+                let idDoc = document.getElementById("lastTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +" / "+ album+"</p>");
+            } else{
+                let idDoc = document.getElementById("lastTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +"</p>");
             }
 
-            const btnTitre = document.getElementById("lastTitre"+id);
-            btnTitre.addEventListener("click", afficherTitre);
         } else{
             lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
-            "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
-            "<button type='submit' id=lastArtist"+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button> </div> </div>";
+            "<button type='submit' id=lastTitre"+i+" class='btn card-title' ><h5>"+titre+"</h5></button>"+
+            "</div> </div>";
             if(album){
-                let idDoc = document.getElementById("lastArtist"+id);
-                idDoc.insertAdjacentHTML("afterend", "<button type='submit' id="+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+album+"</button>")
-            } 
+                let idDoc = document.getElementById("lastTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +" / "+ album+"</p>");
+            } else{
+                let idDoc = document.getElementById("lastTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +"</p>");
+            }
         }
     }
+
+    for(let i = 0; i<10; i++){
+        const btn = document.querySelector("#lastTitre"+i);
+        let id = document.getElementById("lastTitre"+i).value;
+        btn.addEventListener("click", function(){
+            afficherTitre(id);
+        });
+    }
+
 }
 
 function getPlayists(){
@@ -218,28 +232,37 @@ function displayFavoris(json){
         }
 
         if(i < 5){
-            favoris.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
+            favoris.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
-            "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
-            "<button type='submit' id=favArtist"+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button>";
+            "<button type='submit' id=favTitre"+i+" class='btn card-title' value="+id+" ><h5>"+titre+"</h5></button>"+
+            "</div> </div>";
+
             if(album){
-                let idDoc = document.getElementById("favArtist"+id);
-                idDoc.insertAdjacentHTML("afterend", "<button type='submit' id="+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+album+"</button>")
-            } 
+                let idDoc = document.getElementById("favTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +" / "+ album+"</p>");
+            } else{
+                let idDoc = document.getElementById("favTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +"</p>");
+            }
         } else{
-            favoris2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
+            favoris2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%;; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
-            "<button type='submit' id=titre"+id+" class='btn card-title' ><h5>"+titre+"</h5></button><br>"+
-            "<button type='submit' id=favArtist"+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+artiste+"</button> </div> </div>";
+            "<button type='submit' id=favTitre"+i+" class='btn card-title' value="+id+" ><h5>"+titre+"</h5></button>"+
+            "</div> </div>";
+
             if(album){
-                let idDoc = document.getElementById("favArtist"+id);
-                idDoc.insertAdjacentHTML("afterend", "<button type='submit' id="+id+" class='btn btn-link' style='color: black; margin-right: 6px;'>"+album+"</button>")
-            } 
+                let idDoc = document.getElementById("favTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +" / "+ album+"</p>");
+            } else{
+                let idDoc = document.getElementById("favTitre"+i);
+                idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +"</p>");
+            }
         }
     }
 }
+
 
 // Affichage de toutes la page d'accueil
 function pageAccueil(){
@@ -250,6 +273,8 @@ function pageAccueil(){
 }
 
 
+
+
 // Affichage de la page d'accueil sans l'appui sur le bouton
 pageAccueil();
 
@@ -257,77 +282,7 @@ pageAccueil();
 const accueil = document.querySelector('#accueil');
 accueil.addEventListener("click",pageAccueil);
 
-/*function updatePage() {
-    let body = document.getElementById("body");
-    body.innerHTML = "";
 
-    // Carousel 1
-    let carousel1 = document.createElement("div");
-    carousel1.id = "carouselExampleControls1";
-    carousel1.className = "carousel carousel-dark slide";
-    carousel1.setAttribute("data-ride", "carousel");
-    body.appendChild(carousel1);
 
-    let carouselInner1 = document.createElement("div");
-    carouselInner1.className = "carousel-inner";
-    carousel1.appendChild(carouselInner1);
 
-    let carouselItem1 = document.createElement("div");
-    carouselItem1.className = "carousel-item active";
-    carouselInner1.appendChild(carouselItem1);
 
-    let container1 = document.createElement("div");
-    container1.className = "container";
-    carouselItem1.appendChild(container1);
-
-    let row1 = document.createElement("div");
-    row1.className = "row justify-content-center";
-    row1.id = "lastTitles";
-    container1.appendChild(row1);
-
-    let carouselItem2 = document.createElement("div");
-    carouselItem2.className = "carousel-item";
-    carouselInner1.appendChild(carouselItem2);
-
-    let container2 = document.createElement("div");
-    container2.className = "container";
-    carouselItem2.appendChild(container2);
-
-    let row2 = document.createElement("div");
-    row2.className = "row justify-content-center";
-    row2.id = "lastTitles2";
-    container2.appendChild(row2);
-
-    let carouselControlPrev1 = document.createElement("button");
-    carouselControlPrev1.className = "carousel-control-prev";
-    carouselControlPrev1.type = "button";
-    carouselControlPrev1.setAttribute("data-bs-target", "#carouselExampleControls1");
-    carouselControlPrev1.setAttribute("data-bs-slide", "prev");
-    carousel1.appendChild(carouselControlPrev1);
-
-    let carouselControlPrevIcon1 = document.createElement("span");
-    carouselControlPrevIcon1.className = "carousel-control-prev-icon";
-    carouselControlPrevIcon1.setAttribute("aria-hidden", "true");
-    carouselControlPrev1.appendChild(carouselControlPrevIcon1);
-
-    let carouselControlPrevSpan1 = document.createElement("span");
-    carouselControlPrevSpan1.className = "visually-hidden";
-    carouselControlPrevSpan1.textContent = "Previous";
-    carouselControlPrev1.appendChild(carouselControlPrevSpan1);
-
-    let carouselControlNext1 = document.createElement("button");
-    carouselControlNext1.className = "carousel-control-next";
-    carouselControlNext1.type = "button";
-    carouselControlNext1.setAttribute("data-bs-target", "#carouselExampleControls1");
-    carouselControlNext1.setAttribute("data-bs-slide", "next");
-    carousel1.appendChild(carouselControlNext1);
-
-    let carouselControlNextIcon1 = document.createElement("span");
-    carouselControlNextIcon1.className = "carousel-control-next-icon";
-    carouselControlNextIcon1.setAttribute("aria-hidden", "true");
-    carouselControlNext1.appendChild(carouselControlNextIcon1);
-
-    let carouselControlNextSpan1 = document.createElement("span");
-    carouselControlNextSpan1.className = "visually-hidden";
-    carouselControlNextSpan1.textContent = "Next";
-    carouselControlNext1.appendChild(carouselControlNextSpan1);*/

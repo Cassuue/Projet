@@ -15,29 +15,7 @@
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row offset-md-2">
-                                <?php
-                                    include "musique.php";
 
-                                    $card = new CardMusique("Titre", 1, "../Images/th.jpeg");
-                                    $card->ajouterBoutton(2, "Artiste");
-                                    echo "</div></div>";
-
-                                    $card1 = new CardMusique("Titre", 1, "../Images/th.jpeg");
-                                    $card1->ajouterBoutton(2, "Artiste");
-                                    echo "</div></div>";
-
-                                    $card2 = new CardMusique("Titre", 1, "../Images/th.jpeg");
-                                    $card2->ajouterBoutton(2, "Artiste");
-                                    echo "</div></div>";
-
-                                    $card3 = new CardMusique("Titre", 1, "../Images/th.jpeg");
-                                    $card3->ajouterBoutton(2, "Artiste");
-                                    echo "</div></div>";
-
-                                    $card4 = new CardMusique("Titre", 1, "../Images/th.jpeg");
-                                    $card4->ajouterBoutton(2, "Artiste");
-                                    echo "</div></div>";
-                                ?>
                             </div>
                         </div>
                     </div>
