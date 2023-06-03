@@ -1,1 +1,1 @@
-UPDATE ecouter SET favori=false where idtitre=2 and mail='cassie.peridy@mail.com'
+SELECT * FROM titre WHERE idAlbum = 2

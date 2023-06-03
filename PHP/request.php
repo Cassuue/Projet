@@ -17,27 +17,6 @@ class request{
         }
         return false;
     }
-  
-    function getPlaylistSongs($conn, $playlistName) {
-        $sql = "SELECT Titre.nom 
-            FROM Titre 
-            INNER JOIN appartenir ON Titre.idTitre = appartenir.idTitre 
-            WHERE appartenir.nom = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam("s", $playlistName);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $titles = [];
-            while ($row = $result->fetch_assoc()) {
-                $titles[] = $row['nom'];
-                }
-            return $titles;
-        } else {
-            return [];
-        }
-    }
-
     
     // Permet de récupérer les id des 10 derniers titres écoutés en fonction de l'utilisateur
     function getIDLatestListened($conn, $email) {
@@ -84,7 +63,7 @@ class request{
     // Permet de récupérer les playlists d'un utilisateur
     function getUserPlaylists($conn, $email) {
         try{
-            $sql = "SELECT * FROM Playlist WHERE mail = :email LIMIT 10";
+            $sql = "SELECT * FROM Playlist WHERE mail = :email";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(":email", $email);
             $stmt->execute();
@@ -97,25 +76,64 @@ class request{
         return $result;
     }
 
+    // Permet de récupérer les informations d'un artiste en fonction de son id 
+    function getInfoArtiste($conn, $id){
+        try {
+            $stmt = $conn->prepare("SELECT * FROM artiste WHERE idartiste=:id");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    function getArtistAlbums($conn, $idArtiste) {
-        $sql = "SELECT a.idAlbum, a.nom, a.date_ajout, a.image, a.style FROM Album a
-                JOIN composer c ON a.idAlbum = c.idAlbum
-                WHERE c.idArtiste = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam("i", $idArtiste);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $albums = array();
-            while($row = $result->fetch_assoc()) {
-                $albums[] = $row;
-            }
-            return $albums;
-        } else {
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
             return false;
         }
+        return $result;
+    }
+
+
+    // Permet de récupérer les albums d'un artiste
+    function getArtistAlbums($conn, $idArtiste) {
+        try {
+            $sql = "SELECT * FROM album WHERE idartiste = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(":id", $idArtiste);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
+    }
+
+    // Permet de récupérer toutes les informations sur un album
+    function getInfoAlbum($conn, $id){
+        try {
+            $stmt = $conn->prepare('SELECT * FROM album WHERE idAlbum = :id');
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
+    }
+
+    // Permet de récupérer tous les titres d'un album
+    function getTitresAlbum($conn, $id){
+        try{
+            $stmt = $conn->prepare('SELECT * FROM titre WHERE idAlbum = :id');
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
     }
     
     function getAllArtists($conn) {

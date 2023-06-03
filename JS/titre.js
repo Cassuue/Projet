@@ -22,25 +22,24 @@ function displayTitle(json) {
         image = "playlist.jpeg";
     }
 
+    if (!album){
+        album = "";
+    }
+
     let body = document.getElementById("body");
     body.innerHTML += "<div class='row'>"+
             "<div class='col col-md-3'>"+
                 "<img src=../Images/"+image+" class='img-thumbnail ' alt='...' style='width: 250px;'>"+
             "</div>"+
-            "<div class='col'>"+
-                "<h2>"+titre+"</h2>"+
-                "<button class='btn' type='submit' id='artiste' style='color: black; --bs-btn-padding-x: 5px'> <i class='bi bi-person-fill' style='padding-right: 10px;'></i>"+artiste+" </button>"+
+            "<div class='col' id='col2'>"+
+                "<h2>"+titre+"</h2><button type='submit' class='btn' id='btnArtiste' style='color: black; --bs-btn-padding-x: 5px'> <i class='bi bi-person-fill' style='padding-right: 10px;'></i>"+artiste+" </button><button type='submit' class='btn' id='btnAlbum' style='color: black; --bs-btn-padding-x: 5px'> <i class='bi bi-collection-play-fill' style='padding-right: 10px;'></i>"+album+"</button>"+
             "</div>"+
         "</div>";
 
-    let idArtiste = json[0]['idartiste'];
-    let btnArtiste = document.getElementById("artiste");
-
     // Ajout d'un album si il existe
-    if (album){
-        btnArtiste.innerHTML += "<button class='btn btn-link' id='album' type='submit' style='color: black; --bs-btn-padding-x: 5px'> <i class='bi bi-collection-play-fill' style='padding-right: 10px;'></i>"+album+"</button>";
+    if (!album){
+        let btnAlbum = document.getElementById("btnAlbum").disabled = true;
     }
-
 
     body.innerHTML += "<br><br>";
 
@@ -83,7 +82,16 @@ function displayTitle(json) {
     }
 
     btnFavorite.addEventListener('click', function(){modifFavoris(id, !fav);});
+
+    let idArtiste = json[0]['idartiste'];
+    let btnArtiste = document.getElementById('btnArtiste');
+    btnArtiste.addEventListener("click", function(){getArtiste(idArtiste)});
+
+    let idAlbum = json[0]['idalbum'];
+    let btnAlbum = document.getElementById("btnAlbum");
+    btnAlbum.addEventListener("click", function(){getAlbum(idAlbum)});
 }
+
 
 // Ajout du titre dans les favoris
 function modifFavoris(id, fav){

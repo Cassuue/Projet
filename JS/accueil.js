@@ -141,7 +141,7 @@ function displayLastTitle(json){
         }
     }
 
-    for(let i = 0; i<10; i++){
+    for(let i = 0; i<size; i++){
         const btn = document.querySelector("#lastTitre"+i);
         let id = document.getElementById("lastTitre"+i).value;
         btn.addEventListener("click", function(){
@@ -167,7 +167,7 @@ function displayPlaylists(json){
 
     for(let i = 0; i < size; i++){
         let nom = json[i]['nom'];
-        let date_creation = json[i]['date_creation'];
+        //let date_creation = json[i]['date_creation'];
 
         if(i < 5){
             playlist.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+

@@ -15,12 +15,13 @@ INSERT INTO Utilisateur VALUES
 
 ALTER SEQUENCE Artiste_idArtiste_seq RESTART;
 INSERT INTO artiste (nom, type) VALUES
-('Artiste1', 'solo'),
-('Artiste2', 'groupe');
+('Artiste1', 'Solo'),
+('Artiste2', 'Groupe');
 
 ALTER SEQUENCE Album_idAlbum_seq RESTART;
 INSERT INTO Album (nom, date_ajout, image, style, idArtiste)VALUES
 ('album1', '2023-05-05', 'th.jpeg', 'rock', 1),
+('album3', '2021-01-02', 'th.jpeg', 'rock',2),
 ('album2', '2023-02-05', 'th.jpeg', 'pop', 2);
 
 ALTER SEQUENCE Titre_idTitre_seq RESTART;

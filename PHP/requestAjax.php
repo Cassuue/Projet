@@ -16,6 +16,7 @@
 
     if ($type_request == 'GET'){
 
+            // Requête de récupération des 10 derniers titres écoutés
         if ($_GET['type'] == "lastTitle"){
 
             $idLastTitle = new request;
@@ -30,13 +31,20 @@
 
             echo json_encode($tab);
 
+            // Requête de récupération des 10 dernières playlistes 
         } elseif ($_GET['type'] == "playlists"){
 
             $playlists = new request;
             $playlists = $playlists->getUserPlaylists($conn, $_SESSION['mail']);
 
-            echo json_encode($playlists);
+            $tab = array();
+            for ($i = count($playlists)-1; $i>=0; $i--) {
+                array_push($tab, $playlists[$i]);
+            }
 
+            echo json_encode($tab);
+
+            // Requête de récupération de 10 favoris et des titres qui correspondent 
         } elseif ($_GET['type'] == "favoris"){
 
             $idFavoris = new request;
@@ -50,7 +58,9 @@
             }
 
             echo json_encode($tab);
-        } elseif ($_GET['type'] == 'title' && isset($_GET['id']) && empty($_GET['fav'])) {
+
+            // Requête de récupération d'un titre et des favoris
+        } elseif ($_GET['type'] == 'title' && isset($_GET['id'])) {
 
             $res = array();
             
@@ -66,15 +76,49 @@
 
             echo json_encode($res);
 
+            // Requête de récupération d'un artiste
+        }  elseif ($_GET['type'] == 'artiste' && isset($_GET['id'])) {
 
+            $res = array();
 
-        } elseif($_GET['type'] == 'title' && isset($_GET['id']) && isset($_GET['fav'])){
+            $infoArtiste = new request;
+            $infoArtiste = $infoArtiste->getInfoArtiste($conn, intVal($_GET['id']));
+
+            array_push($res, $infoArtiste[0]);
+
+            $albums = new request;
+            $albums = $albums->getArtistAlbums($conn, intVal($_GET['id']));
+
+            array_push($res, $albums);
             
-            $id = intVal($_GET['id']);
+            echo json_encode($res);
 
-            $ajoutFavoris = new request;
-            $ajoutFavoris = $ajoutFavoris->modifFavori($conn,$id, $_SESSION['mail'], $_GET['fav']);
-            echo json_encode($ajoutFavoris);
+            // Requête de récupération album
+        } elseif ($_GET['type'] == 'album' && isset($_GET['id'])){
+
+            $res = array();
+
+            $infoAlbum = new request;
+            $infoAlbum = $infoAlbum->getInfoAlbum($conn, intVal($_GET['id']));
+
+            array_push($res, $infoAlbum[0]);
+
+            $artiste = new request;
+            $artiste = $artiste->getInfoArtiste($conn, $infoAlbum[0]['idartiste']);
+
+            array_push($res, $artiste[0]);
+
+            $titres = new request;
+            $titres = $titres->getTitresAlbum($conn, intVal($_GET['id']));
+
+            array_push($res, $titres);
+
+            $idFavoris = new request;
+            $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
+
+            array_push($res, $idFavoris);
+
+            echo json_encode($res);
         }
         else{
 
@@ -83,6 +127,7 @@
 
     } elseif ($type_request == 'POST') {
 
+            // Requête de modification des favoris
         if($_POST['type'] == 'title' && isset($_POST['id'])){
 
             if(isset($_POST['fav'])){
