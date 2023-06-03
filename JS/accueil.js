@@ -152,7 +152,7 @@ function displayLastTitle(json){
         const btn = document.querySelector("#lastTitre"+i);
         let id = document.getElementById("lastTitre"+i).value;
         btn.addEventListener("click", function(){
-            afficherTitre(id);
+            getTitle(id);
         });
     }
 

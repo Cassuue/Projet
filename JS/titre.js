@@ -1,5 +1,11 @@
 
-function afficherTitre(id){
+function getTitle(id){
     let body = document.getElementById("body");
-    body.innerHTML = "<div class=row style='margin-top: 1%; margin-bottom: 1%;'><h3 id='titre' >Infos sur le titre :</h3></div>";
+    body.innerHTML = "";
+
+    ajaxRequest('POST', '../PHP/requestAjax.php', displayTitle, "id=" + id +"type=title");
+}
+
+function displayTitle(json) {
+    
 }
