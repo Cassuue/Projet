@@ -11,6 +11,7 @@ function updatePage(){
                 "<div class='carousel-item'>"+
                     "<div class='container'>"+
                         "<div class='row justify-content-center' id='lastTitles2'>"+
+
                         "</div>"+
                     "</div>"+
                 "</div>"+
@@ -97,14 +98,6 @@ function displayLastTitle(json){
 
     let size = json.length;
 
-    if (size < 5){
-        lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
-        "<img class='card-img-top' src=../Images/white.jpeg >"+
-        "<div class='card-body'>"+
-        "<button type='submit' id=titre class='btn card-title'></button><br>"+
-        "<p class=card-text'></p> </div> </div>";
-    }
-
     for(let i = 0; i < size; i++){
 
         let id = json[i][0]['id'];
@@ -136,7 +129,7 @@ function displayLastTitle(json){
             lastTitle2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/"+image+">"+
             "<div class='card-body'>"+
-            "<button type='submit' id=lastTitre"+i+" class='btn card-title' ><h5>"+titre+"</h5></button>"+
+            "<button type='submit' id=lastTitre"+i+" class='btn card-title' value="+id+" ><h5>"+titre+"</h5></button>"+
             "</div> </div>";
             if(album){
                 let idDoc = document.getElementById("lastTitre"+i);
@@ -151,6 +144,7 @@ function displayLastTitle(json){
     for(let i = 0; i<10; i++){
         const btn = document.querySelector("#lastTitre"+i);
         let id = document.getElementById("lastTitre"+i).value;
+        console.log(id);
         btn.addEventListener("click", function(){
             getTitle(id);
         });
@@ -171,13 +165,6 @@ function displayPlaylists(json){
     let playlist2 = document.getElementById("playlists2");
 
     let size = json.length;
-
-    if (size < 5){
-        playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
-        "<img class='card-img-top' src=../Images/white.jpeg >"+
-        "<div class='card-body'>"+
-        "<button type='submit' id=titre class='btn card-title'></button><br>";
-    }
 
     for(let i = 0; i < size; i++){
         let nom = json[i]['nom'];
@@ -213,12 +200,6 @@ function displayFavoris(json){
 
     let size = json.length;
 
-    if (size < 5){
-        playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
-        "<img class='card-img-top' src=../Images/white.jpeg >"+
-        "<div class='card-body'>"+
-        "<button type='submit' id=titre class='btn card-title'></button><br>";
-    }
 
     for(let i = 0; i < size; i++){
 

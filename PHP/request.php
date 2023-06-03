@@ -1,7 +1,8 @@
 <?php
 
 class request{
-    
+
+    // Permet de vérifier les informations de connexion
     function connexionUser($conn, $email, $password) {
         $stmt = $conn->prepare("SELECT mdp FROM utilisateur WHERE mail = :email");
         $stmt->bindParam(':email', $email);
@@ -14,7 +15,6 @@ class request{
         }
         return false;
     }
-  
   
     function getPlaylistSongs($conn, $playlistName) {
         $sql = "SELECT Titre.nom 
@@ -36,6 +36,7 @@ class request{
         }
     }
     
+    // Permet d'insérer dans la base de données les informations d'un nouvel utilisateur
     function registerUser($conn, $email, $nom, $prenom, $date_naissance, $password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO Utilisateur (mail, nom, prenom, date_naissance, mdp) VALUES (:mail, :nom, :prenom, :date, :mdp)";
@@ -52,7 +53,7 @@ class request{
         }
     }
     
-    
+    // Permet de récupérer les id des 10 derniers titres écoutés en fonction de l'utilisateur
     function getIDLatestListened($conn, $email) {
         $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email ORDER BY numero DESC LIMIT 10';
         $stmt = $conn->prepare($sql);
@@ -62,9 +63,10 @@ class request{
         return $result;
     }
 
+    // Permet de récupérer les informations sur un titre en fonction de son id
     function getInfoTitreID($conn, $id){
         try{
-            $stmt = $conn->prepare("SELECT t.idtitre as id, ar.nom as artiste, al.nom as album, t.nom as titre, al.image FROM titre t 
+            $stmt = $conn->prepare("SELECT t.idtitre as id, t.duree as duree, t.lien as lien, ar.nom as artiste, al.nom as album, t.nom as titre, al.image FROM titre t 
                 LEFT JOIN album al ON al.idalbum = t.idalbum 
                 JOIN artiste ar ON ar.idartiste = t.idartiste 
                 WHERE t.idtitre = :id");
@@ -78,6 +80,7 @@ class request{
         return $titles;
     }
     
+    // Permet de récupérer l'id des titres appartenant aux favoris
     function getIDFavoris($conn, $email){
         try {
             $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email and favori=true LIMIT 10';
@@ -92,6 +95,7 @@ class request{
         return $result;
     }
 
+    // Permet de récupérer les playlists d'un utilisateur
     function getUserPlaylists($conn, $email) {
         try{
             $sql = "SELECT * FROM Playlist WHERE mail = :email LIMIT 10";
@@ -106,6 +110,7 @@ class request{
         }
         return $result;
     }
+
 
     function getArtistAlbums($conn, $idArtiste) {
         $sql = "SELECT a.idAlbum, a.nom, a.date_ajout, a.image, a.style FROM Album a

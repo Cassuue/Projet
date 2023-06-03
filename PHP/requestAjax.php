@@ -61,7 +61,9 @@
         if ($_POST['type'] == 'title' && isset($_POST['id'])) {
             
             $infoTitre = new request;
-            //$infoTitre = $infoTitre->get
+            $infoTitre = $infoTitre->getInfoTitreID($conn, intVal($_POST['id']));
+
+            echo json_encode($infoTitre);
         }
 
 
