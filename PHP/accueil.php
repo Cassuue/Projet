@@ -10,11 +10,16 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
+        
+        <!-- Import des bibliothèques bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>        
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        
+        <!-- Import des fichiers css -->
         <link rel="stylesheet" href="../CSS/accueil.css">
+        
+        <!-- Import des fichiers js -->
         <script src="../JS/ajax.js" defer></script>
         <!--<script src="../JS/test.js" defer></script>-->
         <script src="../JS/accueil.js" defer></script>
@@ -30,32 +35,32 @@
                 <div class="container-fluid">
                     <span class="navbar-item">
                         <button class="navbar-toggler border-0 order-1"  style="color: #FFFFFF" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                            <span class="material-symbols-outlined">menu</span>
+                            <h4><i class="bi bi-list"></i></h4>
                         </button>
                         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                             <div class="offcanvas-header" style="background-color: #6379AE;">
-                                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: white;">Menu</h5>
+                                <h4 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: white;">Menu</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     <li class="nav-item">
-                                        <button type="button" class="btn align-icon-text" aria-current="page" id="accueil"> <span class="material-symbols-outlined align-icon-text margin-right">home</span>Accueil</button>
+                                        <button type="button" class="btn btn-link" aria-current="page" id="accueil" style="color: black; text-decoration: none;"> <h5><i class="bi bi-house" style="padding-right: 20px;"></i> Accueil</h5> </button>
                                     </li>
                                     <li class="nav-item">
-                                        <button class="btn align-icon-text" id="recherche"><span class="material-symbols-outlined align-icon-text margin-right">search</span>Recherche</button>
+                                        <button class="btn btn-link" id="recherche" style="color: black; text-decoration: none;"> <h5><i class="bi bi-search" style="padding-right: 20px;"></i>  Recherche</h5></button>
                                     </li>
                                     <li class="nav-item">
-                                        <button class="btn align-icon-text" id="playlist"><span class="material-symbols-outlined align-icon-text margin-right">library_music</span>Playlists</button>
+                                        <button class="btn btn-link" id="playlist" style="color: black; text-decoration: none;"><h5><i class="bi bi-music-note-list" style="padding-right: 20px;"></i>Playlists</h5></button>
                                     </li>
                                 </ul>
                             </div>
                         </div> 
-                        <span class="material-symbols-outlined" style="color: #FFFFFF;" >person</span>
-                        <button class="btn btn-link text-align-center" style='color: white; margin-right: 6px; margin-bottom: 10px;'>Profil</button>
+                        
+                        <button class="btn btn-link text-align-center" style='color: white; margin-right: 6px; margin-bottom: 10px; text-decoration: none;'> <i class="bi bi-person" style="color: white;"></i> Profil</button>
                     </span>
 
-                    <span class="material-icons white md-36">music_note</span>           
+                    <h4><i class="bi bi-music-note-beamed" style="color: white;"></i></h4>
 
                     <span class="navbar-item">
                         <a href="connexion.php" class="btn" style="color: #FFFFFF; margin-right: 20px;">Déconnexion</a>

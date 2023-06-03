@@ -15,7 +15,9 @@
     $type_request = $_SERVER['REQUEST_METHOD'];
 
     if ($type_request == 'GET'){
+
         if ($_GET['type'] == "lastTitle"){
+
             $idLastTitle = new request;
             $idLastTitle = $idLastTitle->getIDLatestListened($conn, $_SESSION['mail']);
 
@@ -27,14 +29,16 @@
             }
 
             echo json_encode($tab);
-        }
-        if ($_GET['type'] == "playlists"){
+
+        } elseif ($_GET['type'] == "playlists"){
+
             $playlists = new request;
             $playlists = $playlists->getUserPlaylists($conn, $_SESSION['mail']);
 
             echo json_encode($playlists);
-        }
-        if ($_GET['type'] == "favoris"){
+
+        } elseif ($_GET['type'] == "favoris"){
+
             $idFavoris = new request;
             $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
 
@@ -53,6 +57,14 @@
         }
 
     } elseif ($type_request == 'POST') {
+
+        if ($_POST['type'] == 'title' && isset($_POST['id'])) {
+            
+            $infoTitre = new request;
+            $infoTitre = $infoTitre->getInfoTitreID($conn, intVal($_POST['id']));
+
+            echo json_encode($infoTitre);
+        }
 
 
     } elseif ($type_request == 'PUT') {
