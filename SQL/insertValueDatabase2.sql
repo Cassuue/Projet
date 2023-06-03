@@ -14,9 +14,9 @@ INSERT INTO Utilisateur VALUES
 -- Mot de passe décrypté : mdp
 
 ALTER SEQUENCE Artiste_idArtiste_seq RESTART;
-INSERT INTO artiste (nom) VALUES
-('Artiste1'),
-('Artiste2');
+INSERT INTO artiste (nom, type) VALUES
+('Artiste1', 'solo'),
+('Artiste2', 'groupe');
 
 ALTER SEQUENCE Album_idAlbum_seq RESTART;
 INSERT INTO Album (nom, date_ajout, image, style, idArtiste)VALUES

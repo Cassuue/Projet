@@ -29,6 +29,7 @@ CREATE TABLE Utilisateur(
 CREATE TABLE Artiste(
 	idArtiste   SERIAL NOT NULL ,
 	nom         VARCHAR (50) NOT NULL  ,
+	type        VARCHAR (50) NOT NULL  ,
 	CONSTRAINT Artiste_PK PRIMARY KEY (idArtiste)
 )WITHOUT OIDS;
 
