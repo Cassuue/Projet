@@ -141,10 +141,9 @@ function displayLastTitle(json){
         }
     }
 
-    for(let i = 0; i<10; i++){
+    for(let i = 0; i<size; i++){
         const btn = document.querySelector("#lastTitre"+i);
         let id = document.getElementById("lastTitre"+i).value;
-        console.log(id);
         btn.addEventListener("click", function(){
             getTitle(id);
         });
@@ -168,22 +167,32 @@ function displayPlaylists(json){
 
     for(let i = 0; i < size; i++){
         let nom = json[i]['nom'];
-        let date_creation = json[i]['date_creation'];
+        let idPlaylist = json[i]['idplaylist'];
+        //let date_creation = json[i]['date_creation'];
 
         if(i < 5){
             playlist.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/playlist.jpeg >"+
             "<div class='card-body'>"+
-            "<button type='submit' id="+nom+" class='btn card-title' ><h5>"+nom+"</h5></button><br>"+
+            "<button type='submit' id=playlist"+i+" class='btn card-title' value="+idPlaylist+" ><h5>"+nom+"</h5></button><br>"+
              "</div></div>";
         } else{
             playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/playlist.jpeg >"+
             "<div class='card-body'>"+
-            "<button type='submit' id="+nom+" class='btn card-title' ><h5>"+nom+"</h5></button><br>"+
+            "<button type='submit' id=playlist"+i+" class='btn card-title' value="+idPlaylist+" ><h5>"+nom+"</h5></button><br>"+
              "</div></div>"; 
         }
     }
+
+    for(let i = 0; i<size; i++){
+        const btn = document.querySelector("#playlist"+i);
+        let id = document.getElementById("playlist"+i).value;
+        btn.addEventListener("click", function(){
+            getPlaylists(id);
+        });
+    }
+
 }
 
 function getFavoris(){
@@ -200,7 +209,6 @@ function displayFavoris(json){
 
     let size = json.length;
 
-
     for(let i = 0; i < size; i++){
 
         let id = json[i][0]['id'];
@@ -208,6 +216,7 @@ function displayFavoris(json){
         let artiste = json[i][0]['artiste'];
         let album = json[i][0]['album'];
         let image = json[i][0]['image'];
+
         if(!image){
             image = "playlist.jpeg";
         }
@@ -241,6 +250,15 @@ function displayFavoris(json){
                 idDoc.insertAdjacentHTML("afterend", "<p class=card-text' id=lastArtist"+id+">"+ artiste +"</p>");
             }
         }
+
+    }
+
+    for(let i = 0; i<json.length; i++){
+        const btn = document.querySelector("#favTitre"+i);
+        let id = document.getElementById("favTitre"+i).value;
+        btn.addEventListener("click", function(){
+            getTitle(id);
+        });
     }
 }
 

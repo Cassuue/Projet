@@ -14,13 +14,14 @@ INSERT INTO Utilisateur VALUES
 -- Mot de passe décrypté : mdp
 
 ALTER SEQUENCE Artiste_idArtiste_seq RESTART;
-INSERT INTO artiste (nom) VALUES
-('Artiste1'),
-('Artiste2');
+INSERT INTO artiste (nom, type) VALUES
+('Artiste1', 'Solo'),
+('Artiste2', 'Groupe');
 
 ALTER SEQUENCE Album_idAlbum_seq RESTART;
 INSERT INTO Album (nom, date_ajout, image, style, idArtiste)VALUES
 ('album1', '2023-05-05', 'th.jpeg', 'rock', 1),
+('album3', '2021-01-02', 'th.jpeg', 'rock',2),
 ('album2', '2023-02-05', 'th.jpeg', 'pop', 2);
 
 ALTER SEQUENCE Titre_idTitre_seq RESTART;
@@ -36,7 +37,8 @@ INSERT INTO Titre (nom, duree, lien, idArtiste, idAlbum) VALUES
 ('Titre 9', '00:03:20', 'audio.mp3', 2, NULL),
 ('Titre 10', '00:03:20', 'audio.mp3', 2, NULL);
 
-INSERT INTO playlist VALUES
+ALTER SEQUENCE Playlist_idPlaylist_seq RESTART;
+INSERT INTO playlist (nom, date_creation, mail) VALUES
 ('playlist1', '2023-08-05', 'cassie.peridy@mail.com'),
 ('playlist2', '2023-03-05', 'antoine.pajdak@mail.com');
 
@@ -53,10 +55,10 @@ INSERT INTO ecouter VALUES
 (10, 'cassie.peridy@mail.com', 10, true);
 
 INSERT INTO appartenir VALUES
-(1, 'playlist1', '2023-06-21'),
-(2, 'playlist1', '2023-06-21'),
-(3, 'playlist1', '2023-06-21'),
-(4, 'playlist2', '2023-06-21');
+(1, 1, '2023-06-21'),
+(2, 1, '2023-06-21'),
+(3, 1, '2023-06-21'),
+(4, 2, '2023-06-21');
 
 
 

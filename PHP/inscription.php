@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <link rel="stylesheet" href="../CSS/inscription.css">
+        <script src="../JS/snippets.js" defer></script>
         <title> index </title>
     </head>
 
@@ -48,8 +49,14 @@
                                 <input name="passwordConf" type="password" class="form-control" placeholder="Confirmer le mot de passe" required>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center" id="inscription">
-                            <button type="submit" class="btn" id="inscription" style="background-color: #BFD2FF">S'inscrire</button>
+                        <div class="row" id="inscription">
+                            <div class="offset-md-4">
+                                <a href="connexion.php" type="button" class="btn" id="retour" style="background-color: #BFD2FF">Retour</a>
+
+                            </div>
+                            <div class="offset-md-3">
+                                <button type="submit" class="btn" id="inscription" style="background-color: #BFD2FF" >S'inscrire</button>
+                            </div>
                         </div>
                     </form>
                 </div>

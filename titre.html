@@ -9,6 +9,8 @@
         <script src="https://kit.fontawesome.com/0a0111abb6.js" crossorigin="anonymous"></script>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200' />
         <link rel='stylesheet' href='../CSS/accueil.css'>
+        <script src="JS/artiste.js" defer></script>
+
     </head>
     <body>
 
@@ -16,13 +18,10 @@
             <br>
             <div class='row'>
                 <div class='col col-md-2'>
-                    <img src='Images/playlist.jpeg' class='img-thumbnail ' alt='...' style='width: 400px;'>
+                    <img src='Images/profil.png' alt='...' style='width: 150px;'>
                 </div>
                 <div class='col'>
-                    <h2> <i class="bi bi-person-fill"></i> TITRE</h2>
-                    <button class='btn btn-link' id='artiste' type='submit' style='color: black;'><i class="bi bi-person-fill"></i>  TEST 
-                        <button class='btn btn-link' id='album' type='submit' style='color: black;'><i class="bi bi-disc"></i> TEST2</button>
-                    </button>
+                    <h2> TITRE</h2>
                 </div>
             </div>
 
@@ -30,31 +29,31 @@
 
             <div class='row'>
                 <table class='table table-hover'>
-                    <tbody>
+                    <thead>
                         <tr>
-                            <th scope='col' class='w-75'>Titre</th>
-                            <th scope='col' class='w-10'>00:00</th>
-                            <th scope='col' class='w-10'>
-                                <button class='btn' type='submit' id='favorite' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 0rem;'>
-                                    <span class='material-symbols-outlined'>heart_plus</span>                                
-                                </button>
-                                <button class='btn' type='submit' id='add' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 0rem;'>
-                                    <i class="bi bi-music-note-list"></i>
-                                </button>
-
-                                <button class='btn' type='submit' id='play' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 0rem;'>
-                                    <span class='material-symbols-outlined'>play_arrow</span>         
-                                </button>
-
-                            </th>
+                            <th scope='col' class='w-75'>Titre Album</th>
+                            <th scope='col' class='w-10'>Date de sortie</th>
+                            <th scope='col' class='w-10'></th>
                         </tr>
-                      </tbody>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
                 </table>
             </div>
         </div>
         <span class='material-symbols-outlined' style='font-variation-settings: "FILL" 1;'>
             favorite
             </span>
+            <button class='btn' type='submit' id='favorite' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 0rem;'>
+                <span class='material-symbols-outlined'>heart_plus</span>                                
+            </button>
+            <button class='btn' type='submit' id='add' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 0rem;'>
+                <i class="bi bi-music-note-list"></i>
+            </button>
+
+            <button class='btn' type='submit' id='play' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 0rem;'>
+                <span class='material-symbols-outlined'>play_arrow</span> 
 
     </body>
 </html>

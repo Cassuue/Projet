@@ -25,7 +25,11 @@
         <script src="../JS/accueil.js" defer></script>
         <script src="../JS/recherche.js" defer></script>
         <script src="../JS/titre.js" defer></script>
+        <script src="../JS/artiste.js" defer></script>
+        <script src="../JS/album.js" defer></script>
+        <script src="../JS/playlist.js" defer></script>
 
+        
         <title> Accueil </title>
     </head>
 
@@ -57,7 +61,7 @@
                             </div>
                         </div> 
                         
-                        <button class="btn btn-link text-align-center" style='color: white; margin-right: 6px; margin-bottom: 10px; text-decoration: none;'> <i class="bi bi-person" style="color: white;"></i> Profil</button>
+                        <a href="userinfo.php" class="btn btn-link text-align-center" style='color: white; margin-right: 6px; margin-bottom: 10px; text-decoration: none;'> <i class="bi bi-person" style="color: white;"></i> Profil</a>
                     </span>
 
                     <h4><i class="bi bi-music-note-beamed" style="color: white;"></i></h4>
