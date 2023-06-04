@@ -217,6 +217,19 @@ class request{
         return true;
     }
 
+    public function getUserInfo($conn, $userEmail) {
+        try {
+            $sql = 'SELECT mail, nom, prenom, date_naissance FROM Utilisateur WHERE mail = :email';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([':email' => $userEmail]);
+            $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $userInfo;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la récupération des informations de l'utilisateur : " . $e->getMessage();
+        }
+    }
+
     
 }
 ?>
