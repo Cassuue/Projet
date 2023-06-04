@@ -24,7 +24,7 @@ function displayInfoPlaylist(json){
                 "<h2>"+nom+"</h2>"+
                 "<p><i class='bi bi-info-circle' style='padding-right: 10px; padding-left: 5px;'></i>"+date+" / "+duree_totale+"</p>"+
             "</div>"+
-        "</div><div class='row'>"+
+        "</div><br><br><div class='row'>"+
             "<table class='table table-hover'>"+
                 "<thead>"+
                     "<tr>"+
@@ -33,6 +33,7 @@ function displayInfoPlaylist(json){
                         "<th scope='col' class='w-15'>Date d'ajout</th>"+
                         "<th scope='col' class='w-15'>Durée</th>"+
                         "<th scope='col' class='w-10'>Options</th>"+
+                        "<th scope='col' >Détails</th>"+
                     "</tr>"+
                 "</thead>"+
                 "<tbody id='table'>"+

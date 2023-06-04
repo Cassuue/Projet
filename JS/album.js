@@ -24,14 +24,15 @@ function displayAlbum(json){
                 "<h2>"+nom+"</h2><button type='submit' class='btn' id='btnArtiste' style='color: black; --bs-btn-padding-x: 5px'> <i class='bi bi-person-fill' style='padding-right: 10px;'></i>"+artiste+" </button>"+
                 "<p><i class='bi bi-info-circle' style='padding-right: 10px; padding-left: 5px;'></i>"+date+" / "+duree_totale+" / "+style+"</p>"+
             "</div>"+
-        "</div><div class='row'>"+
+        "</div><br><br><div class='row'>"+
             "<table class='table table-hover'>"+
                 "<thead>"+
                     "<tr>"+
                         "<th scope='col'>#</th>"+
-                        "<th scope='col' class='w-75'>Titre</th>"+
-                        "<th scope='col' class='w-10'>Durée</th>"+
-                        "<th scope='col' class='w-10'>Options</th>"+
+                        "<th scope='col' class='w-50'>Titre</th>"+
+                        "<th scope='col' >Durée</th>"+
+                        "<th scope='col' >Options</th>"+
+                        "<th scope='col' >Détails</th>"+
                     "</tr>"+
                 "</thead>"+
                 "<tbody id='table'>"+
@@ -66,6 +67,9 @@ function affichageTitres(json, type, indice){
             "<button class='btn' type='submit' id=play"+i+" style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
                 "<h5 style='margin-bottom: 2px;'><i class='bi bi-play-fill'></i></h5>"+
             "</button></td>"+
+            "<td><button class='btn' type='submit' id=details"+i+" style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
+                "<h5 style='margin-bottom: 2px;'><i class='bi bi-three-dots'></i></h5>"+
+            "</button></td>"+
             "</tr>";
 
         if(type != null){
@@ -92,6 +96,7 @@ function affichageTitres(json, type, indice){
 
     }
 
+
     for(let i = 0; i<json[indice].length; i++){
         let fav = false;
         for (let j=0; j<json[indice+1].length; j++){
@@ -99,9 +104,12 @@ function affichageTitres(json, type, indice){
                 fav = true;
             }
         }
-        let btnFavorite = document.getElementById('favorite'+i);
         let id = json[indice][i]['idtitre'];
-        btnFavorite.addEventListener("click", function(){reloadPage(json, id, fav, type)})
+        let btnFavorite = document.getElementById('favorite'+i);
+        btnFavorite.addEventListener("click", function(){reloadPage(json, id, fav, type)});
+
+        let btnDetails = document.getElementById('details'+i);
+        btnDetails.addEventListener('click', function(){getTitle(id)});
     }
 }
 

@@ -16,7 +16,7 @@ function displayArtiste(json){
                     "<img src=../Images/profil.png class='img-thumbnail ' alt='...' style='width: 250px;'>"+
                 "</div>"+
                 "<div class='col' id='col2'>"+
-                    "<h2>"+nom+"</h2><p>"+type+"</p>"+
+                    "<h2>"+nom+"</h2><p><i class='bi bi-info-circle' style='padding-right: 10px; padding-left: 5px;'></i>"+type+"</p>"+
                 "</div>"+
             "</div><br><br><div class='row'>"+
             "<table class='table table-hover'>"+
