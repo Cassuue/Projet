@@ -153,7 +153,7 @@ class request{
     // Permet de récupérer tous les titres d'une playlist
     function getTitresPlaylist($conn, $id){
         try {
-            $stmt = $conn->prepare('SELECT t.idtitre, t.nom as titre, t.duree, t.lien, a.date_ajout FROM appartenir a, titre t WHERE a.idtitre=t.idtitre and a.idPlaylist=:id');
+            $stmt = $conn->prepare('SELECT t.idtitre, t.nom, t.duree, t.lien, a.date_ajout FROM appartenir a, titre t WHERE a.idtitre=t.idtitre and a.idPlaylist=:id');
             $stmt->bindParam(":id", $id);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

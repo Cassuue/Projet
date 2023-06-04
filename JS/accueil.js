@@ -167,7 +167,7 @@ function displayPlaylists(json){
 
     for(let i = 0; i < size; i++){
         let nom = json[i]['nom'];
-        let idPlaylist = json[i]['idPlaylist'];
+        let idPlaylist = json[i]['idplaylist'];
         //let date_creation = json[i]['date_creation'];
 
         if(i < 5){

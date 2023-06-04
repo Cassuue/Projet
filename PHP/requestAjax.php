@@ -120,7 +120,7 @@
 
             echo json_encode($res);
 
-            // Requête de récupération des playlists et des titres 
+            // Requête de récupération d'une playlist et des titres 
         }   elseif ($_GET['type'] == 'playlist' && isset($_GET['id'])) {
             
             $res = array();

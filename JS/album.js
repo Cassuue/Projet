@@ -39,20 +39,24 @@ function displayAlbum(json){
             "</table>"+
         "</div>";
 
-        affichageTitres(json);    
+        affichageTitres(json, null, 2);
+        
+        let idArtiste = json[1]['idartiste'];
+        let btnArtiste = document.getElementById('btnArtiste');
+        btnArtiste.addEventListener("click", function(){getArtiste(idArtiste)});
 }
 
-function affichageTitres(json){
+function affichageTitres(json, type, indice){
     let table = document.getElementById('table');
 
-    for(let i = 0; i<json[2].length; i++){
-        let idtitre = json[2][i]['idtitre'];
-        let titre = json[2][i]['nom'];
-        let duree = json[2][i]['duree'];
-        let lien = json[2][i]['lien'];
+    for(let i = 0; i<json[indice].length; i++){
+        let idtitre = json[indice][i]['idtitre'];
+        let titre = json[indice][i]['nom'];
+        let duree = json[indice][i]['duree'];
+        let lien = json[indice][i]['lien'];
         table.innerHTML += "<tr>"+
             "<th scope='row'>"+i+"</th>"+
-            "<td>"+ titre +"</td>"+
+            "<td id=rowTitre"+i+">"+ titre +"</td>"+
             "<td>"+ duree +"</td>"+
             "<td><button class='btn' type='submit' id=favorite"+i+" value="+idtitre+" style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
             "</button>"+
@@ -64,9 +68,15 @@ function affichageTitres(json){
             "</button></td>"+
             "</tr>";
 
+        if(type != null){
+            let date = json[indice][i]['date_ajout'];
+            let rowTitre = document.getElementById("rowTitre"+i);
+            rowTitre.insertAdjacentHTML("afterend", "<td>"+date+"</td>");
+        }
+
         let fav = false;
-        for (let j=0; j<json[3].length; j++){
-            if(idtitre == json[3][j]['idtitre']){
+        for (let j=0; j<json[indice+1].length; j++){
+            if(idtitre == json[indice+1][j]['idtitre']){
                 fav = true;
             }
         }
@@ -82,20 +92,23 @@ function affichageTitres(json){
 
     }
 
-    let idArtiste = json[1]['idartiste'];
-    let btnArtiste = document.getElementById('btnArtiste');
-    btnArtiste.addEventListener("click", function(){getArtiste(idArtiste)});
-
-    for(let i = 0; i<json[2].length; i++){
+    for(let i = 0; i<json[indice].length; i++){
         let fav = false;
-        for (let j=0; j<json[3].length; j++){
-            if(json[2][i]['idtitre'] == json[3][j]['idtitre']){
+        for (let j=0; j<json[indice+1].length; j++){
+            if(json[indice][i]['idtitre'] == json[indice+1][j]['idtitre']){
                 fav = true;
             }
         }
         let btnFavorite = document.getElementById('favorite'+i);
-        let id = json[2][i]['idtitre'];
-        btnFavorite.addEventListener("click", function(){ajaxRequest('POST', "../PHP/requestAjax.php",function(){getAlbum(json[0]['idalbum'])}, "id="+id+"&type=title&fav="+!fav)})
+        let id = json[indice][i]['idtitre'];
+        btnFavorite.addEventListener("click", function(){reloadPage(json, id, fav, type)})
     }
+}
 
+function reloadPage(json, id, fav, type){
+    if(type == null){
+        ajaxRequest('POST', "../PHP/requestAjax.php",function(){getAlbum(json[0]['idalbum'])}, "id="+id+"&type=title&fav="+!fav);
+    } else{
+        ajaxRequest('POST', "../PHP/requestAjax.php",function(){getPlaylists(json[0]['idplaylist'])}, "id="+id+"&type=title&fav="+!fav);
+    }
 }
