@@ -31,7 +31,7 @@
 
             echo json_encode($tab);
 
-            // Requête de récupération des 10 dernières playlistes 
+            // Requête de récupération des 10 dernières playlists 
         } elseif ($_GET['type'] == "playlists"){
 
             $playlists = new request;
@@ -118,6 +118,27 @@
 
             array_push($res, $idFavoris);
 
+            echo json_encode($res);
+
+            // Requête de récupération des playlists et des titres 
+        }   elseif ($_GET['type'] == 'playlist' && isset($_GET['id'])) {
+            
+            $res = array();
+
+            $infoPlaylist = new request;
+            $infoPlaylist = $infoPlaylist->getInfoPlaylist($conn, intVal($_GET['id']));
+
+            array_push($res, $infoPlaylist[0]);
+
+            $titres = new request;
+            $titres = $titres->getTitresPlaylist($conn, intVal($_GET['id']));
+
+            array_push($res, $titres);
+
+            $idFavoris = new request;
+            $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
+
+            array_push($res, $idFavoris);
             echo json_encode($res);
         }
         else{

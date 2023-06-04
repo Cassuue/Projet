@@ -37,7 +37,8 @@ INSERT INTO Titre (nom, duree, lien, idArtiste, idAlbum) VALUES
 ('Titre 9', '00:03:20', 'audio.mp3', 2, NULL),
 ('Titre 10', '00:03:20', 'audio.mp3', 2, NULL);
 
-INSERT INTO playlist VALUES
+ALTER SEQUENCE Playlist_idPlaylist_seq RESTART;
+INSERT INTO playlist (nom, date_creation, mail) VALUES
 ('playlist1', '2023-08-05', 'cassie.peridy@mail.com'),
 ('playlist2', '2023-03-05', 'antoine.pajdak@mail.com');
 
@@ -54,10 +55,10 @@ INSERT INTO ecouter VALUES
 (10, 'cassie.peridy@mail.com', 10, true);
 
 INSERT INTO appartenir VALUES
-(1, 'playlist1', '2023-06-21'),
-(2, 'playlist1', '2023-06-21'),
-(3, 'playlist1', '2023-06-21'),
-(4, 'playlist2', '2023-06-21');
+(1, 1, '2023-06-21'),
+(2, 1, '2023-06-21'),
+(3, 1, '2023-06-21'),
+(4, 2, '2023-06-21');
 
 
 

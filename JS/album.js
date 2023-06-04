@@ -7,7 +7,6 @@ function getAlbum(idAlbum){
 
 function displayAlbum(json){
 
-    let idAlbum = json[0]['idalbum'];
     let nom = json[0]['nom'];
     let date = json[0]['date_ajout'];
     let style = json[0]['style'];
@@ -40,6 +39,10 @@ function displayAlbum(json){
             "</table>"+
         "</div>";
 
+        affichageTitres(json);    
+}
+
+function affichageTitres(json){
     let table = document.getElementById('table');
 
     for(let i = 0; i<json[2].length; i++){
@@ -72,22 +75,27 @@ function displayAlbum(json){
         let btnFavorite = document.getElementById("favorite"+i);
 
         if(fav){
-            btnFavorite.innerHTML += "<h5 style='margin-bottom: 2px;' value='ok' id=imageFav"+i+"><i class='bi bi-star-fill'></i></h5>";
+            btnFavorite.innerHTML += "<h5 style='margin-bottom: 2px;'><i class='bi bi-star-fill'></i></h5>";
         } else{
-            btnFavorite.innerHTML += "<h5 style='margin-bottom: 2px;' value='non' id=imageFav"+i+"><i class='bi bi-star'></i></h5>";
+            btnFavorite.innerHTML += "<h5 style='margin-bottom: 2px;'><i class='bi bi-star'></i></h5>";
         }
+
     }
 
-    // for(let i = 0; i<json[2].length; i++){
-    //     let btnFavorite = document.getElementById("favorite"+i);
-    //     let fav = document.getElementById("imageFav"+i).value;
-    //     console.log("imageFav"+i);
-    //     if(fav == 'ok'){
-    //         btnFavorite.addEventListener('click', function(){ajaxRequest('POST', "../PHP/requestAjax.php",function(){getAlbum(idAlbum)}, "id="+btnFavorite.value+"&type=title&fav="+false)});
-    //     } if (fav == 'non'){
-    //         console.log('ok');
-    //         btnFavorite.addEventListener('click', function(){ajaxRequest('POST', "../PHP/requestAjax.php",function(){getAlbum(idAlbum)}, "id="+btnFavorite.value+"&type=title&fav="+true)});
+    let idArtiste = json[1]['idartiste'];
+    let btnArtiste = document.getElementById('btnArtiste');
+    btnArtiste.addEventListener("click", function(){getArtiste(idArtiste)});
 
-    //     }
-    // }
+    for(let i = 0; i<json[2].length; i++){
+        let fav = false;
+        for (let j=0; j<json[3].length; j++){
+            if(json[2][i]['idtitre'] == json[3][j]['idtitre']){
+                fav = true;
+            }
+        }
+        let btnFavorite = document.getElementById('favorite'+i);
+        let id = json[2][i]['idtitre'];
+        btnFavorite.addEventListener("click", function(){ajaxRequest('POST', "../PHP/requestAjax.php",function(){getAlbum(json[0]['idalbum'])}, "id="+id+"&type=title&fav="+!fav)})
+    }
+
 }

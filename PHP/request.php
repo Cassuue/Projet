@@ -76,6 +76,20 @@ class request{
         return $result;
     }
 
+    // Permet de récupérer les informations d'une playlist
+    function getInfoPlaylist($conn, $id){
+        try {
+            $stmt = $conn->prepare("SELECT * FROM playlist WHERE idPlaylist=:id");
+            $stmt->bindParam(":id", $id );
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
+    }
+
     // Permet de récupérer les informations d'un artiste en fonction de son id 
     function getInfoArtiste($conn, $id){
         try {
@@ -126,6 +140,20 @@ class request{
     function getTitresAlbum($conn, $id){
         try{
             $stmt = $conn->prepare('SELECT * FROM titre WHERE idAlbum = :id');
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
+    }
+
+    // Permet de récupérer tous les titres d'une playlist
+    function getTitresPlaylist($conn, $id){
+        try {
+            $stmt = $conn->prepare('SELECT t.idtitre, t.nom as titre, t.duree, t.lien, a.date_ajout FROM appartenir a, titre t WHERE a.idtitre=t.idtitre and a.idPlaylist=:id');
             $stmt->bindParam(":id", $id);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

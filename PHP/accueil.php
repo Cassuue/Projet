@@ -27,6 +27,8 @@
         <script src="../JS/titre.js" defer></script>
         <script src="../JS/artiste.js" defer></script>
         <script src="../JS/album.js" defer></script>
+        <script src="../JS/playlist.js" defer></script>
+
         
         <title> Accueil </title>
     </head>

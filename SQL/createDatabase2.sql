@@ -71,10 +71,11 @@ CREATE TABLE Titre(
 -- Table: Playlist
 ------------------------------------------------------------
 CREATE TABLE Playlist(
+	idPlaylist		SERIAL NOT NULL ,
 	nom             VARCHAR (50) NOT NULL ,
 	date_creation   DATE  NOT NULL ,
 	mail            VARCHAR (50) NOT NULL  ,
-	CONSTRAINT Playlist_PK PRIMARY KEY (nom)
+	CONSTRAINT Playlist_PK PRIMARY KEY (idPlaylist)
 
 	,CONSTRAINT Playlist_Utilisateur_FK FOREIGN KEY (mail) REFERENCES public.Utilisateur(mail) ON DELETE CASCADE
 )WITHOUT OIDS;
@@ -85,12 +86,12 @@ CREATE TABLE Playlist(
 ------------------------------------------------------------
 CREATE TABLE appartenir(
 	idTitre      INT  NOT NULL ,
-	nom          VARCHAR (50) NOT NULL ,
+	idPlaylist   SERIAL NOT NULL ,
 	date_ajout   DATE  NOT NULL  ,
-	CONSTRAINT appartenir_PK PRIMARY KEY (idTitre,nom)
+	CONSTRAINT appartenir_PK PRIMARY KEY (idTitre,idPlaylist)
 
 	,CONSTRAINT appartenir_Titre_FK FOREIGN KEY (idTitre) REFERENCES public.Titre(idTitre) ON DELETE CASCADE
-	,CONSTRAINT appartenir_Playlist0_FK FOREIGN KEY (nom) REFERENCES public.Playlist(nom) ON DELETE CASCADE
+	,CONSTRAINT appartenir_Playlist0_FK FOREIGN KEY (idPlaylist) REFERENCES public.Playlist(idPlaylist) ON DELETE CASCADE
 )WITHOUT OIDS;
 
 

@@ -167,22 +167,32 @@ function displayPlaylists(json){
 
     for(let i = 0; i < size; i++){
         let nom = json[i]['nom'];
+        let idPlaylist = json[i]['idPlaylist'];
         //let date_creation = json[i]['date_creation'];
 
         if(i < 5){
             playlist.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/playlist.jpeg >"+
             "<div class='card-body'>"+
-            "<button type='submit' id="+nom+" class='btn card-title' ><h5>"+nom+"</h5></button><br>"+
+            "<button type='submit' id=playlist"+i+" class='btn card-title' value="+idPlaylist+" ><h5>"+nom+"</h5></button><br>"+
              "</div></div>";
         } else{
             playlist2.innerHTML += "<div class='card' style='width: 10rem; margin-right: 2%; z-index: 1'>"+
             "<img class='card-img-top' src=../Images/playlist.jpeg >"+
             "<div class='card-body'>"+
-            "<button type='submit' id="+nom+" class='btn card-title' ><h5>"+nom+"</h5></button><br>"+
+            "<button type='submit' id=playlist"+i+" class='btn card-title' value="+idPlaylist+" ><h5>"+nom+"</h5></button><br>"+
              "</div></div>"; 
         }
     }
+
+    for(let i = 0; i<size; i++){
+        const btn = document.querySelector("#playlist"+i);
+        let id = document.getElementById("playlist"+i).value;
+        btn.addEventListener("click", function(){
+            getPlaylists(id);
+        });
+    }
+
 }
 
 function getFavoris(){
@@ -206,6 +216,7 @@ function displayFavoris(json){
         let artiste = json[i][0]['artiste'];
         let album = json[i][0]['album'];
         let image = json[i][0]['image'];
+
         if(!image){
             image = "playlist.jpeg";
         }
