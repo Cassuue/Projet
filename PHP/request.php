@@ -149,6 +149,34 @@ class request{
         }
     }
 
-    
+    //Récupérer toutes les infos d'un titre avec son nom
+    function getAllFromTitre($conn, $nom){
+        $sql = "SELECT * FROM titre WHERE nom = :nom";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    //Récupérer toutes les infos d'un album avec son nom
+    function getAllFromAlbum($conn, $nom){
+        $sql = "SELECT * FROM album WHERE nom = :nom";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    //Récupérer toutes les infos d'une playlist avec nom nom
+    function getAllFromPlaylist($conn, $nom){
+        $sql = "SELECT * FROM playlist WHERE nom = :nom";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 ?>
