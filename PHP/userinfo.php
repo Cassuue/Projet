@@ -1,23 +1,23 @@
 <?php
-session_start();
-if($_SESSION['type'] == 'deco'){
-    header('Location: connexion.php');
-}
+    session_start();
+    if($_SESSION['type'] == 'deco'){
+        header('Location: connexion.php');
+    }
 
-include_once('database.php');
-include_once('request.php');
+    include_once('database.php');
+    include_once('request.php');
 
-$userEmail = $_SESSION['email'];
+    $userEmail = $_SESSION['email'];
 
-$dbInstance = Db::connexionBD();
-$userInfo = [];
-if ($dbInstance) {
-    $request = new request();
-    $userInfo = $request->getUserInfo($dbInstance, $userEmail);
-}
+    $dbInstance = Db::connexionBD();
+    $userInfo = [];
+    if ($dbInstance) {
+        $request = new request();
+        $userInfo = $request->getUserInfo($dbInstance, $userEmail);
+    }
 
-$dateOfBirth = new DateTime($userInfo['date_de_naissance']);
-$formattedDateOfBirth = $dateOfBirth->format('Y/m/d');
+    $dateOfBirth = new DateTime($userInfo['date_de_naissance']);
+    $formattedDateOfBirth = $dateOfBirth->format('Y/m/d');
 
 ?>
 
@@ -90,7 +90,7 @@ $formattedDateOfBirth = $dateOfBirth->format('Y/m/d');
             <a href="updateProfile.php" class="card-link">Mettre à jour le profil</a>
 
             <!-- Logout link -->
-            <a href="logout.php" class="card-link">Déconnexion</a>
+            <a href="connexion.php" class="card-link">Déconnexion</a>
         </div>
     </div>
 </div>

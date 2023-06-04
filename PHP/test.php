@@ -23,7 +23,7 @@
     $conn = $conn->connexionBD();
 
     $test = new request;
-    $test = $test->modifFavori($conn,2 , 'cassie.peridy@mail.com', false);
+    $test = $test->getUserInfo($conn,'cassie.peridy@mail.com');
 
     echo json_encode($test);
 
