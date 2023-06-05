@@ -26,7 +26,7 @@
                 $data = $request->getAllFromArtiste($conn, $recherche);
                 echo json_encode($data);
             }
-            elseif($filtre == 'playlist'){
+            elseif($filtre == 'album'){
                 $data = $request->getAllFromAlbum($conn, $recherche);
                 echo json_encode($data);
             }

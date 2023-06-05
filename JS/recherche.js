@@ -61,7 +61,7 @@ function updateRecherche() {
     let checkbox2 = document.createElement("input");
     checkbox2.type = "radio";
     checkbox2.name = "filter";
-    checkbox2.value = "playlist";
+    checkbox2.value = "artiste";
     label2.appendChild(checkbox2);
     label2.appendChild(document.createTextNode("Playlist"));
     li2.appendChild(label2);
@@ -73,7 +73,7 @@ function updateRecherche() {
     let checkbox3 = document.createElement("input");
     checkbox3.type = "radio";
     checkbox3.name = "filter";
-    checkbox3.value = "artiste";
+    checkbox3.value = "album";
     label3.appendChild(checkbox3);
     label3.appendChild(document.createTextNode("Artiste"));
     li3.appendChild(label3);
@@ -99,82 +99,153 @@ function getResearch(){
     console.log(recherche);
     console.log(filtre);
 
-    if (filtre == "titre"){
-        ajaxRequest('GET', 'accueil.php?search=' + recherche + "&filtre=" + filtre, updateResultat);
+    if (filtre == "titre" && recherche != ""){
+        ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, function(data){updateResultat(data)});
     }
-    else if (filtre == "playlist"){
-        ajaxRequest('GET', 'accueil.php?search=' + recherche + "&filtre=" + filtre, updateResultat2);
+    else if (filtre == "playlist" && recherche != ""){
+        ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, updateResultat2);
     }
-    else if (filtre == "artiste"){
-        ajaxRequest('GET', 'accueil.php?search=' + recherche + "&filtre=" + filtre, updateResultat3);
+    else if (filtre == "artiste" && recherche != ""){
+        ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, updateResultat3);
     }
     document.getElementById("search").value = "";
-    let radioButtons = document.querySelectorAll('input[name="filter"]');
-    radioButtons.forEach(function(radio){
-        radio.checked = false;
-    });
 }
 
-function updateResultat(response){
-    let body = document.getElementById("body");
-    body.insertAdjacentElement("afterend", "<div class=row style='margin-top: 1%; margin-bottom: 1%;'><h3 id='list1' >Résultat de la recherche :</h3></div>");
+function updateResultat(data){
+    let resultat = data;
+    console.log(resultat);
     let divRow = document.createElement("div");
     divRow.className = "row";
-    divRow.id = "list1";
-    let divCol = document.createElement("div");
-    divCol.className = "col";
-    let ul = document.createElement("ul");
-    ul.className = "list-group";
-    let li = document.createElement("li");
-    li.className = "list-group-item";
-    li.innerText = response;
-    ul.appendChild(li);
-    divCol.appendChild(ul);
-    divRow.appendChild(divCol);
+
+    const cartesParLigne = 4;
+
+    for (let i = 0; i < resultat.length; i++) {
+        if (i % cartesParLigne === 0) {
+            divRow = document.createElement("div");
+            divRow.className = "row";
+        }
+
+        let divCol = document.createElement("div");
+        divCol.className = "col";
+        divCol.style.marginBottom = "30px";
+
+        let card = document.createElement("div");
+        card.className = "card";
+        card.style.width = "10rem";
+
+        let cardBody = document.createElement("div");
+        cardBody.className = "card-body d-flex flex-column align-items-center";
+
+        let cardText = document.createElement("p");
+        cardText.className = "card-text";
+        cardText.innerText = resultat[i].artiste_nom;
+
+        let cardImage = document.createElement("img");
+        cardImage.className = "card-img-top";
+        cardImage.src = "../Images/playlist.jpeg";
+
+        let button = document.createElement("button");
+        button.type = "submit";
+        button.id = "lastTitre" + i;
+        button.className = "btn card-title";
+        button.value = resultat[i].idtitre; // Remplacez "id" par la valeur souhaitée
+        let buttonTitle = document.createElement("h5");
+        buttonTitle.innerText = resultat[i].titre_nom; // Remplacez "titre" par la valeur souhaitée
+
+        cardBody.appendChild(cardImage);
+        button.appendChild(buttonTitle);
+        cardBody.appendChild(button);
+        cardBody.appendChild(cardText);
+        card.appendChild(cardBody);
+        divCol.appendChild(card);
+        divRow.appendChild(divCol);
+
+        if ((i+1) % cartesParLigne === 0 || i === resultat.length - 1) {
+            let body = document.getElementById("body");
+            body.appendChild(divRow);
+        }
+
+        button.addEventListener('click', function() {
+            getTitle(button.value);
+        });
+    }
+}
+
+function redirectToTitre(titreId) {
+    window.location.href = 'titre.js?id=' + titreId;
+}
+
+function updateResultat2(data){
+    let resultat = data; // Supposons que les résultats soient renvoyés au format JSON
+
+    let divRow = document.createElement("div");
+    divRow.className = "row";
+
+    for (let i = 0; i < resultat.length; i++) {
+        let divCol = document.createElement("div");
+        divCol.className = "col";
+
+        let card = document.createElement("div");
+        card.className = "card";
+
+        let cardBody = document.createElement("div");
+        cardBody.className = "card-body";
+
+        let cardTitle = document.createElement("h5");
+        cardTitle.className = "card-title";
+        cardTitle.innerText = resultat[i].playlist;
+
+        let cardText = document.createElement("p");
+        cardText.className = "card-text";
+        cardText.innerText = resultat[i].description;
+
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardText);
+        card.appendChild(cardBody);
+        divCol.appendChild(card);
+        divRow.appendChild(divCol);
+    }
+
+    let body = document.getElementById("body");
     body.appendChild(divRow);
 }
 
-function updateResultat2(response){
-    let body = document.getElementById("body");
-    body.insertAdjacentElement("afterend", "<div class=row style='margin-top: 1%; margin-bottom: 1%;'><h3 id='list2' >Résultat de la recherche :</h3></div>");
-    let divRow = document.createElement("div");
-    divRow.className = "row";
-    divRow.id = "list2";
-    let divCol = document.createElement("div");
-    divCol.className = "col";
-    let ul = document.createElement("ul");
-    ul.className = "list-group";
-    let li = document.createElement("li");
-    li.className = "list-group-item";
-    li.innerText = response;
-    ul.appendChild(li);
-    divCol.appendChild(ul);
-    divRow.appendChild(divCol);
-    body.appendChild(divRow);
-}
+function updateResultat3(data){
+    let resultat = data; // Supposons que les résultats soient renvoyés au format JSON
 
-function updateResultat3(response){
-    let body = document.getElementById("body");
-    body.insertAdjacentElement("afterend", "<div class=row style='margin-top: 1%; margin-bottom: 1%;'><h3 id='list3' >Résultat de la recherche :</h3></div>");
+    console.log(data);
+
     let divRow = document.createElement("div");
     divRow.className = "row";
-    divRow.id = "list3";
-    let divCol = document.createElement("div");
-    divCol.className = "col";
-    let ul = document.createElement("ul");
-    ul.className = "list-group";
-    let li = document.createElement("li");
-    li.className = "list-group-item";
-    li.innerText = response;
-    ul.appendChild(li);
-    divCol.appendChild(ul);
-    divRow.appendChild(divCol);
+
+    for (let i = 0; i < resultat.length; i++) {
+        let divCol = document.createElement("div");
+        divCol.className = "col";
+
+        let card = document.createElement("div");
+        card.className = "card";
+
+        let cardBody = document.createElement("div");
+        cardBody.className = "card-body";
+
+        let cardTitle = document.createElement("h5");
+        cardTitle.className = "card-title";
+        cardTitle.innerText = resultat[i]['nom'];
+
+        let cardText = document.createElement("p");
+        cardText.className = "card-text";
+        cardText.innerText = resultat[i].description;
+
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardText);
+        card.appendChild(cardBody);
+        divCol.appendChild(card);
+        divRow.appendChild(divCol);
+    }
+
+    let body = document.getElementById("body");
     body.appendChild(divRow);
 }
 
 const recherche = document.querySelector('#recherche');
 recherche.addEventListener('click', updateRecherche);
-
-
-
-
