@@ -21,15 +21,14 @@
         
         <!-- Import des fichiers js -->
         <script src="../JS/ajax.js" defer></script>
-        <!--<script src="../JS/test.js" defer></script>-->
         <script src="../JS/accueil.js" defer></script>
         <script src="../JS/recherche.js" defer></script>
         <script src="../JS/titre.js" defer></script>
         <script src="../JS/artiste.js" defer></script>
         <script src="../JS/album.js" defer></script>
         <script src="../JS/playlist.js" defer></script>
+        <script src="../JS/bibliotheque.js" defer></script>
 
-        
         <title> Accueil </title>
     </head>
 
@@ -55,7 +54,7 @@
                                         <button class="btn btn-link" id="recherche" style="color: black; text-decoration: none;"> <h5><i class="bi bi-search" style="padding-right: 20px;"></i>  Recherche</h5></button>
                                     </li>
                                     <li class="nav-item">
-                                        <button class="btn btn-link" id="playlist" style="color: black; text-decoration: none;"><h5><i class="bi bi-music-note-list" style="padding-right: 20px;"></i>Playlists</h5></button>
+                                        <button class="btn btn-link" id="bibliotheque" style="color: black; text-decoration: none;"> <h5><i class="bi bi-music-note-list" style="padding-right: 20px;"></i>  Bibliothèque</h5></button>
                                     </li>
                                 </ul>
                             </div>

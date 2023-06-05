@@ -38,9 +38,17 @@
             $playlists = $playlists->getUserPlaylists($conn, $_SESSION['mail']);
 
             $tab = array();
-            for ($i = count($playlists)-1; $i>=0; $i--) {
-                array_push($tab, $playlists[$i]);
+
+            if(count($playlists) > 10){
+                for ($i = 9; $i>=0; $i--) {
+                    array_push($tab, $playlists[$i]);
+                }
+            } else{
+                for ($i = count($playlists)-1; $i>=0; $i--) {
+                    array_push($tab, $playlists[$i]);
+                }
             }
+
 
             echo json_encode($tab);
 
@@ -49,14 +57,22 @@
 
             $idFavoris = new request;
             $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
-
+            
             $tab = array();
-            for ($i = count($idFavoris)-1; $i>=0; $i--) {
-                $titles = new request;
-                $titles = $titles->getInfoTitreID($conn, intVal($idFavoris[$i]['idtitre']));
-                array_push($tab, $titles);
+            if(count($idFavoris)<10){
+                for ($i = 9; $i>=0; $i--) {
+                    $titles = new request;
+                    $titles = $titles->getInfoTitreID($conn, intVal($idFavoris[$i]['idtitre']));
+                    array_push($tab, $titles);
+                }
+            } else{
+                for ($i = count($idFavoris)-1; $i>=0; $i--) {
+                    $titles = new request;
+                    $titles = $titles->getInfoTitreID($conn, intVal($idFavoris[$i]['idtitre']));
+                    array_push($tab, $titles);
+                }
             }
-
+            
             echo json_encode($tab);
 
             // Requête de récupération d'un titre et des favoris
@@ -140,6 +156,34 @@
 
             array_push($res, $idFavoris);
             echo json_encode($res);
+
+            // ---- Requête de récupération des playlists de l'utilisateur ----
+        } elseif($_GET['type'] == 'bibliotheque'){
+            
+            $res = array();
+
+            // Récupération des playlists
+            $playlists = new request;
+            $playlists = $playlists->getUserPlaylists($conn, $_SESSION['mail']);
+
+            array_push($res, $playlists);
+
+            // Récupération des id des favoris
+            $idFavoris = new request;
+            $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
+
+            // Récupération des info sur les titres favoris
+            $tab = array();
+            for ($i = count($idFavoris)-1; $i>=0; $i--) {
+                $titles = new request;
+                $titles = $titles->getInfoTitreID($conn, intVal($idFavoris[$i]['idtitre']));
+                array_push($tab, $titles);
+            }
+            array_push($res, $tab);
+
+            array_push($res, $idFavoris);
+
+            echo json_encode($res);
         }
         else{
 
@@ -161,6 +205,7 @@
 
     } elseif ($type_request == 'PUT') {
         parse_str(file_get_contents('php://input'), $_PUT);
+
         if($_PUT['type'] == 'title' && isset($_PUT['id'])){
 
             if(isset($_PUT['fav'])){

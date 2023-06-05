@@ -1,1 +1,1 @@
-SELECT t.idtitre, t.nom as titre, t.duree, t.lien, a.date_ajout FROM appartenir a, titre t WHERE a.idtitre=t.idtitre and a.idPlaylist=1
+SELECT idTitre FROM ecouter WHERE mail='cassie.peridy@mail.com' and favori=true
