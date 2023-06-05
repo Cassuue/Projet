@@ -3,6 +3,12 @@
 class request{
 
     // Fonctions SELECT
+    function getInfoUser($conn){
+        $stmt = 'SELECT * from utilisateur';
+        $stmt = $conn->query($stmt);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     // Permet de vérifier les informations de connexion
     function connexionUser($conn, $email, $password) {
@@ -232,7 +238,7 @@ class request{
 
     //Récupérer toutes les infos d'un titre avec son nom
     function getAllFromTitre($conn, $nom){
-        $sql = "SELECT * FROM titre WHERE nom = :nom";
+        $sql = "SELECT * FROM titre WHERE nom LIKE CONCAT ('%', :nom::text, '%')";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":nom", $nom);
         $stmt->execute();

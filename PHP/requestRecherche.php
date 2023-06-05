@@ -12,22 +12,22 @@
 
     $type_request = $_SERVER['REQUEST_METHOD'];
 
-    if($type_request == 'GET'){
-        if ($_GET['type'] == 'request'){
-            $recherche = $_GET['recherche'];
+    if($type_request == 'GET' && isset($_GET['search']) && isset($_GET['filtre'])){
+            $recherche = $_GET['search'];
             $filtre = $_GET['filtre'];
+            // $recherche = "Titre 1";
+            // $filtre = "titre";
             $request = new request;
             if($filtre == 'titre'){
-                $data = $request->getTitre($conn, $recherche);
+                $data = $request->getAllFromTitre($conn, $recherche);
                 echo json_encode($data);
             }
             elseif($filtre == 'artiste'){
-                $data = $request->getArtiste($conn, $recherche);
+                $data = $request->getAllFromArtiste($conn, $recherche);
                 echo json_encode($data);
             }
-            elseif($filtre == 'album'){
-                $data = $request->getAlbum($conn, $recherche);
+            elseif($filtre == 'playlist'){
+                $data = $request->getAllFromAlbum($conn, $recherche);
                 echo json_encode($data);
             }
         }
-    }
