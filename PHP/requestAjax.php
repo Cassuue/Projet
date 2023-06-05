@@ -59,7 +59,7 @@
             $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
             
             $tab = array();
-            if(count($idFavoris)<10){
+            if(count($idFavoris)>10){
                 for ($i = 9; $i>=0; $i--) {
                     $titles = new request;
                     $titles = $titles->getInfoTitreID($conn, intVal($idFavoris[$i]['idtitre']));
