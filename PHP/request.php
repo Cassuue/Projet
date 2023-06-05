@@ -26,7 +26,7 @@ class request{
     
     // Permet de récupérer les id des 10 derniers titres écoutés en fonction de l'utilisateur
     function getIDLatestListened($conn, $email) {
-        $sql = 'SELECT idTitre FROM ecouter WHERE mail=:email ORDER BY numero DESC LIMIT 10';
+        $sql = 'SELECT * FROM ecouter WHERE mail=:email and play=true ORDER BY date DESC LIMIT 10';
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -37,7 +37,7 @@ class request{
     // Permet de récupérer les informations sur un titre en fonction de son id
     function getInfoTitreID($conn, $id){
         try{
-            $stmt = $conn->prepare("SELECT t.idtitre as id, t.duree as duree, t.lien as lien, ar.nom as artiste, ar.idartiste as idartiste, al.nom as album, al.idalbum as idalbum, t.nom as titre, al.image FROM titre t 
+            $stmt = $conn->prepare("SELECT t.idtitre, t.duree, t.lien as lien, ar.nom as artiste, ar.idartiste as idartiste, al.nom as album, al.idalbum as idalbum, t.nom, al.image FROM titre t 
                 LEFT JOIN album al ON al.idalbum = t.idalbum 
                 JOIN artiste ar ON ar.idartiste = t.idartiste 
                 WHERE t.idtitre = :id");
@@ -64,6 +64,10 @@ class request{
             return false;
         }
         return $result;
+    }
+
+    function getTitresFavoris($conn, $email){
+
     }
 
     // Permet de récupérer les playlists d'un utilisateur

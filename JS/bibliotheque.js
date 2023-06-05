@@ -31,14 +31,14 @@ function getPlaylistFavoris(json){
                 "</tbody>"+
             "</table>"+
         "</div>";
-    
-    affichageTitres(json, "playlist", 1);
+
+    affichageTitres(json, "favoris", 1);
 }
 
 function displayBibliotheque(json){
 
     let body = document.getElementById("body");
-    body.innerHTML += "<div class='row' id='test'><div class='card' style='width: 10rem; margin-left: 2%; margin-top: 2%; '>"+
+    body.innerHTML += "<div class='row' id='row'><div class='card' style='width: 10rem; margin-left: 2%; margin-top: 2%; '>"+
     "<img class='card-img-top' src='../Images/playlist.jpeg'>"+
     "<div class='card-body'>"+
     "<button type='submit' id='favoris' class='btn card-title' ><h5>Favoris</h5></button><br>"+
@@ -49,8 +49,8 @@ function displayBibliotheque(json){
         let idPlaylist = json[0][i]['idplaylist'];
         let nom = json[0][i]['nom'];
 
-        let test = document.getElementById('test');
-        test.innerHTML += "<div class='card' style='width: 10rem; margin-left: 2%; margin-top: 2%;'>"+
+        let row = document.getElementById('row');
+        row.innerHTML += "<div class='card' style='width: 10rem; margin-left: 2%; margin-top: 2%;'>"+
         "<img class='card-img-top' src=../Images/playlist.jpeg >"+
         "<div class='card-body'>"+
         "<button type='submit' id=playlist"+i+" class='btn card-title' value="+idPlaylist+" ><h5>"+nom+"</h5></button><br>"+

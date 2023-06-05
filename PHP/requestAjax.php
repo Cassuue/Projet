@@ -59,7 +59,7 @@
             $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
             
             $tab = array();
-            if(count($idFavoris)<10){
+            if(count($idFavoris)>10){
                 for ($i = 9; $i>=0; $i--) {
                     $titles = new request;
                     $titles = $titles->getInfoTitreID($conn, intVal($idFavoris[$i]['idtitre']));
@@ -174,11 +174,12 @@
 
             // Récupération des info sur les titres favoris
             $tab = array();
-            for ($i = count($idFavoris)-1; $i>=0; $i--) {
+            for ($i = 0; $i<count($idFavoris); $i++) {
                 $titles = new request;
                 $titles = $titles->getInfoTitreID($conn, intVal($idFavoris[$i]['idtitre']));
-                array_push($tab, $titles);
+                array_push($tab, $titles[0]);
             }
+
             array_push($res, $tab);
 
             array_push($res, $idFavoris);

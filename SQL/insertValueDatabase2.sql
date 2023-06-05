@@ -45,18 +45,18 @@ INSERT INTO playlist (nom, date_creation, mail) VALUES
 ('playlist2', '2023-03-05', 'antoine.pajdak@mail.com');
 
 INSERT INTO ecouter VALUES
-(1, 'cassie.peridy@mail.com', 1, true),
-(2, 'cassie.peridy@mail.com', 2, true),
-(3, 'cassie.peridy@mail.com', 3, true),
-(4, 'cassie.peridy@mail.com', 4, true),
-(5, 'cassie.peridy@mail.com', 5, true),
-(6, 'cassie.peridy@mail.com', 6, true),
-(7, 'cassie.peridy@mail.com', 7, true),
-(8, 'cassie.peridy@mail.com', 8, true),
-(9, 'cassie.peridy@mail.com', 9, true),
-(10, 'cassie.peridy@mail.com', 10, true),
-(11, 'cassie.peridy@mail.com', 11, true),
-(12, 'cassie.peridy@mail.com', 12, true);
+(1, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:09:00'),
+(2, 'cassie.peridy@mail.com', false, true, '2023-05-06 17:08:00'),
+(3, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:10:00'),
+(4, 'cassie.peridy@mail.com', false, true, '2023-05-06 17:07:00'),
+(5, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:15:00'),
+(6, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:03:00'),
+(7, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:02:00'),
+(8, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:01:00'),
+(9, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:06:00'),
+(10, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:07:00'),
+(11, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:09:00'),
+(12, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:01:00');
 
 INSERT INTO appartenir VALUES
 (1, 1, '2023-06-21'),

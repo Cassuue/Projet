@@ -100,8 +100,8 @@ function displayLastTitle(json){
 
     for(let i = 0; i < size; i++){
 
-        let id = json[i][0]['id'];
-        let titre = json[i][0]['titre'];
+        let id = json[i][0]['idtitre'];
+        let titre = json[i][0]['nom'];
         let artiste = json[i][0]['artiste'];
         let album = json[i][0]['album'];
         let image = json[i][0]['image'];
@@ -211,8 +211,8 @@ function displayFavoris(json){
 
     for(let i = 0; i < size; i++){
 
-        let id = json[i][0]['id'];
-        let titre = json[i][0]['titre'];
+        let id = json[i][0]['idtitre'];
+        let titre = json[i][0]['nom'];
         let artiste = json[i][0]['artiste'];
         let album = json[i][0]['album'];
         let image = json[i][0]['image'];
