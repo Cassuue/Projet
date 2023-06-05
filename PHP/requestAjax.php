@@ -14,6 +14,7 @@
 
     $type_request = $_SERVER['REQUEST_METHOD'];
 
+
     if ($type_request == 'GET'){
 
             // Requête de récupération des 10 derniers titres écoutés
@@ -185,7 +186,7 @@
             array_push($res, $idFavoris);
 
             echo json_encode($res);
-        }
+        } 
         else{
 
 
@@ -202,6 +203,15 @@
                 $ajoutFavoris = $ajoutFavoris->modifFavori($conn,$id, $_SESSION['mail'], $_POST['fav']);
                 echo json_encode($ajoutFavoris);
             }
+
+        } elseif ($_POST['type'] == 'bibliotheque' && isset($_POST['nom'])) {
+            
+            $nom = $_POST['nom'];
+            $date = date("Y-m-d");
+
+            $ajoutPlaylist = new request;
+            $ajoutPlaylist = $ajoutPlaylist->insertPlaylist($conn, $nom, $date, $_SESSION['mail']);
+            echo json_encode($ajoutPlaylist);
         }
 
     } elseif ($type_request == 'PUT') {
@@ -220,6 +230,13 @@
 
 
     } elseif($type_request == 'DELETE'){
+
+        if($_GET['type'] == 'deletePlaylist' && isset($_GET['id'])){
+            $id = intVal($_GET['id']);
+            $deletePlaylist = new request;
+            $deletePlaylist = $deletePlaylist->deletePlaylist($conn, $id);
+            echo json_encode($deletePlaylist);
+        }
 
     }
 
