@@ -33,6 +33,9 @@
     </head>
 
     <body>
+
+        <section id="errors" class="container alert alert-danger" style="display: none"></section>
+
         <div class="container-fluid">
             <nav class="navbar" style="background-color: #6379AE;">
                 <div class="container-fluid">
