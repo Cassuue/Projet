@@ -10,8 +10,8 @@ function getTitle(id){
 // Affichage de la page titre
 function displayTitle(json) {
     
-    let id = json[0]['id'];
-    let titre = json[0]['titre'];
+    let id = json[0]['idtitre'];
+    let titre = json[0]['nom'];
     let duree = json[0]['duree'];
     let artiste = json[0]['artiste'];
     let lien = json[0]['lien'];

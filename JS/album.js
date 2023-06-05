@@ -40,7 +40,7 @@ function displayAlbum(json){
             "</table>"+
         "</div>";
 
-        affichageTitres(json, null, 2);
+        affichageTitres(json, "album", 2);
         
         let idArtiste = json[1]['idartiste'];
         let btnArtiste = document.getElementById('btnArtiste');
@@ -72,7 +72,7 @@ function affichageTitres(json, type, indice){
             "</button></td>"+
             "</tr>";
 
-        if(type != null){
+        if(type == "playlist"){
             let date = json[indice][i]['date_ajout'];
             let rowTitre = document.getElementById("rowTitre"+i);
             rowTitre.insertAdjacentHTML("afterend", "<td>"+date+"</td>");
@@ -114,9 +114,13 @@ function affichageTitres(json, type, indice){
 }
 
 function reloadPage(json, id, fav, type){
-    if(type == null){
+    if(type == "album"){
         ajaxRequest('POST', "../PHP/requestAjax.php",function(){getAlbum(json[0]['idalbum'])}, "id="+id+"&type=title&fav="+!fav);
-    } else{
+    } if(type == "playlist"){
         ajaxRequest('POST', "../PHP/requestAjax.php",function(){getPlaylists(json[0]['idplaylist'])}, "id="+id+"&type=title&fav="+!fav);
+    } if (type == "favoris"){
+        ajaxRequest('POST', "../PHP/requestAjax.php",function(){getBibliotheque()}, "id="+id+"&type=title&fav="+!fav);
+    }
+    else{
     }
 }

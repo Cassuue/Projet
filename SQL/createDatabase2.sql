@@ -59,7 +59,7 @@ CREATE TABLE Titre(
 	duree       TIME  NOT NULL ,
 	lien        VARCHAR (150) NOT NULL ,
 	idArtiste   INT  NOT NULL ,
-	idAlbum     INT    ,
+	idAlbum     INT  ,
 	CONSTRAINT Titre_PK PRIMARY KEY (idTitre)
 
 	,CONSTRAINT Titre_Artiste_FK FOREIGN KEY (idArtiste) REFERENCES public.Artiste(idArtiste) ON DELETE CASCADE
@@ -101,8 +101,9 @@ CREATE TABLE appartenir(
 CREATE TABLE ecouter(
 	idTitre   INT  NOT NULL ,
 	mail      VARCHAR (50) NOT NULL ,
-	numero    INT  NOT NULL ,
 	favori    BOOL  NOT NULL  ,
+	play	  BOOL NOT NULL  ,
+	date      TIMESTAMP NOT NULL  ,
 	CONSTRAINT ecouter_PK PRIMARY KEY (idTitre,mail)
 
 	,CONSTRAINT ecouter_Titre_FK FOREIGN KEY (idTitre) REFERENCES public.Titre(idTitre) ON DELETE CASCADE
