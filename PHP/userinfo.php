@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     if($_SESSION['type'] == 'deco'){
         header('Location: connexion.php');
     }
@@ -7,7 +8,8 @@
     include_once('database.php');
     include_once('request.php');
 
-    $userEmail = $_SESSION['email'];
+    $userEmail = $_SESSION['mail'];
+
 
     $dbInstance = Db::connexionBD();
     $userInfo = [];
@@ -16,7 +18,7 @@
         $userInfo = $request->getUserInfo($dbInstance, $userEmail);
     }
 
-    $dateOfBirth = new DateTime($userInfo['date_de_naissance']);
+    $dateOfBirth = new DateTime($userInfo['date_naissance']);
     $today = new DateTime('today');
     $age = $dateOfBirth->diff($today)->y;
 
@@ -77,20 +79,18 @@
 </div>
 
 <div class="container mt-5">
-    <h1 class="mb-4">Profil utilisateur</h1>
+    <h1 class="mb-4" style="padding-bottom: 50px">Profil utilisateur</h1>
 
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Email: <?php echo $userInfo['email']; ?></h5>
-            <h5 class="card-title">Nom: <?php echo $userInfo['nom']; ?></h5>
-            <h5 class="card-title">Prénom: <?php echo $userInfo['prenom']; ?></h5>
-            <h6 class="card-subtitle mb-2 text-muted">Âge: <?php echo $age; ?></h6>
+    <div class="card" style="border: 0px">
+        <div class="card-body" >
+            <h5 class="card-title" style="padding-bottom: 20px">Email: <?php echo $userInfo['mail']; ?></h5>
+            <h5 class="card-title" style="padding-bottom: 20px">Nom: <?php echo $userInfo['nom']; ?></h5>
+            <h5 class="card-title" style="padding-bottom: 20px">Prénom: <?php echo $userInfo['prenom']; ?></h5>
+            <h5 class="card-title" style="padding-bottom: 20px">Âge: <?php echo $age; ?></h5>
 
             <!-- Update profile link -->
-            <a href="updateProfile.php" class="card-link">Mettre à jour le profil</a>
+            <a href="updateProfile.php" class="btn btn-primary">Mettre à jour le profil</a>
 
-            <!-- Logout link -->
-            <a href="connexion.php" class="card-link">Déconnexion</a>
         </div>
     </div>
 </div>

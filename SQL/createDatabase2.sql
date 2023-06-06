@@ -77,7 +77,7 @@ CREATE TABLE Playlist(
 	mail            VARCHAR (50) NOT NULL  ,
 	CONSTRAINT Playlist_PK PRIMARY KEY (idPlaylist)
 
-	,CONSTRAINT Playlist_Utilisateur_FK FOREIGN KEY (mail) REFERENCES public.Utilisateur(mail) ON DELETE CASCADE
+	,CONSTRAINT Playlist_Utilisateur_FK FOREIGN KEY (mail) REFERENCES public.Utilisateur(mail) ON DELETE CASCADE ON UPDATE CASCADE
 )WITHOUT OIDS;
 
 
@@ -107,7 +107,7 @@ CREATE TABLE ecouter(
 	CONSTRAINT ecouter_PK PRIMARY KEY (idTitre,mail)
 
 	,CONSTRAINT ecouter_Titre_FK FOREIGN KEY (idTitre) REFERENCES public.Titre(idTitre) ON DELETE CASCADE
-	,CONSTRAINT ecouter_Utilisateur0_FK FOREIGN KEY (mail) REFERENCES public.Utilisateur(mail) ON DELETE CASCADE
+	,CONSTRAINT ecouter_Utilisateur0_FK FOREIGN KEY (mail) REFERENCES public.Utilisateur(mail) ON DELETE CASCADE ON UPDATE CASCADE
 )WITHOUT OIDS;
 
 

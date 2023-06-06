@@ -61,9 +61,9 @@ function updateRecherche() {
     let checkbox2 = document.createElement("input");
     checkbox2.type = "radio";
     checkbox2.name = "filter";
-    checkbox2.value = "artiste";
+    checkbox2.value = "album";
     label2.appendChild(checkbox2);
-    label2.appendChild(document.createTextNode("Playlist"));
+    label2.appendChild(document.createTextNode("Album"));
     li2.appendChild(label2);
     ul.appendChild(li2);
 
@@ -73,7 +73,7 @@ function updateRecherche() {
     let checkbox3 = document.createElement("input");
     checkbox3.type = "radio";
     checkbox3.name = "filter";
-    checkbox3.value = "album";
+    checkbox3.value = "artiste";
     label3.appendChild(checkbox3);
     label3.appendChild(document.createTextNode("Artiste"));
     li3.appendChild(label3);
@@ -88,164 +88,216 @@ function updateRecherche() {
     body.innerHTML = "";
     body.appendChild(divRow);
 
+    let divResultat = document.createElement("div");
+    divResultat.id = "resultat";
+    divRow.appendChild(divResultat);
+
     button.addEventListener('click', getResearch);
 }
 
+function clearResultat() {
+    let resultat = document.getElementById("resultat");
+    resultat.innerHTML = "<br>";
+    // if (resultat) {
+    //     resultat.remove();
+    // }
+}
+
 function getResearch(){
+    clearResultat();
     //event.preventDefault();
     let recherche = document.querySelector('#search').value;
     let filtre = document.querySelector('input[name="filter"]:checked').value;
 
-    console.log(recherche);
-    console.log(filtre);
+    //console.log(recherche);
+    //console.log(filtre);
 
     if (filtre == "titre" && recherche != ""){
         ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, function(data){updateResultat(data)});
     }
-    else if (filtre == "playlist" && recherche != ""){
-        ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, updateResultat2);
+    else if (filtre == "album" && recherche != ""){
+        ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, function(data){updateResultat2(data)});
     }
     else if (filtre == "artiste" && recherche != ""){
-        ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, updateResultat3);
+        ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, function(data){updateResultat3(data)});
     }
     document.getElementById("search").value = "";
 }
 
-function updateResultat(data){
+function updateResultat(data) {
     let resultat = data;
-    console.log(resultat);
-    let divRow = document.createElement("div");
-    divRow.className = "row";
-
+    let divResultat = document.getElementById("resultat");
+  
     const cartesParLigne = 4;
-
+    let divRow;
+  
     for (let i = 0; i < resultat.length; i++) {
-        if (i % cartesParLigne === 0) {
-            divRow = document.createElement("div");
-            divRow.className = "row";
-        }
-
-        let divCol = document.createElement("div");
-        divCol.className = "col";
-        divCol.style.marginBottom = "30px";
-
-        let card = document.createElement("div");
-        card.className = "card";
-        card.style.width = "10rem";
-
-        let cardBody = document.createElement("div");
-        cardBody.className = "card-body d-flex flex-column align-items-center";
-
-        let cardText = document.createElement("p");
-        cardText.className = "card-text";
-        cardText.innerText = resultat[i].artiste_nom;
-
-        let cardImage = document.createElement("img");
-        cardImage.className = "card-img-top";
-        cardImage.src = "../Images/playlist.jpeg";
-
-        let button = document.createElement("button");
-        button.type = "submit";
-        button.id = "lastTitre" + i;
-        button.className = "btn card-title";
-        button.value = resultat[i].idtitre; // Remplacez "id" par la valeur souhaitée
-        let buttonTitle = document.createElement("h5");
-        buttonTitle.innerText = resultat[i].titre_nom; // Remplacez "titre" par la valeur souhaitée
-
-        cardBody.appendChild(cardImage);
-        button.appendChild(buttonTitle);
-        cardBody.appendChild(button);
-        cardBody.appendChild(cardText);
-        card.appendChild(cardBody);
-        divCol.appendChild(card);
-        divRow.appendChild(divCol);
-
-        if ((i+1) % cartesParLigne === 0 || i === resultat.length - 1) {
-            let body = document.getElementById("body");
-            body.appendChild(divRow);
-        }
-
-        button.addEventListener('click', function() {
-            getTitle(button.value);
-        });
+      if (i % cartesParLigne === 0) {
+        divRow = document.createElement("div");
+        divRow.className = "row";
+      }
+  
+      let divCol = document.createElement("div");
+      divCol.className = "col";
+      divCol.style.marginBottom = "30px";
+  
+      let card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "10rem";
+  
+      let cardBody = document.createElement("div");
+      cardBody.className = "card-body d-flex flex-column align-items-center";
+  
+      let cardText = document.createElement("p");
+      cardText.className = "card-text";
+      cardText.innerText = resultat[i].artiste_nom;
+  
+      let cardImage = document.createElement("img");
+      cardImage.className = "card-img-top";
+      cardImage.src = "../Images/playlist.jpeg";
+  
+      let button = document.createElement("button");
+      button.type = "submit";
+      button.id = "lastTitre" + i;
+      button.className = "btn card-title";
+      button.value = resultat[i].idtitre;
+      let buttonTitle = document.createElement("h5");
+      buttonTitle.innerText = resultat[i].titre_nom;
+  
+      cardBody.appendChild(cardImage);
+      button.appendChild(buttonTitle);
+      cardBody.appendChild(button);
+      cardBody.appendChild(cardText);
+      card.appendChild(cardBody);
+      divCol.appendChild(card);
+      divRow.appendChild(divCol);
+  
+      if ((i + 1) % cartesParLigne === 0 || i === resultat.length - 1) {
+        divResultat.appendChild(divRow);
+      }
+  
+      button.addEventListener('click', function() {
+        getTitle(button.value);
+      });
     }
-}
+  }  
 
-function redirectToTitre(titreId) {
-    window.location.href = 'titre.js?id=' + titreId;
-}
-
-function updateResultat2(data){
-    let resultat = data; // Supposons que les résultats soient renvoyés au format JSON
-
-    let divRow = document.createElement("div");
-    divRow.className = "row";
-
+  function updateResultat2(data) {
+    let resultat = data;
+    let divResultat = document.getElementById("resultat");
+  
+    const cartesParLigne = 4;
+    let divRow;
+  
     for (let i = 0; i < resultat.length; i++) {
-        let divCol = document.createElement("div");
-        divCol.className = "col";
-
-        let card = document.createElement("div");
-        card.className = "card";
-
-        let cardBody = document.createElement("div");
-        cardBody.className = "card-body";
-
-        let cardTitle = document.createElement("h5");
-        cardTitle.className = "card-title";
-        cardTitle.innerText = resultat[i].playlist;
-
-        let cardText = document.createElement("p");
-        cardText.className = "card-text";
-        cardText.innerText = resultat[i].description;
-
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(cardText);
-        card.appendChild(cardBody);
-        divCol.appendChild(card);
-        divRow.appendChild(divCol);
+      if (i % cartesParLigne === 0) {
+        divRow = document.createElement("div");
+        divRow.className = "row";
+      }
+  
+      let divCol = document.createElement("div");
+      divCol.className = "col";
+      divCol.style.marginBottom = "30px";
+  
+      let card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "10rem";
+  
+      let cardBody = document.createElement("div");
+      cardBody.className = "card-body d-flex flex-column align-items-center";
+  
+      let cardText = document.createElement("p");
+      cardText.className = "card-text";
+      cardText.innerText = resultat[i].artiste_name;
+  
+      let cardImage = document.createElement("img");
+      cardImage.className = "card-img-top";
+      cardImage.src = "../Images/playlist.jpeg";
+  
+      let button = document.createElement("button");
+      button.type = "submit";
+      button.id = "album" + i;
+      button.className = "btn card-title";
+      button.value = resultat[i].idalbum;
+      let buttonTitle = document.createElement("h5");
+      buttonTitle.innerText = resultat[i].album_name;
+  
+      cardBody.appendChild(cardImage);
+      button.appendChild(buttonTitle);
+      cardBody.appendChild(button);
+      cardBody.appendChild(cardText);
+      card.appendChild(cardBody);
+      divCol.appendChild(card);
+      divRow.appendChild(divCol);
+  
+      if ((i + 1) % cartesParLigne === 0 || i === resultat.length - 1) {
+        divResultat.appendChild(divRow);
+      }
+  
+      button.addEventListener('click', function() {
+        getAlbum(button.value);
+      });
     }
+  }
 
-    let body = document.getElementById("body");
-    body.appendChild(divRow);
-}
 
-function updateResultat3(data){
-    let resultat = data; // Supposons que les résultats soient renvoyés au format JSON
-
-    console.log(data);
-
-    let divRow = document.createElement("div");
-    divRow.className = "row";
-
+  function updateResultat3(data) {
+    let resultat = data;
+    let divResultat = document.getElementById("resultat");
+  
+    const cartesParLigne = 4;
+    let divRow;
+  
     for (let i = 0; i < resultat.length; i++) {
-        let divCol = document.createElement("div");
-        divCol.className = "col";
-
-        let card = document.createElement("div");
-        card.className = "card";
-
-        let cardBody = document.createElement("div");
-        cardBody.className = "card-body";
-
-        let cardTitle = document.createElement("h5");
-        cardTitle.className = "card-title";
-        cardTitle.innerText = resultat[i]['nom'];
-
-        let cardText = document.createElement("p");
-        cardText.className = "card-text";
-        cardText.innerText = resultat[i].description;
-
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(cardText);
-        card.appendChild(cardBody);
-        divCol.appendChild(card);
-        divRow.appendChild(divCol);
+      if (i % cartesParLigne === 0) {
+        divRow = document.createElement("div");
+        divRow.className = "row";
+      }
+  
+      let divCol = document.createElement("div");
+      divCol.className = "col";
+      divCol.style.marginBottom = "30px";
+  
+      let card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "10rem";
+  
+      let cardBody = document.createElement("div");
+      cardBody.className = "card-body d-flex flex-column align-items-center";
+  
+      let cardText = document.createElement("p");
+      cardText.className = "card-text";
+      // cardText.innerText = resultat[i].nom;
+  
+      let cardImage = document.createElement("img");
+      cardImage.className = "card-img-top";
+      cardImage.src = "../Images/playlist.jpeg";
+  
+      let button = document.createElement("button");
+      button.type = "submit";
+      button.id = "artiste" + i;
+      button.className = "btn card-title";
+      button.value = resultat[i].idartiste;
+      let buttonTitle = document.createElement("h5");
+      buttonTitle.innerText = resultat[i].nom;
+  
+      cardBody.appendChild(cardImage);
+      button.appendChild(buttonTitle);
+      cardBody.appendChild(button);
+      cardBody.appendChild(cardText);
+      card.appendChild(cardBody);
+      divCol.appendChild(card);
+      divRow.appendChild(divCol);
+  
+      if ((i + 1) % cartesParLigne === 0 || i === resultat.length - 1) {
+        divResultat.appendChild(divRow);
+      }
+  
+      button.addEventListener('click', function() {
+        getArtiste(button.value);
+      });
     }
-
-    let body = document.getElementById("body");
-    body.appendChild(divRow);
-}
+  }  
 
 const recherche = document.querySelector('#recherche');
 recherche.addEventListener('click', updateRecherche);

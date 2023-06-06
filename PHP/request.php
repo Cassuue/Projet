@@ -203,17 +203,17 @@ class request{
 
         //Récupérer toutes les infos d'un titre avec son nom
         function getAllFromTitre($conn, $nom){
-            $sql = "SELECT * FROM titre WHERE nom LIKE CONCAT ('%', :nom::text, '%')";
+            $sql = "SELECT t.nom AS titre_nom, t.idtitre, t.duree, t.lien, t.idartiste, t.idalbum, a.nom AS artiste_nom FROM titre t, artiste a WHERE t.nom LIKE CONCAT ('%', :nom::text, '%') AND t.idartiste = a.idartiste";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(":nom", $nom);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
-    
-        //Récupérer toutes les infos d'un album avec son nom
+
+        //Récupérer toutes les infos d'un album avec nom nom
         function getAllFromAlbum($conn, $nom){
-            $sql = "SELECT * FROM album WHERE nom = :nom";
+            $sql = "SELECT al.nom AS album_name, al.idalbum, al.image, al.style, al.idartiste AS album_artiste, ar.idartiste AS artiste_artiste, ar.nom AS artiste_name FROM album al, artiste ar WHERE al.nom LIKE CONCAT ('%', :nom::text, '%') AND al.idartiste = ar.idartiste";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(":nom", $nom);
             $stmt->execute();
@@ -222,8 +222,8 @@ class request{
         }
     
         //Récupérer toutes les infos d'une playlist avec nom nom
-        function getAllFromPlaylist($conn, $nom){
-            $sql = "SELECT * FROM playlist WHERE nom = :nom";
+        function getAllFromArtiste($conn, $nom){
+            $sql = "SELECT * FROM artiste WHERE nom LIKE CONCAT ('%', :nom::text, '%')";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(":nom", $nom);
             $stmt->execute();
@@ -287,6 +287,24 @@ class request{
             $stmt->bindParam(":mail", $mail);
             $stmt->bindParam(":id", $id);
             $stmt->bindParam(":fav", $fav);
+            $stmt->execute();
+        } catch (PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return true;
+    }
+
+    function updateUser($conn, $nom, $prenom, $mail, $previous_mail, $date_naissance, $password){
+        try {
+            $stmt = $conn->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, date_naissance=:date_naissance, mdp=:mdp, mail=:mail where mail=:previous_mail');
+            $stmt->bindParam(":nom", $nom);
+            $stmt->bindParam(":prenom", $prenom);
+            $stmt->bindParam(":mail", $mail);
+            $stmt->bindParam(":date_naissance", $date_naissance);
+            $stmt->bindParam(":mdp", $password);
+            $stmt->bindParam(":previous_mail", $previous_mail);
+            echo $previous_mail;
             $stmt->execute();
         } catch (PDOException $exception){
             echo 'Connexion échouée : ' . $exception->getMessage();
