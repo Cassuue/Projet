@@ -184,6 +184,7 @@ class request{
         return $result;
     }
 
+    // Permet de récupérer la durée totale d'un album
     function getDureeAlbum($conn, $id){
         try{
             $stmt= $conn->prepare("SELECT SUM(duree) AS duree_total FROM titre WHERE idalbum=:id");
@@ -197,6 +198,7 @@ class request{
         return $result;
     }
 
+    // Permet de récupérer la durée totale d'une playlist
     function getDureePlaylist($conn, $id){
         try{
             $stmt= $conn->prepare("SELECT SUM(t.duree) AS duree_total FROM titre t, appartenir a WHERE t.idtitre=a.idtitre AND a.idplaylist=:id");
@@ -246,6 +248,7 @@ class request{
         return $result;
     }
 
+    // Permet de récupérer tous les id des titres
     function getTitres($conn){
         try {
             $stmt = $conn->query("SELECT idtitre from titre");
@@ -276,6 +279,7 @@ class request{
         }
     }
 
+    // Permet d'ajouter une playlist
     function insertPlaylist($conn, $nom, $date, $mail){
         try{
             $stmt = $conn->prepare("INSERT INTO playlist (nom, date_creation, mail) VALUES (:nom, :date, :mail)");
@@ -290,6 +294,7 @@ class request{
         return true;
     }
 
+    // Permet d'ajouter un titre dans une playlist
     function insertTitrePlaylist($conn, $idTitre, $idPlaylist, $date){
         try{
             $stmt = $conn->prepare("INSERT INTO appartenir (idtitre, idplaylist, date_ajout) VALUES (:idtitre, :idplaylist, :date)");
@@ -304,6 +309,7 @@ class request{
         return true;
     }
 
+    // Permet d'ajouter un titre dans la table ecouter
     function insertTitreEcouter($conn, $mail, $idTitre, $date){
         try{
             $stmt = $conn->prepare("INSERT INTO ecouter (idtitre, mail, favori, play, date) VALUES (:idtitre, :mail, false, false, :date)");
@@ -335,6 +341,7 @@ class request{
         return true;
     }
 
+    // Permet de mettre à jour les info de l'utilisateur
     function updateUser($conn, $nom, $prenom, $mail, $previous_mail, $date_naissance, $password){
         try {
             $stmt = $conn->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, date_naissance=:date_naissance, mdp=:mdp, mail=:mail where mail=:previous_mail');
@@ -353,6 +360,7 @@ class request{
         return true;
     }
 
+    // Permet d'ajouter un titre aux derniers écouté (update)
     function modifDernierEcouter($conn, $mail, $idTitre, $time){
         try{
             $stmt = $conn->prepare('UPDATE ecouter SET play=true, date=:time where idtitre=:idtitre and mail=:mail');
@@ -367,6 +375,7 @@ class request{
         return true;
     }
 
+    // Permet de récupérer les informations de l'utilisateur
     public function getUserInfo($conn, $userEmail) {
         try {
             $sql = 'SELECT mail, nom, prenom, date_naissance FROM Utilisateur WHERE mail = :email';
@@ -396,6 +405,7 @@ class request{
 
     }
 
+    // Suppression d'un titre dans une playlist
     function deleteTitrePlaylist($conn, $idTitre, $idPlaylist){
         try{
             $stmt = $conn->prepare("DELETE FROM appartenir WHERE idplaylist=:idPlaylist AND idtitre=:idTitre");
