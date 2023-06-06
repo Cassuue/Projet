@@ -29,6 +29,7 @@
         <script src="../JS/playlist.js" defer></script>
         <script src="../JS/bibliotheque.js" defer></script>
 
+
         <title> Accueil </title>
     </head>
 
