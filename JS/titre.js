@@ -82,6 +82,8 @@ function displayTitle(json) {
         "</div>"+
     " </div>";
 
+    body.innerHTML += "<div class='row' id='playMusic'></div>";
+
     // Test si le titre est favori ou non 
     let fav = false;
     for (let i=0; i<json[1].length; i++){
@@ -103,6 +105,9 @@ function displayTitle(json) {
 
     let btnAdd = document.getElementById("add");
     btnAdd.addEventListener("click", function(){getPlaylists(id)});
+
+    let btnPlay = document.getElementById("play");
+    btnPlay.addEventListener("click", function(){playTitre(lien)});
 
     let idArtiste = json[0]['idartiste'];
     let btnArtiste = document.getElementById('btnArtiste');
@@ -187,6 +192,11 @@ function addTitre(json){
             }
         } 
     }
+}
+
+function playTitre(){
+    let playMusic = document.getElementById("playMusic");
+    playMusic.innerHTML = ("<audio controls autoplay src='../Musiques/Ed_Sheeran_-_Shape_Of_You_Lyrics.mp3'></audio>");
 }
 
 
