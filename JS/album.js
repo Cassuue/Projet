@@ -13,7 +13,7 @@ function displayAlbum(json){
     let image = json[0]['image'];
     let artiste = json[1]['nom'];
 
-    let duree_totale = 0; // A calculer en php
+    let duree_totale = json[4]['duree_total'];
 
     let body = document.getElementById("body");
     body.innerHTML += "<div class='row'>"+
@@ -22,7 +22,7 @@ function displayAlbum(json){
             "</div>"+
             "<div class='col' id='col2'>"+
                 "<h2>"+nom+"</h2><button type='submit' class='btn' id='btnArtiste' style='color: black; --bs-btn-padding-x: 5px'> <i class='bi bi-person-fill' style='padding-right: 10px;'></i>"+artiste+" </button>"+
-                "<p><i class='bi bi-info-circle' style='padding-right: 10px; padding-left: 5px;'></i>"+date+" / "+duree_totale+" / "+style+"</p>"+
+                "<p><i class='bi bi-info-circle' style='padding-right: 10px; padding-left: 5px;'></i> Date de sortie : "+date+"<br>  Durée totale : "+duree_totale+" <br> Style : "+style+"</p>"+
             "</div>"+
         "</div><br><br><div class='row'>"+
             "<table class='table table-hover'>"+

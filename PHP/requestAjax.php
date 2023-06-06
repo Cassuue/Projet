@@ -135,6 +135,11 @@
 
             array_push($res, $idFavoris);
 
+            $duree = new request;
+            $duree = $duree->getDureeAlbum($conn, intVal($_GET['id']));
+
+            array_push($res, $duree[0]);
+
             echo json_encode($res);
 
             // Requête de récupération d'une playlist et des titres 

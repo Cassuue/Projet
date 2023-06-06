@@ -8,8 +8,7 @@ DELETE FROM appartenir;
 
 
 INSERT INTO Utilisateur VALUES
-('cassie.peridy@mail.com', 'peridy', 'cassie', '2003-06-20', '$2y$10$F9DRoNGCsJSpQrisdVHGLekAoPQ0ESxdLM9xp/IZ5Kc4BMrGMVtMe'),
-('antoine.pajdak@mail.com', 'pajdak', 'antoine', '2002-05-05', '$2y$10$F9DRoNGCsJSpQrisdVHGLekAoPQ0ESxdLM9xp/IZ5Kc4BMrGMVtMe');
+('cassie.peridy@mail.com', 'peridy', 'cassie', '2003-06-20', '$2y$10$F9DRoNGCsJSpQrisdVHGLekAoPQ0ESxdLM9xp/IZ5Kc4BMrGMVtMe');
 
 -- Mot de passe décrypté : mdp
 
