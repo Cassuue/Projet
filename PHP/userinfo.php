@@ -39,8 +39,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../CSS/accueil.css">
 </head>
-<body>
-<div class="container-fluid">
+    <body>
+        <div class="container-fluid sticky-top">
             <nav class="navbar" style="background-color: #6379AE;">
                 <div class="container-fluid">
                     <span class="navbar-item">

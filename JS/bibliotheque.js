@@ -21,7 +21,6 @@ function getPlaylistFavoris(json){
                     "<tr>"+
                         "<th scope='col'>#</th>"+
                         "<th scope='col' class='w-50'>Titre</th>"+
-                        "<th scope='col' class='w-15'>Date d'ajout</th>"+
                         "<th scope='col' class='w-15'>Durée</th>"+
                         "<th scope='col' class='w-10'>Options</th>"+
                         "<th scope='col' >Détails</th>"+

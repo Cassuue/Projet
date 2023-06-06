@@ -161,6 +161,12 @@
             $idFavoris = $idFavoris->getIDFavoris($conn, $_SESSION['mail']);
 
             array_push($res, $idFavoris);
+
+            $duree = new request;
+            $duree = $duree->getDureePlaylist($conn, intVal($_GET['id']));
+
+            array_push($res, $duree[0]);
+
             echo json_encode($res);
 
             // ---- Requête de récupération des playlists de l'utilisateur ----

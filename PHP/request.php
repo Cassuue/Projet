@@ -197,6 +197,19 @@ class request{
         return $result;
     }
 
+    function getDureePlaylist($conn, $id){
+        try{
+            $stmt= $conn->prepare("SELECT SUM(t.duree) AS duree_total FROM titre t, appartenir a WHERE t.idtitre=a.idtitre AND a.idplaylist=:id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
+    }
+
     //Récupérer toutes les infos d'un titre avec son nom
     function getAllFromTitre($conn, $nom){
         $sql = "SELECT t.nom AS titre_nom, t.idtitre, t.duree, t.lien, t.idartiste, t.idalbum, a.nom AS artiste_nom, al.image 
