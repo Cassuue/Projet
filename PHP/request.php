@@ -183,53 +183,49 @@ class request{
         }
         return $result;
     }
-    
-    function getAllArtists($conn) {
-        $sql = "SELECT idArtiste, nom FROM Artiste";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $artists = array();
-            while($row = $result->fetch_assoc()) {
-                $artists[] = $row;
-            }
-            return $artists;
-        } else {
+    function getDureeAlbum($conn, $id){
+        try{
+            $stmt= $conn->prepare("SELECT SUM(duree) AS duree_total FROM titre WHERE idalbum=:id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
             return false;
         }
+        return $result;
     }
 
-        //Récupérer toutes les infos d'un titre avec son nom
-        function getAllFromTitre($conn, $nom){
-            $sql = "SELECT t.nom AS titre_nom, t.idtitre, t.duree, t.lien, t.idartiste, t.idalbum, a.nom AS artiste_nom FROM titre t, artiste a WHERE t.nom LIKE CONCAT ('%', :nom::text, '%') AND t.idartiste = a.idartiste";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(":nom", $nom);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }
+    //Récupérer toutes les infos d'un titre avec son nom
+    function getAllFromTitre($conn, $nom){
+        $sql = "SELECT t.nom AS titre_nom, t.idtitre, t.duree, t.lien, t.idartiste, t.idalbum, a.nom AS artiste_nom FROM titre t, artiste a WHERE t.nom LIKE CONCAT ('%', :nom::text, '%') AND t.idartiste = a.idartiste";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
-        //Récupérer toutes les infos d'un album avec nom nom
-        function getAllFromAlbum($conn, $nom){
-            $sql = "SELECT al.nom AS album_name, al.idalbum, al.image, al.style, al.idartiste AS album_artiste, ar.idartiste AS artiste_artiste, ar.nom AS artiste_name FROM album al, artiste ar WHERE al.nom LIKE CONCAT ('%', :nom::text, '%') AND al.idartiste = ar.idartiste";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(":nom", $nom);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }
-    
-        //Récupérer toutes les infos d'une playlist avec nom nom
-        function getAllFromArtiste($conn, $nom){
-            $sql = "SELECT * FROM artiste WHERE nom LIKE CONCAT ('%', :nom::text, '%')";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(":nom", $nom);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }
+    //Récupérer toutes les infos d'un album avec nom nom
+    function getAllFromAlbum($conn, $nom){
+        $sql = "SELECT al.nom AS album_name, al.idalbum, al.image, al.style, al.idartiste AS album_artiste, ar.idartiste AS artiste_artiste, ar.nom AS artiste_name FROM album al, artiste ar WHERE al.nom LIKE CONCAT ('%', :nom::text, '%') AND al.idartiste = ar.idartiste";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    //Récupérer toutes les infos d'une playlist avec nom nom
+    function getAllFromArtiste($conn, $nom){
+        $sql = "SELECT * FROM artiste WHERE nom LIKE CONCAT ('%', :nom::text, '%')";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     // Fonctions INSERT
 
