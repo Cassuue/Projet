@@ -15,18 +15,14 @@
 .navbar{
     grid-row-start: 1;
     grid-row-end: 2;
-    position: relative;
+    position: sticky;
     top: 0;
 }
 
 
-footer.bg-dark.text-center.text-lg-start{
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    padding: 20px;
-    grid-row-start: 3;
-    grid-row-end: 4;
+.footer.sticky-bottom.py-1{
+    background-color: #6379AE !important;
+    z-index: 999;  
 }
 
 .main-content{
