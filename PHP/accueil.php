@@ -77,14 +77,14 @@
             </nav>
         </div>
 
-        <div class="container" id='body'></div>
-    
-        <footer class="footer sticky-bottom py-1">
-            <div class="container justify-content-center">
-                <audio controls autoplay src='' class='container justify-content-center'></audio>
+        <footer class="footer fixed-bottom py-1">
+            <div class="container justify-content-center"  id='playMusic'>
+                <audio controls autoplay src="" class='container justify-content-center'></audio>
             </div>
         </footer>
 
-    </body>  
+        <div class="container" id='body' style="margin-bottom: 5%"></div>
 
+
+    </body>  
 </html>

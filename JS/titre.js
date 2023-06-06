@@ -196,8 +196,8 @@ function addTitre(json){
 
 function playTitre(lien){
     let lienMusique = "../Musiques/"+lien;
-    let playMusic = document.getElementById("playMusic").src = lienMusique;
-    //playMusic.innerHTML = ("<audio controls autoplay src='../Musiques/Ed_Sheeran_-_Shape_Of_You_Lyrics.mp3'></audio>");
+    let playMusic = document.getElementById("playMusic");
+    playMusic.innerHTML = ("<audio controls autoplay src='"+lienMusique+"' class='container justify-content-center'></audio>");
 }
 
 

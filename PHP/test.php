@@ -11,12 +11,12 @@
         <title> index </title>
     </head>
     <body class="container">
-    <h2>TEST</h2>
-    <footer class="footer fixed-bottom py-2 bg-light" style='background-color: #6379AE !important;'>
-        <div class="container justify-content-center">
-        <audio controls autoplay src='../Musiques/Ed_Sheeran_-_Shape_Of_You_Lyrics.mp3' class='container justify-content-center'></audio>
-        </div>
-    </footer>
+        <h2>TEST</h2>
+        <footer class="footer fixed-bottom py-2 bg-light" style='background-color: #6379AE !important;'>
+            <div class="container justify-content-center">
+            <audio controls autoplay src='../Musiques/Ed_Sheeran_-_Shape_Of_You_Lyrics.mp3' class='container justify-content-center'></audio>
+            </div>
+        </footer>
 
 
     </body>
