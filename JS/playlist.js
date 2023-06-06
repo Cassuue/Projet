@@ -7,6 +7,7 @@ function getPlaylists(id){
 
 function displayInfoPlaylist(json){
 
+    let idPlaylist = json[0]['idplaylist'];
     let nom = json[0]['nom'];
     let date = json[0]['date_creation'];
     let image = "playlist.jpeg";
@@ -22,6 +23,9 @@ function displayInfoPlaylist(json){
             "<div class='col' id='col2'>"+
                 "<h2>"+nom+"</h2>"+
                 "<p><i class='bi bi-info-circle' style='padding-right: 10px; padding-left: 5px;'></i>"+date+" / "+duree_totale+"</p>"+
+            "</div>"+
+            "<div class='col-md-1 offset-md-1'>"+
+                "<button id='deletePlaylist' class='btn' type='submit' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'><h2><i class='bi bi-trash'></i></h2></button>"+
             "</div>"+
         "</div><br><br><div class='row'>"+
             "<table class='table table-hover'>"+
@@ -39,6 +43,9 @@ function displayInfoPlaylist(json){
                 "</tbody>"+
             "</table>"+
         "</div>";
+
+    const deletePlaylist = document.getElementById('deletePlaylist');
+    deletePlaylist.addEventListener('click', function(){ajaxRequest("DELETE","../PHP/requestAjax.php/"+idPlaylist+"?type=deletePlaylist&id="+idPlaylist, pageAccueil)})
 
     affichageTitres(json, "playlist", 1);
 }
