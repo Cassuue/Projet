@@ -199,13 +199,19 @@ class request{
 
     //Récupérer toutes les infos d'un titre avec son nom
     function getAllFromTitre($conn, $nom){
-        $sql = "SELECT t.nom AS titre_nom, t.idtitre, t.duree, t.lien, t.idartiste, t.idalbum, a.nom AS artiste_nom FROM titre t, artiste a WHERE t.nom LIKE CONCAT ('%', :nom::text, '%') AND t.idartiste = a.idartiste";
+        $sql = "SELECT t.nom AS titre_nom, t.idtitre, t.duree, t.lien, t.idartiste, t.idalbum, a.nom AS artiste_nom, al.image 
+                FROM titre t 
+                JOIN artiste a ON t.idartiste = a.idartiste 
+                LEFT JOIN album al ON t.idalbum = al.idalbum
+                WHERE t.nom LIKE CONCAT ('%', :nom::text, '%')";
+    
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":nom", $nom);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    
 
     //Récupérer toutes les infos d'un album avec nom nom
     function getAllFromAlbum($conn, $nom){
