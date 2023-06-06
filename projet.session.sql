@@ -1,1 +1,1 @@
-DELETE from playlist where idplaylist = 3
+DELETE FROM appartenir WHERE idplaylist=2 AND idtitre=1

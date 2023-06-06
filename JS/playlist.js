@@ -1,4 +1,4 @@
-function getPlaylists(id){
+function getInfoPlaylist(id){
     let body = document.getElementById("body");
     body.innerHTML = "<br>";
     ajaxRequest('GET', '../PHP/requestAjax.php?id='+ id +'&type=playlist', displayInfoPlaylist);

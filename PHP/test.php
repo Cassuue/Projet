@@ -14,9 +14,9 @@
     <body>
 
         <!-- Button trigger modal -->
-        <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>Launch demo modal</button>
+        <!-- <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>Launch demo modal</button>
 
-        <!-- Modal -->
+        
         <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
         <div class='modal-dialog'>
             <div class='modal-content'>
@@ -33,7 +33,7 @@
             </div>
             </div>
         </div>
-        </div>
+        </div> -->
     </body>
 </html>
 
@@ -47,8 +47,10 @@
     $conn = new DB;
     $conn = $conn->connexionBD();
 
+    $date= date('Y-m-d');
+
     $test = new request;
-    $test = $test->getUserInfo($conn,'cassie.peridy@mail.com');
+    $test = $test->insertTitrePlaylist($conn, 10, 1, $date);
 
     echo json_encode($test);
 

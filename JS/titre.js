@@ -52,8 +52,8 @@ function displayTitle(json) {
                         "<th scope='col' class='w-15'>"+
                             "<button class='btn' type='submit' id='favorite' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
                             "</button>"+
-                            "<button class='btn' type='submit' id='add' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
-                                "<h5 style='margin-bottom: 2px;'><i class='bi bi-plus'></i></h5>" +
+                            "<button class='btn' type='submit' id='add' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;' data-bs-toggle='modal' data-bs-target='#exampleModal'>"+
+                                "<h5 style='margin-bottom: 2px;'><i class='bi bi-plus-lg'></i></h5>" +
                             "</button>"+
                             "<button class='btn' type='submit' id='play' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
                                 "<h5 style='margin-bottom: 2px;'><i class='bi bi-play-fill'></i></h5>"+
@@ -63,6 +63,24 @@ function displayTitle(json) {
                 "</tbody>"+
             "</table>"+
         "</div>";
+
+    body.innerHTML += "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>"+
+        "<div class='modal-dialog'>"+
+            "<div class='modal-content'>"+
+            "<div class='modal-header'>"+
+                "<h1 class='modal-title fs-5' id='exampleModalLabel'>Ajouter à une playlist</h1>"+
+        " </div>"+
+            "<div class='modal-body'>"+
+                "<form id='formulaire'>"+
+                "</form>"+
+            "</div>"+
+            "<div class='modal-footer'>"+
+                "<button type='submit' class='btn btn-primary' id='enregistrer' >Enregistrer</button>"+
+                "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal' id='fermer'>Fermer</button>"+
+        " </div>"+
+            "</div>"+
+        "</div>"+
+    " </div>";
 
     // Test si le titre est favori ou non 
     let fav = false;
@@ -83,6 +101,9 @@ function displayTitle(json) {
 
     btnFavorite.addEventListener('click', function(){modifFavoris(id, !fav);});
 
+    let btnAdd = document.getElementById("add");
+    btnAdd.addEventListener("click", function(){getPlaylists(id)});
+
     let idArtiste = json[0]['idartiste'];
     let btnArtiste = document.getElementById('btnArtiste');
     btnArtiste.addEventListener("click", function(){getArtiste(idArtiste)});
@@ -90,6 +111,82 @@ function displayTitle(json) {
     let idAlbum = json[0]['idalbum'];
     let btnAlbum = document.getElementById("btnAlbum");
     btnAlbum.addEventListener("click", function(){getAlbum(idAlbum)});
+}
+
+function getPlaylists(id){
+    ajaxRequest("GET", "../PHP/requestAjax.php?type=addPlaylist&id="+id, addInPlaylist);
+}
+
+function addInPlaylist(json){
+    console.log(json[1][0])
+    const formulaire = document.getElementById('formulaire');
+    formulaire.innerHTML = "";
+
+    let idTitre = json[2];
+
+    for(let i=0; i<json[0].length; i++){
+        let idPlaylist = json[0][i]['idplaylist'];
+        let nom = json[0][i]['nom'];
+        formulaire.innerHTML += "<div class='form-check'>"+
+                "<input class='form-check-input' type='checkbox' value="+idPlaylist+" id=checkbox"+i+">"+
+                "<label class='form-check-label' for='flexCheckDefault'>"+nom+"</label>"+
+            "</div>";
+    }
+
+    for(let i=0; i<json[0].length; i++){
+
+        let idPlaylist = json[0][i]['idplaylist'];
+
+        for(let j=0; j<json[1].length; j++){
+            for(let t=0; t<json[1][j].length; t++){
+                if(idPlaylist == json[1][j][t]['idplaylist'] && idTitre == json[1][j][t]['idtitre']){
+                    let check = document.getElementById('checkbox'+i).checked = true;
+                }
+            }
+        }
+    }
+
+    const btnEnregistrer = document.getElementById("enregistrer");
+    btnEnregistrer.addEventListener("click", function(){addTitre(json)});
+
+    const btnFermer = document.getElementById("fermer");
+    btnFermer.addEventListener("click", function(){getTitle(idTitre)});
+}
+
+
+function addTitre(json){
+    let idTitre = json[2];
+
+    for(let i=0; i<json[0].length;i++){
+
+        let check = document.getElementById("checkbox"+i);  
+        for (let t=0; t<json[1].length; t++){
+
+            if(check.checked == true){
+                if(json[1][t].length == 0){
+                    ajaxRequest("POST", "../PHP/requestAjax.php", function(){console.log('ADD')}, "type=addTitrePlaylist&idTitre="+idTitre+"&idPlaylist="+check.value);
+                } else{
+                    for(let j=0; j<json[1][t].length; j++){
+                        if(!(check.value == json[1][t][j]['idplaylist'] && idTitre == json[1][t][j]['idtitre'])){
+                            ajaxRequest("POST", "../PHP/requestAjax.php", function(){console.log('ADD')}, "type=addTitrePlaylist&idTitre="+idTitre+"&idPlaylist="+check.value);
+                        }
+                    }
+                }
+            } 
+            else{
+                if(json[1][t].length == 0){
+                    ajaxRequest("DELETE", "../PHP/requestAjax.php/"+idTitre+"?type=deleteTitrePlaylist&idTitre="+idTitre+"&idPlaylist="+check.value, function(){console.log('DELETE')});
+                }
+                else{
+                    for(let j=0; j<json[1][t].length; j++){
+                        if(check.value == json[1][t][j]['idplaylist'] && idTitre == json[1][t][j]['idtitre']){
+                            ajaxRequest("DELETE", "../PHP/requestAjax.php/"+idTitre+"?type=deleteTitrePlaylist&idTitre="+idTitre+"&idPlaylist="+check.value, function(){console.log('DELETE')});
+                        }
+                    }
+                }
+            }
+        } 
+    }
 }
 
 

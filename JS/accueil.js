@@ -189,7 +189,7 @@ function displayPlaylists(json){
         const btn = document.querySelector("#playlist"+i);
         let id = document.getElementById("playlist"+i).value;
         btn.addEventListener("click", function(){
-            getPlaylists(id);
+            getInfoPlaylist(id);
         });
     }
 

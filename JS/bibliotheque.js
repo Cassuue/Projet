@@ -91,7 +91,7 @@ function displayBibliotheque(json){
     for(let i = 0; i<json[0].length; i++){
         const btn = document.querySelector("#playlist"+i);
         let id = document.getElementById("playlist"+i).value;
-        btn.addEventListener("click", function(){getPlaylists(id);});
+        btn.addEventListener("click", function(){getInfoPlaylist(id);});
     }
 
     const favoris = document.querySelector('#favoris');

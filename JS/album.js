@@ -61,9 +61,6 @@ function affichageTitres(json, type, indice){
             "<td>"+ duree +"</td>"+
             "<td><button class='btn' type='submit' id=favorite"+i+" value="+idtitre+" style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
             "</button>"+
-            "<button class='btn' type='submit' id='add' style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
-                "<h5 style='margin-bottom: 2px;'><i class='bi bi-plus'></i></h5>" +
-            "</button>"+
             "<button class='btn' type='submit' id=play"+i+" style='--bs-btn-padding-y: 0rem; --bs-btn-padding-x: 5px;'>"+
                 "<h5 style='margin-bottom: 2px;'><i class='bi bi-play-fill'></i></h5>"+
             "</button></td>"+
