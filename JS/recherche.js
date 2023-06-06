@@ -88,16 +88,28 @@ function updateRecherche() {
     body.innerHTML = "";
     body.appendChild(divRow);
 
+    let divResultat = document.createElement("div");
+    divResultat.id = "resultat";
+    divRow.appendChild(divResultat);
+
     button.addEventListener('click', getResearch);
 }
 
+function clearResultat() {
+    let resultat = document.getElementById("resultat");
+    if (resultat) {
+        resultat.remove();
+    }
+}
+
 function getResearch(){
+    clearResultat();
     //event.preventDefault();
     let recherche = document.querySelector('#search').value;
     let filtre = document.querySelector('input[name="filter"]:checked').value;
 
-    console.log(recherche);
-    console.log(filtre);
+    //console.log(recherche);
+    //console.log(filtre);
 
     if (filtre == "titre" && recherche != ""){
         ajaxRequest('GET', '../PHP/requestRecherche.php?search=' + recherche + "&filtre=" + filtre, function(data){updateResultat(data)});
@@ -114,8 +126,7 @@ function getResearch(){
 function updateResultat(data){
     let resultat = data;
     //console.log(resultat);
-    let divRow = document.createElement("div");
-    divRow.className = "row";
+    let divRow = document.getElementById("resultat");
 
     const cartesParLigne = 4;
 
@@ -174,8 +185,7 @@ function updateResultat(data){
 function updateResultat2(data){
     let resultat = data;
     console.log(resultat);
-    let divRow = document.createElement("div");
-    divRow.className = "row";
+    let divRow = document.getElementById("resultat");
 
     const cartesParLigne = 4;
 
@@ -234,8 +244,7 @@ function updateResultat2(data){
 function updateResultat3(data){
     let resultat = data;
     console.log(resultat);
-    let divRow = document.createElement("div");
-    divRow.className = "row";
+    let divRow = document.getElementById("resultat");
 
     const cartesParLigne = 4;
 
