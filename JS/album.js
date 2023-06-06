@@ -108,7 +108,7 @@ function affichageTitres(json, type, indice){
 
         let lien = json[indice][i]['lien'];
         let btnPlay = document.getElementById("play"+i);
-        btnPlay.addEventListener("click", function(){playTitre(lien)});
+        btnPlay.addEventListener("click", function(){playTitre(lien, id)});
     }
 }
 

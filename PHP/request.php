@@ -293,6 +293,10 @@ class request{
         return true;
     }
 
+    // function insertTitreEcouter($conn, $mail, $idTitre){
+
+    // }
+
     // Fonctions UPDATE
 
     // Permet d'ajouter un titre aux favoris
@@ -320,6 +324,20 @@ class request{
             $stmt->bindParam(":mdp", $password);
             $stmt->bindParam(":previous_mail", $previous_mail);
             echo $previous_mail;
+            $stmt->execute();
+        } catch (PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return true;
+    }
+
+    function modifDernierEcouter($conn, $mail, $idTitre, $time){
+        try{
+            $stmt = $conn->prepare('UPDATE ecouter SET play=true, date=:time where idtitre=:idtitre and mail=:mail');
+            $stmt->bindParam(":time", $time);
+            $stmt->bindParam(":idtitre", $idTitre);
+            $stmt->bindParam(":mail", $mail);
             $stmt->execute();
         } catch (PDOException $exception){
             echo 'Connexion échouée : ' . $exception->getMessage();
