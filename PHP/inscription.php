@@ -84,6 +84,9 @@
         $input = new request;
         $input = $input->registerUser($conn, $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['naissance'], $_POST['password']);
 
+        // $ecouter = new request;
+        // $ecouter = $ecouter->
+
         header("Location: connexion.php");
    }
 

@@ -107,7 +107,7 @@ function displayTitle(json) {
     btnAdd.addEventListener("click", function(){getPlaylists(id)});
 
     let btnPlay = document.getElementById("play");
-    btnPlay.addEventListener("click", function(){playTitre(lien)});
+    btnPlay.addEventListener("click", function(){playTitre(lien, id)});
 
     let idArtiste = json[0]['idartiste'];
     let btnArtiste = document.getElementById('btnArtiste');
@@ -194,10 +194,11 @@ function addTitre(json){
     }
 }
 
-function playTitre(lien){
+function playTitre(lien, idtitre){
     let lienMusique = "../Musiques/"+lien;
     let playMusic = document.getElementById("playMusic");
     playMusic.innerHTML = ("<audio controls autoplay src='"+lienMusique+"' class='container justify-content-center'></audio>");
+    ajaxRequest("POST", "../PHP/requestAjax.php",function(){ console.log('updatePlay')}, "type=updatePlay&idtitre="+idtitre);
 }
 
 

@@ -46,7 +46,8 @@ INSERT INTO ecouter VALUES
 (5, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:15:00'),
 (6, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:03:00'),
 (7, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:02:00'),
-(8, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:01:00');
+(8, 'cassie.peridy@mail.com', true, true, '2023-05-06 17:01:00'),
+(9, 'cassie.peridy@mail.com', false, false, '2023-05-06 21:32:00');
 
 INSERT INTO appartenir VALUES
 (1, 1, '2023-06-21'),

@@ -257,6 +257,14 @@
             $ajoutTitrePlaylist = new request;
             $ajoutTitrePlaylist = $ajoutTitrePlaylist->insertTitrePlaylist($conn, $idTitre, $idPlaylist, $date);
             echo json_encode($ajoutTitrePlaylist);
+
+        } elseif ($_POST['type'] == 'updatePlay' && isset($_POST['idtitre'])) {
+            $date = date('Y-m-d H:i:s');
+            $idTitre = intVal($_POST['idtitre']);
+
+            $updatePlay = new request;
+            $updatePlay = $updatePlay->modifDernierEcouter($conn, $_SESSION['mail'], $idTitre, $date);
+            echo json_encode($updatePlay);
         }
 
     } elseif ($type_request == 'PUT') {
