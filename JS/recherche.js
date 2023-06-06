@@ -127,7 +127,7 @@ function getResearch(){
 function updateResultat(data) {
     let resultat = data;
     let divResultat = document.getElementById("resultat");
-  
+
     const cartesParLigne = 4;
     let divRow;
   
@@ -136,6 +136,12 @@ function updateResultat(data) {
         divRow = document.createElement("div");
         divRow.className = "row";
       }
+
+      let image = data[i]["image"];
+    
+        if(image == null){
+            image = "playlist.jpeg";
+        }
   
       let divCol = document.createElement("div");
       divCol.className = "col";
@@ -154,7 +160,7 @@ function updateResultat(data) {
   
       let cardImage = document.createElement("img");
       cardImage.className = "card-img-top";
-      cardImage.src = "../Images/playlist.jpeg";
+      cardImage.src = "../Images/" + image;
   
       let button = document.createElement("button");
       button.type = "submit";
@@ -194,6 +200,8 @@ function updateResultat(data) {
         divRow = document.createElement("div");
         divRow.className = "row";
       }
+
+      let image = data[i]["image"];
   
       let divCol = document.createElement("div");
       divCol.className = "col";
@@ -212,7 +220,7 @@ function updateResultat(data) {
   
       let cardImage = document.createElement("img");
       cardImage.className = "card-img-top";
-      cardImage.src = "../Images/playlist.jpeg";
+      cardImage.src = "../Images/" + image;
   
       let button = document.createElement("button");
       button.type = "submit";
