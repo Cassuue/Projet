@@ -97,9 +97,10 @@ function updateRecherche() {
 
 function clearResultat() {
     let resultat = document.getElementById("resultat");
-    if (resultat) {
-        resultat.remove();
-    }
+    resultat.innerHTML = "<br>";
+    // if (resultat) {
+    //     resultat.remove();
+    // }
 }
 
 function getResearch(){
@@ -123,182 +124,180 @@ function getResearch(){
     document.getElementById("search").value = "";
 }
 
-function updateResultat(data){
+function updateResultat(data) {
     let resultat = data;
-    //console.log(resultat);
-    let divRow = document.getElementById("resultat");
-
+    let divResultat = document.getElementById("resultat");
+  
     const cartesParLigne = 4;
-
+    let divRow;
+  
     for (let i = 0; i < resultat.length; i++) {
-        if (i % cartesParLigne === 0) {
-            divRow = document.createElement("div");
-            divRow.className = "row";
-        }
-
-        let divCol = document.createElement("div");
-        divCol.className = "col";
-        divCol.style.marginBottom = "30px";
-
-        let card = document.createElement("div");
-        card.className = "card";
-        card.style.width = "10rem";
-
-        let cardBody = document.createElement("div");
-        cardBody.className = "card-body d-flex flex-column align-items-center";
-
-        let cardText = document.createElement("p");
-        cardText.className = "card-text";
-        cardText.innerText = resultat[i].artiste_nom;
-
-        let cardImage = document.createElement("img");
-        cardImage.className = "card-img-top";
-        cardImage.src = "../Images/playlist.jpeg";
-
-        let button = document.createElement("button");
-        button.type = "submit";
-        button.id = "lastTitre" + i;
-        button.className = "btn card-title";
-        button.value = resultat[i].idtitre; // Remplacez "id" par la valeur souhaitée
-        let buttonTitle = document.createElement("h5");
-        buttonTitle.innerText = resultat[i].titre_nom; // Remplacez "titre" par la valeur souhaitée
-
-        cardBody.appendChild(cardImage);
-        button.appendChild(buttonTitle);
-        cardBody.appendChild(button);
-        cardBody.appendChild(cardText);
-        card.appendChild(cardBody);
-        divCol.appendChild(card);
-        divRow.appendChild(divCol);
-
-        if ((i+1) % cartesParLigne === 0 || i === resultat.length - 1) {
-            let body = document.getElementById("body");
-            body.appendChild(divRow);
-        }
-
-        button.addEventListener('click', function() {
-            getTitle(button.value);
-        });
+      if (i % cartesParLigne === 0) {
+        divRow = document.createElement("div");
+        divRow.className = "row";
+      }
+  
+      let divCol = document.createElement("div");
+      divCol.className = "col";
+      divCol.style.marginBottom = "30px";
+  
+      let card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "10rem";
+  
+      let cardBody = document.createElement("div");
+      cardBody.className = "card-body d-flex flex-column align-items-center";
+  
+      let cardText = document.createElement("p");
+      cardText.className = "card-text";
+      cardText.innerText = resultat[i].artiste_nom;
+  
+      let cardImage = document.createElement("img");
+      cardImage.className = "card-img-top";
+      cardImage.src = "../Images/playlist.jpeg";
+  
+      let button = document.createElement("button");
+      button.type = "submit";
+      button.id = "lastTitre" + i;
+      button.className = "btn card-title";
+      button.value = resultat[i].idtitre;
+      let buttonTitle = document.createElement("h5");
+      buttonTitle.innerText = resultat[i].titre_nom;
+  
+      cardBody.appendChild(cardImage);
+      button.appendChild(buttonTitle);
+      cardBody.appendChild(button);
+      cardBody.appendChild(cardText);
+      card.appendChild(cardBody);
+      divCol.appendChild(card);
+      divRow.appendChild(divCol);
+  
+      if ((i + 1) % cartesParLigne === 0 || i === resultat.length - 1) {
+        divResultat.appendChild(divRow);
+      }
+  
+      button.addEventListener('click', function() {
+        getTitle(button.value);
+      });
     }
-}
+  }  
 
-function updateResultat2(data){
+  function updateResultat2(data) {
     let resultat = data;
-    console.log(resultat);
-    let divRow = document.getElementById("resultat");
-
+    let divResultat = document.getElementById("resultat");
+  
     const cartesParLigne = 4;
-
+    let divRow;
+  
     for (let i = 0; i < resultat.length; i++) {
-        if (i % cartesParLigne === 0) {
-            divRow = document.createElement("div");
-            divRow.className = "row";
-        }
-
-        let divCol = document.createElement("div");
-        divCol.className = "col";
-        divCol.style.marginBottom = "30px";
-
-        let card = document.createElement("div");
-        card.className = "card";
-        card.style.width = "10rem";
-
-        let cardBody = document.createElement("div");
-        cardBody.className = "card-body d-flex flex-column align-items-center";
-
-        let cardText = document.createElement("p");
-        cardText.className = "card-text";
-        cardText.innerText = resultat[i].artiste_name;
-
-        let cardImage = document.createElement("img");
-        cardImage.className = "card-img-top";
-        cardImage.src = "../Images/playlist.jpeg";
-
-        let button = document.createElement("button");
-        button.type = "submit";
-        button.id = "album" + i;
-        button.className = "btn card-title";
-        button.value = resultat[i].idalbum; // Remplacez "id" par la valeur souhaitée
-        let buttonTitle = document.createElement("h5");
-        buttonTitle.innerText = resultat[i].album_name; // Remplacez "titre" par la valeur souhaitée
-
-        cardBody.appendChild(cardImage);
-        button.appendChild(buttonTitle);
-        cardBody.appendChild(button);
-        cardBody.appendChild(cardText);
-        card.appendChild(cardBody);
-        divCol.appendChild(card);
-        divRow.appendChild(divCol);
-
-        if ((i+1) % cartesParLigne === 0 || i === resultat.length - 1) {
-            let body = document.getElementById("body");
-            body.appendChild(divRow);
-        }
-
-        button.addEventListener('click', function() {
-            getAlbum(button.value);
-        });
+      if (i % cartesParLigne === 0) {
+        divRow = document.createElement("div");
+        divRow.className = "row";
+      }
+  
+      let divCol = document.createElement("div");
+      divCol.className = "col";
+      divCol.style.marginBottom = "30px";
+  
+      let card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "10rem";
+  
+      let cardBody = document.createElement("div");
+      cardBody.className = "card-body d-flex flex-column align-items-center";
+  
+      let cardText = document.createElement("p");
+      cardText.className = "card-text";
+      cardText.innerText = resultat[i].artiste_name;
+  
+      let cardImage = document.createElement("img");
+      cardImage.className = "card-img-top";
+      cardImage.src = "../Images/playlist.jpeg";
+  
+      let button = document.createElement("button");
+      button.type = "submit";
+      button.id = "album" + i;
+      button.className = "btn card-title";
+      button.value = resultat[i].idalbum;
+      let buttonTitle = document.createElement("h5");
+      buttonTitle.innerText = resultat[i].album_name;
+  
+      cardBody.appendChild(cardImage);
+      button.appendChild(buttonTitle);
+      cardBody.appendChild(button);
+      cardBody.appendChild(cardText);
+      card.appendChild(cardBody);
+      divCol.appendChild(card);
+      divRow.appendChild(divCol);
+  
+      if ((i + 1) % cartesParLigne === 0 || i === resultat.length - 1) {
+        divResultat.appendChild(divRow);
+      }
+  
+      button.addEventListener('click', function() {
+        getAlbum(button.value);
+      });
     }
-}
+  }
 
-function updateResultat3(data){
+
+  function updateResultat3(data) {
     let resultat = data;
-    console.log(resultat);
-    let divRow = document.getElementById("resultat");
-
+    let divResultat = document.getElementById("resultat");
+  
     const cartesParLigne = 4;
-
+    let divRow;
+  
     for (let i = 0; i < resultat.length; i++) {
-        if (i % cartesParLigne === 0) {
-            divRow = document.createElement("div");
-            divRow.className = "row";
-        }
-
-        let divCol = document.createElement("div");
-        divCol.className = "col";
-        divCol.style.marginBottom = "30px";
-
-        let card = document.createElement("div");
-        card.className = "card";
-        card.style.width = "10rem";
-
-        let cardBody = document.createElement("div");
-        cardBody.className = "card-body d-flex flex-column align-items-center";
-
-        let cardText = document.createElement("p");
-        cardText.className = "card-text";
-        //cardText.innerText = resultat[i].nom;
-
-        let cardImage = document.createElement("img");
-        cardImage.className = "card-img-top";
-        cardImage.src = "../Images/playlist.jpeg";
-
-        let button = document.createElement("button");
-        button.type = "submit";
-        button.id = "artiste" + i;
-        button.className = "btn card-title";
-        button.value = resultat[i].idartiste; // Remplacez "id" par la valeur souhaitée
-        let buttonTitle = document.createElement("h5");
-        buttonTitle.innerText = resultat[i].nom; // Remplacez "titre" par la valeur souhaitée
-
-        cardBody.appendChild(cardImage);
-        button.appendChild(buttonTitle);
-        cardBody.appendChild(button);
-        cardBody.appendChild(cardText);
-        card.appendChild(cardBody);
-        divCol.appendChild(card);
-        divRow.appendChild(divCol);
-
-        if ((i+1) % cartesParLigne === 0 || i === resultat.length - 1) {
-            let body = document.getElementById("body");
-            body.appendChild(divRow);
-        }
-
-        button.addEventListener('click', function() {
-            getArtiste(button.value);
-        });
+      if (i % cartesParLigne === 0) {
+        divRow = document.createElement("div");
+        divRow.className = "row";
+      }
+  
+      let divCol = document.createElement("div");
+      divCol.className = "col";
+      divCol.style.marginBottom = "30px";
+  
+      let card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "10rem";
+  
+      let cardBody = document.createElement("div");
+      cardBody.className = "card-body d-flex flex-column align-items-center";
+  
+      let cardText = document.createElement("p");
+      cardText.className = "card-text";
+      // cardText.innerText = resultat[i].nom;
+  
+      let cardImage = document.createElement("img");
+      cardImage.className = "card-img-top";
+      cardImage.src = "../Images/playlist.jpeg";
+  
+      let button = document.createElement("button");
+      button.type = "submit";
+      button.id = "artiste" + i;
+      button.className = "btn card-title";
+      button.value = resultat[i].idartiste;
+      let buttonTitle = document.createElement("h5");
+      buttonTitle.innerText = resultat[i].nom;
+  
+      cardBody.appendChild(cardImage);
+      button.appendChild(buttonTitle);
+      cardBody.appendChild(button);
+      cardBody.appendChild(cardText);
+      card.appendChild(cardBody);
+      divCol.appendChild(card);
+      divRow.appendChild(divCol);
+  
+      if ((i + 1) % cartesParLigne === 0 || i === resultat.length - 1) {
+        divResultat.appendChild(divRow);
+      }
+  
+      button.addEventListener('click', function() {
+        getArtiste(button.value);
+      });
     }
-}
+  }  
 
 const recherche = document.querySelector('#recherche');
 recherche.addEventListener('click', updateRecherche);
