@@ -271,6 +271,24 @@ class request{
         return true;
     }
 
+    function updateUser($conn, $nom, $prenom, $mail, $previous_mail, $date_naissance, $password){
+        try {
+            $stmt = $conn->prepare('UPDATE utilisateur SET nom=:nom, prenom=:prenom, date_naissance=:date_naissance, mdp=:mdp, mail=:mail where mail=:previous_mail');
+            $stmt->bindParam(":nom", $nom);
+            $stmt->bindParam(":prenom", $prenom);
+            $stmt->bindParam(":mail", $mail);
+            $stmt->bindParam(":date_naissance", $date_naissance);
+            $stmt->bindParam(":mdp", $password);
+            $stmt->bindParam(":previous_mail", $previous_mail);
+            echo $previous_mail;
+            $stmt->execute();
+        } catch (PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return true;
+    }
+
     public function getUserInfo($conn, $userEmail) {
         try {
             $sql = 'SELECT mail, nom, prenom, date_naissance FROM Utilisateur WHERE mail = :email';

@@ -2,6 +2,7 @@
     session_start();
     if($_SESSION['type'] == 'deco'){
         header('Location: connexion.php');
+        $mail = $_SESSION['mail'];
     }
 ?>
 
