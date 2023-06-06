@@ -186,7 +186,31 @@
             array_push($res, $idFavoris);
 
             echo json_encode($res);
-        } 
+
+            // Requête de récupération des playlists pour l'ajout 
+        } elseif ($_GET['type'] == 'addPlaylist' && isset($_GET['id'])) {
+            
+            $res = array();
+
+            // Récupération des playlists
+            $playlists = new request;
+            $playlists = $playlists->getUserPlaylists($conn, $_SESSION['mail']);
+
+            array_push($res, $playlists);
+
+            $tab = array();
+            for ($i = 0; $i < count($playlists); $i++){
+                $titresPlaylist = new request;
+                $titresPlaylist = $titresPlaylist->IDTitresPlaylist($conn, $playlists[$i]['idplaylist']);
+                array_push($tab, $titresPlaylist);
+            }
+
+            array_push($res, $tab);
+
+            array_push($res, intVal($_GET['id']));
+
+            echo json_encode($res);
+        }
         else{
 
 
@@ -212,6 +236,16 @@
             $ajoutPlaylist = new request;
             $ajoutPlaylist = $ajoutPlaylist->insertPlaylist($conn, $nom, $date, $_SESSION['mail']);
             echo json_encode($ajoutPlaylist);
+
+        } elseif ($_POST['type'] == 'addTitrePlaylist' && isset($_POST['idTitre']) && isset($_POST['idPlaylist'])) {
+            
+            $idTitre = intVal($_POST['idTitre']);
+            $idPlaylist = intVal($_POST['idPlaylist']);
+            $date = date("Y-m-d");
+
+            $ajoutTitrePlaylist = new request;
+            $ajoutTitrePlaylist = $ajoutTitrePlaylist->insertTitrePlaylist($conn, $idTitre, $idPlaylist, $date);
+            echo json_encode($ajoutTitrePlaylist);
         }
 
     } elseif ($type_request == 'PUT') {
@@ -236,6 +270,16 @@
             $deletePlaylist = new request;
             $deletePlaylist = $deletePlaylist->deletePlaylist($conn, $id);
             echo json_encode($deletePlaylist);
+        }
+
+        elseif($_GET['type'] == 'deleteTitrePlaylist' && isset($_GET['idTitre']) && isset($_GET['idPlaylist'])){
+            $idTitre = intVal($_GET['idTitre']);
+            $idPlaylist = intVal($_GET['idPlaylist']);
+
+            $deleteTitrePlaylist = new request;
+            $deleteTitrePlaylist = $deleteTitrePlaylist->deleteTitrePlaylist($conn, $idTitre, $idPlaylist);
+
+            echo json_encode($deleteTitrePlaylist);
         }
 
     }

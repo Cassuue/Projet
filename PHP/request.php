@@ -66,10 +66,6 @@ class request{
         return $result;
     }
 
-    function getTitresFavoris($conn, $email){
-
-    }
-
     // Permet de récupérer les playlists d'un utilisateur
     function getUserPlaylists($conn, $email) {
         try{
@@ -173,6 +169,20 @@ class request{
         }
         return $result;
     }
+
+    // Permet de récupérer tous les id des titres d'une playlist
+    function IDTitresPlaylist($conn, $id){
+        try {
+            $stmt = $conn->prepare("SELECT idtitre, idplaylist FROM appartenir WHERE idplaylist = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
+    }
     
     function getAllArtists($conn) {
         $sql = "SELECT idArtiste, nom FROM Artiste";
@@ -254,6 +264,20 @@ class request{
         return true;
     }
 
+    function insertTitrePlaylist($conn, $idTitre, $idPlaylist, $date){
+        try{
+            $stmt = $conn->prepare("INSERT INTO appartenir (idtitre, idplaylist, date_ajout) VALUES (:idtitre, :idplaylist, :date)");
+            $stmt->bindParam(":idtitre", $idTitre);
+            $stmt->bindParam(":date", $date);
+            $stmt->bindParam(":idplaylist", $idPlaylist);
+            $stmt->execute();
+        } catch (PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return true;
+    }
+
     // Fonctions UPDATE
 
     // Permet d'ajouter un titre aux favoris
@@ -298,6 +322,19 @@ class request{
         }
         return true;
 
+    }
+
+    function deleteTitrePlaylist($conn, $idTitre, $idPlaylist){
+        try{
+            $stmt = $conn->prepare("DELETE FROM appartenir WHERE idplaylist=:idPlaylist AND idtitre=:idTitre");
+            $stmt->bindParam(':idPlaylist', $idPlaylist);
+            $stmt->bindParam(':idTitre', $idTitre);
+            $stmt->execute();
+        } catch (PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return true;
     }
 
 }
