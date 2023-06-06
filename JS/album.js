@@ -54,7 +54,6 @@ function affichageTitres(json, type, indice){
         let idtitre = json[indice][i]['idtitre'];
         let titre = json[indice][i]['nom'];
         let duree = json[indice][i]['duree'];
-        let lien = json[indice][i]['lien'];
         table.innerHTML += "<tr>"+
             "<th scope='row'>"+i+"</th>"+
             "<td id=rowTitre"+i+">"+ titre +"</td>"+
@@ -90,7 +89,6 @@ function affichageTitres(json, type, indice){
         } else{
             btnFavorite.innerHTML += "<h5 style='margin-bottom: 2px;'><i class='bi bi-star'></i></h5>";
         }
-
     }
 
 
@@ -107,6 +105,10 @@ function affichageTitres(json, type, indice){
 
         let btnDetails = document.getElementById('details'+i);
         btnDetails.addEventListener('click', function(){getTitle(id)});
+
+        let lien = json[indice][i]['lien'];
+        let btnPlay = document.getElementById("play"+i);
+        btnPlay.addEventListener("click", function(){playTitre(lien)});
     }
 }
 

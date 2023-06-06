@@ -21,7 +21,6 @@ function getPlaylistFavoris(json){
                     "<tr>"+
                         "<th scope='col'>#</th>"+
                         "<th scope='col' class='w-50'>Titre</th>"+
-                        "<th scope='col' class='w-15'>Date d'ajout</th>"+
                         "<th scope='col' class='w-15'>Durée</th>"+
                         "<th scope='col' class='w-10'>Options</th>"+
                         "<th scope='col' >Détails</th>"+
@@ -73,8 +72,8 @@ function displayBibliotheque(json){
             "</form>"+
         "</div>"+
         "<div class='modal-footer'>"+
-            "<button type='submit' class='btn btn-primary' id='enregistrer'>Enregistrer</button>"+
-            "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal' id='fermer'>Fermer</button>"+
+            "<button type='submit' class='btn'  id='enregistrer'>Enregistrer</button>"+
+            "<button type='button' class='btn' data-bs-dismiss='modal' id='fermer'>Fermer</button>"+
        " </div>"+
         "</div>"+
     "</div>"+

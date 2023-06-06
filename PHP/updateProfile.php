@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="../CSS/accueil.css">
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid sticky-top">
             <nav class="navbar" style="background-color: #6379AE;">
                 <div class="container-fluid">
                     <span class="navbar-item">
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary" style = "margin-top: 10px" name="soumettre">Soumettre</button>
+                <button type="submit" class="btn btn-outline-dark btn-lg" style = "margin-top: 10px; margin-bottom: 50px;" name="soumettre">Soumettre</button>
             </div>
         </form>
     </div>

@@ -12,8 +12,7 @@ function displayInfoPlaylist(json){
     let date = json[0]['date_creation'];
     let image = "playlist.jpeg";
     
-
-    let duree_totale = 0; // A calculer en php
+    let duree_totale = json[3]['duree_total'];
 
     let body = document.getElementById("body");
     body.innerHTML += "<div class='row'>"+
