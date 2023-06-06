@@ -78,8 +78,9 @@
         </div>
 
         <footer class="footer fixed-bottom py-1">
-            <div class="container justify-content-center"  id='playMusic'>
-                <audio controls autoplay src="" class='container justify-content-center'></audio>
+            <div class="container d-flex justify-content-center"  id='playMusic'>
+                <p style="margin-right: 3%"> La je rentre un titre de la musique aléatoire </p>
+                <audio controls autoplay src="" class='container justify-content-end'></audio>
             </div>
         </footer>
 
