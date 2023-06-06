@@ -1,1 +1,1 @@
-SELECT SUM(t.duree) AS duree_total FROM titre t, appartenir a WHERE t.idtitre=a.idtitre AND a.idplaylist=1
+INSERT INTO ecouter (idtitre, mail, favori, play, date) VALUES (1, 's.m@mail.com', false, false, '2023-06-06 22:53:00')
