@@ -75,8 +75,8 @@ function displayTitle(json) {
                 "</form>"+
             "</div>"+
             "<div class='modal-footer'>"+
-                "<button type='submit' class='btn btn-primary' id='enregistrer' >Enregistrer</button>"+
-                "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal' id='fermer'>Fermer</button>"+
+                "<button type='submit' class='btn ' id='enregistrer' >Enregistrer</button>"+
+                "<button type='button' class='btn ' data-bs-dismiss='modal' id='fermer'>Fermer</button>"+
         " </div>"+
             "</div>"+
         "</div>"+
