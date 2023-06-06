@@ -246,6 +246,17 @@ class request{
         return $result;
     }
 
+    function getTitres($conn){
+        try {
+            $stmt = $conn->query("SELECT idtitre from titre");
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return $result;
+    }
+
     // Fonctions INSERT
 
     // Permet d'insérer dans la base de données les informations d'un nouvel utilisateur
@@ -293,9 +304,19 @@ class request{
         return true;
     }
 
-    // function insertTitreEcouter($conn, $mail, $idTitre){
-
-    // }
+    function insertTitreEcouter($conn, $mail, $idTitre, $date){
+        try{
+            $stmt = $conn->prepare("INSERT INTO ecouter (idtitre, mail, favori, play, date) VALUES (:idtitre, :mail, false, false, :date)");
+            $stmt->bindParam(":idtitre", $idTitre);
+            $stmt->bindParam(":date", $date);
+            $stmt->bindParam(":mail", $mail);
+            $stmt->execute();
+        } catch (PDOException $exception){
+            echo 'Connexion échouée : ' . $exception->getMessage();
+            return false;
+        }
+        return true;
+    }
 
     // Fonctions UPDATE
 

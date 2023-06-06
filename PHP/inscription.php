@@ -84,8 +84,15 @@
         $input = new request;
         $input = $input->registerUser($conn, $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['naissance'], $_POST['password']);
 
-        // $ecouter = new request;
-        // $ecouter = $ecouter->
+        $titres = new request;
+        $titres = $titres->getTitres($conn);
+
+        $date = date('Y-m-d H:i:s');
+
+        for($i = 0; $i<count($titres); $i++){
+            $ecouter = new request;
+            $ecouter = $ecouter->insertTitreEcouter($conn, $_POST['mail'], $titres[$i]['idtitre'], $date);
+        }
 
         header("Location: connexion.php");
    }
