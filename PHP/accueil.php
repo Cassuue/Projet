@@ -38,7 +38,7 @@
 
         <section id="errors" class="container alert alert-danger" style="display: none"></section>
 
-        <div class="container-fluid">
+        <div class="container-fluid sticky-top">
             <nav class="navbar" style="background-color: #6379AE;">
                 <div class="container-fluid">
                     <span class="navbar-item">
@@ -77,9 +77,14 @@
             </nav>
         </div>
 
-        <div class="container" id='body'>
-            
+        <footer class="footer fixed-bottom py-1">
+            <div class="container justify-content-center"  id='playMusic'>
+                <audio controls autoplay src="" class='container justify-content-center'></audio>
+            </div>
+        </footer>
 
-        </div>
+        <div class="container" id='body' style="margin-bottom: 5%"></div>
+
+
     </body>  
 </html>

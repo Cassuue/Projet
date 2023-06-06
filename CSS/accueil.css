@@ -1,8 +1,6 @@
 .container-fluid{
     padding-left: 0%;
     padding-right: 0%;
-    display: grid;
-
 }
 
 #body.container{
@@ -20,13 +18,9 @@
 }
 
 
-footer.bg-dark.text-center.text-lg-start{
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    padding: 20px;
-    grid-row-start: 3;
-    grid-row-end: 4;
+.footer{
+    background-color: #6379AE !important;
+    z-index: 999;  
 }
 
 .main-content{
@@ -55,7 +49,7 @@ footer.bg-dark.text-center.text-lg-start{
 }
 
 #recherche.btn{
-    margin-bottom: 4%;
+    margin-bottom: 4%; 
 }
 
 .margin-right{

@@ -15,8 +15,7 @@
     if($type_request == 'GET' && isset($_GET['search']) && isset($_GET['filtre'])){
             $recherche = $_GET['search'];
             $filtre = $_GET['filtre'];
-            // $recherche = "Titre 1";
-            // $filtre = "titre";
+
             $request = new request;
             if($filtre == 'titre'){
                 $data = $request->getAllFromTitre($conn, $recherche);
