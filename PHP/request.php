@@ -298,7 +298,16 @@ class request{
         }
         return true;
 
-    }
 
+    //Récupérer toutes les infos d'un album avec nom nom
+    function getAllFromAlbum($conn, $nom){
+        $sql = "SELECT al.nom AS album_name, al.idalbum, al.image, al.style, al.idartiste AS album_artiste, ar.idartiste AS artiste_artiste, ar.nom AS artiste_name FROM album al, artiste ar WHERE al.nom LIKE CONCAT ('%', :nom::text, '%') AND al.idartiste = ar.idartiste";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+
+    }
 }
 ?>
