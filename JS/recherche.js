@@ -279,7 +279,7 @@ function updateResultat(data) {
   
       let cardImage = document.createElement("img");
       cardImage.className = "card-img-top";
-      cardImage.src = "../Images/playlist.jpeg";
+      cardImage.src = "../Images/profil.png";
   
       let button = document.createElement("button");
       button.type = "submit";
